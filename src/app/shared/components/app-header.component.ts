@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-header',
   imports: [RouterLink],
   template: `<header>
-    <a routerLink="/" class="brand"><span>▰</span> poll app</a
+    <a routerLink="/" class="brand"><img src="./assets/imgs/poll-app-logo-yellow.svg" alt=""></a
     ><a routerLink="/surveys/new" class="create-link">Create survey</a>
   </header>`,
 })

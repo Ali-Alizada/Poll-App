@@ -15,7 +15,8 @@
 }
 
 body {
-  margin: 0
+  margin: 0;
+   --plum: #35263b;
 }
 
 button,
@@ -35,21 +36,26 @@ a {
 
 .page-shell {
   min-height: 100vh;
-  background: var(--cream)
+  background: var(--plum);
+  max-width: 1440px;
+  margin: auto;
+
+
 }
 
 header {
   height: 70px;
-  max-width: 1180px;
+  max-width: 1440px;
   margin: auto;
-  padding: 0 28px;
+  padding: 75px 8%;
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
+  color: white;
 }
 
 .brand {
-  color: var(--plum);
+  // color: var(--plum);
   font-weight: 900;
   font-size: 1.1rem
 }
@@ -61,14 +67,15 @@ header {
 
 .create-link,
 .text-link {
-  color: var(--plum);
+  // color: var(--plum);
   font-weight: 800
 }
 
 .hero {
   background: var(--plum);
   color: white;
-  max-width: 1180px;
+  max-width: 1440px;
+  // height: 1900px;
   margin: auto;
   padding: 75px 8%;
   min-height: 365px;
@@ -120,13 +127,15 @@ header {
   height: 210px;
   background: #fff9f8;
   color: var(--peach);
-  align-self: center;
+  // align-self: center;
   transform: rotate(8deg);
   font-size: 9rem;
   line-height: 1.1;
   text-align: center;
   border-radius: 14px;
-  position: relative
+  position: relative;
+  top: 65px;
+  right: 100px;
 }
 
 .hero-art span {
@@ -142,7 +151,7 @@ header {
 
 .content,
 .editor {
-  max-width: 1180px;
+  max-width: 1440px;
   margin: auto;
   padding: 65px 8%
 }
@@ -158,7 +167,8 @@ header {
 .section-heading h2 {
   margin: 0;
   font-size: 2rem;
-  letter-spacing: -.04em
+  letter-spacing: -.04em;
+  color: var(--cream);
 }
 
 .survey-grid {
