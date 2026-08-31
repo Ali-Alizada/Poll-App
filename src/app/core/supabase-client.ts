@@ -1,4 +1,14 @@
-import { Service } from '@angular/core';
+import { createClient } from '@supabase/supabase-js'
 
-@Service()
-export class Supabase {}
+
+
+
+export const supabase = createClient(
+  'https://yamqrojmanarpmxrtwtj.supabase.co',
+  'sb_publishable_H6cx31a0dVK1AtfOzKrAFA_iSIuJX1E'
+);
+
+
+
+
+

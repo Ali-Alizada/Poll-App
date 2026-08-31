@@ -1,5 +1,8 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Question, Survey } from '../models/survey.model';
+import { supabase } from '../supabase-client';
+
+
 
 const initialSurveys: Survey[] = [
   {
@@ -47,7 +50,11 @@ const initialSurveys: Survey[] = [
   },
 ];
 
+
+
+
 @Injectable({ providedIn: 'root' })
+
 export class SurveyService {
   private readonly state = signal<Survey[]>(initialSurveys);
   readonly surveys = computed(() => this.state());
@@ -72,6 +79,13 @@ export class SurveyService {
       ),
     );
   }
+
+  async loadSurveys() {
+    const { data, error } = await supabase.from('surveys').select('*');
+    if (error) throw error;
+    return data;
+  }
+
   create(title: string, description: string, questions: Question[]) {
     const slug = `${title
       .toLowerCase()
