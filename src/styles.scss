@@ -1,1 +1,473 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --plum: #35263b;
+  --cream: #fff8f4;
+  --peach: #ffb569;
+  --ink: #332c35;
+  --muted: #756c76;
+  --line: #eadfe7;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background: #f6f3f1
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0
+}
+
+button,
+input,
+textarea {
+  font: inherit
+}
+
+button {
+  cursor: pointer
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+.page-shell {
+  min-height: 100vh;
+  background: var(--cream)
+}
+
+header {
+  height: 70px;
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.brand {
+  color: var(--plum);
+  font-weight: 900;
+  font-size: 1.1rem
+}
+
+.brand span {
+  color: var(--peach);
+  margin-right: 5px
+}
+
+.create-link,
+.text-link {
+  color: var(--plum);
+  font-weight: 800
+}
+
+.hero {
+  background: var(--plum);
+  color: white;
+  max-width: 1180px;
+  margin: auto;
+  padding: 75px 8%;
+  min-height: 365px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden
+}
+
+.eyebrow {
+  color: var(--peach);
+  text-transform: uppercase;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  font-weight: 900;
+  margin: 0 0 12px
+}
+
+.hero h1,
+.editor h1 {
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  line-height: .95;
+  margin: 0;
+  letter-spacing: -.06em
+}
+
+.hero p:not(.eyebrow) {
+  max-width: 420px;
+  line-height: 1.6;
+  color: #e7dfe8
+}
+
+.button {
+  display: inline-block;
+  background: var(--peach);
+  color: var(--plum);
+  border: 0;
+  border-radius: 5px;
+  padding: 12px 18px;
+  font-weight: 900
+}
+
+.button:disabled {
+  opacity: .5;
+  cursor: not-allowed
+}
+
+.hero-art {
+  width: 180px;
+  height: 210px;
+  background: #fff9f8;
+  color: var(--peach);
+  align-self: center;
+  transform: rotate(8deg);
+  font-size: 9rem;
+  line-height: 1.1;
+  text-align: center;
+  border-radius: 14px;
+  position: relative
+}
+
+.hero-art span {
+  position: absolute;
+  background: var(--peach);
+  color: var(--plum);
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  border-radius: 50%;
+  top: -15px;
+  right: -20px
+}
+
+.content,
+.editor {
+  max-width: 1180px;
+  margin: auto;
+  padding: 65px 8%
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: -.04em
+}
+
+.survey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px
+}
+
+.survey-card {
+  border: 1px solid var(--line);
+  background: white;
+  padding: 24px;
+  min-height: 225px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s
+}
+
+.survey-card:hover {
+  transform: translateY(-4px)
+}
+
+.badge {
+  display: inline-block;
+  width: max-content;
+  font: 700 .7rem monospace;
+  color: #b86120;
+  background: #fff0df;
+  padding: 5px 8px;
+  border-radius: 999px
+}
+
+.survey-card h3 {
+  font-size: 1.4rem;
+  line-height: 1.08;
+  margin: 19px 0 9px;
+  letter-spacing: -.04em
+}
+
+.survey-card p {
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.45
+}
+
+.open {
+  color: #c96e25;
+  font-weight: 900;
+  margin-top: auto;
+  font-size: .85rem
+}
+
+.back-link {
+  display: block;
+  max-width: 1180px;
+  margin: 16px auto 0;
+  padding: 0 8%;
+  color: var(--muted);
+  font-weight: 800
+}
+
+.survey-page {
+  max-width: 1180px;
+  margin: auto;
+  padding: 45px 8% 70px;
+  display: grid;
+  grid-template-columns: 1.35fr .8fr;
+  gap: 70px
+}
+
+.questions h1 {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+  margin: 18px 0
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 650px;
+  line-height: 1.6
+}
+
+.question {
+  border-top: 1px solid var(--line);
+  margin-top: 31px;
+  padding-top: 25px
+}
+
+.question-number {
+  color: #b36c2d;
+  font: 700 .72rem monospace;
+  text-transform: uppercase
+}
+
+.question h2 {
+  font-size: 1.25rem;
+  margin: 8px 0 15px
+}
+
+.options {
+  display: grid;
+  gap: 9px
+}
+
+.options button {
+  text-align: left;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 15px;
+  color: var(--ink)
+}
+
+.options button:hover {
+  border-color: var(--peach);
+  background: #fff8f0
+}
+
+.results {
+  background: var(--plum);
+  color: white;
+  padding: 28px;
+  align-self: start
+}
+
+.results h2 {
+  font-size: 1.65rem;
+  margin: 0 0 29px;
+  letter-spacing: -.04em
+}
+
+.result-question {
+  margin-top: 22px
+}
+
+.result-question h3 {
+  font-size: .85rem;
+  line-height: 1.25;
+  margin: 0 0 10px
+}
+
+.result-row {
+  font-size: .72rem;
+  margin: 10px 0
+}
+
+.result-row>div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px
+}
+
+.bar {
+  height: 6px;
+  background: #604b65;
+  margin-top: 5px
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--peach)
+}
+
+.result-note {
+  color: #dacdda;
+  font-size: .75rem;
+  margin-top: 27px
+}
+
+.editor {
+  max-width: 1000px
+}
+
+.editor-heading {
+  background: var(--plum);
+  color: white;
+  padding: 40px
+}
+
+.editor h1 {
+  font-size: 2.8rem
+}
+
+.editor form {
+  background: #493650;
+  padding: 28px 40px 40px
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px
+}
+
+.editor label {
+  color: #f8e8f2;
+  display: grid;
+  gap: 7px;
+  font-size: .78rem;
+  font-weight: 800
+}
+
+.editor input,
+.editor textarea {
+  border: 0;
+  border-radius: 4px;
+  padding: 11px;
+  background: white;
+  color: var(--ink)
+}
+
+.editor textarea {
+  resize: vertical;
+  min-height: 44px
+}
+
+.editor-question {
+  background: #3d2d43;
+  padding: 20px;
+  margin-top: 20px
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 16px
+}
+
+.remove,
+.option-inputs button {
+  border: 0;
+  background: none;
+  color: var(--peach);
+  font-weight: 900
+}
+
+.option-inputs {
+  margin-top: 14px
+}
+
+.option-inputs>div {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px
+}
+
+.option-inputs input {
+  width: 100%
+}
+
+.add-option,
+.add-question {
+  margin-top: 12px
+}
+
+.add-question {
+  border: 1px dashed #be9abe;
+  padding: 11px;
+  background: transparent;
+  color: white;
+  width: 100%
+}
+
+.form-actions {
+  display: flex;
+  justify-content: end;
+  margin-top: 28px
+}
+
+@media(max-width:720px) {
+  header {
+    padding: 0 20px
+  }
+
+  .hero {
+    padding: 55px 9%
+  }
+
+  .hero-art {
+    display: none
+  }
+
+  .survey-grid,
+  .survey-page,
+  .field-grid {
+    grid-template-columns: 1fr
+  }
+
+  .survey-page {
+    gap: 30px
+  }
+
+  .content,
+  .editor {
+    padding: 45px 7%
+  }
+
+  .editor form,
+  .editor-heading {
+    padding: 25px
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column
+  }
+}
