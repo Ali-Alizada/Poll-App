@@ -1,0 +1,57 @@
+<main class="page-shell">
+    <app-header />
+    <section class="editor">
+      <div class="editor-heading">
+        <p class="eyebrow">New survey</p>
+        <h1>Create new survey</h1>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="publish()">
+        <div class="field-grid">
+          <label
+            >Survey name<input
+              formControlName="title"
+              placeholder="e.g. Summer team event" /></label
+          ><label
+            >Description<textarea
+              formControlName="description"
+              placeholder="What should participants know?"
+            ></textarea>
+          </label>
+        </div>
+        <div formArrayName="questions">
+          @for (question of questions.controls; track $index; let i = $index) {
+            <section class="editor-question" [formGroupName]="i">
+              <div class="question-top">
+                <strong>Question {{ i + 1 }}</strong>
+                @if (questions.length > 1) {
+                  <button type="button" class="remove" (click)="removeQuestion(i)">Remove</button>
+                }
+              </div>
+              <label
+                >Question<input formControlName="text" placeholder="What would you like to know?"
+              /></label>
+              <div formArrayName="options" class="option-inputs">
+                @for (option of options(i).controls; track $index; let j = $index) {
+                  <div>
+                    <input [formControlName]="j" [placeholder]="'Answer ' + (j + 1)" />
+                    @if (options(i).length > 2) {
+                      <button type="button" (click)="removeOption(i, j)">×</button>
+                    }
+                  </div>
+                }
+                <button type="button" class="add-option" (click)="addOption(i)">
+                  + Add answer
+                </button>
+              </div>
+            </section>
+          }
+        </div>
+        <button type="button" class="add-question" (click)="addQuestion()">
+          + Add new question
+        </button>
+        <div class="form-actions">
+          <button class="button" type="submit" [disabled]="form.invalid">Publish survey</button>
+        </div>
+      </form>
+    </section>
+  </main>
