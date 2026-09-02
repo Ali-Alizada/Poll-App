@@ -102,7 +102,7 @@ export class SurveyEditorComponent {
   removeOption(question: number, option: number) {
     this.options(question).removeAt(option);
   }
-  publish() {
+  async publish() {
     if (this.form.invalid) return;
     const value = this.form.getRawValue();
     const questions: Question[] = value.questions.map((question) => ({
@@ -110,7 +110,15 @@ export class SurveyEditorComponent {
       text: question.text!,
       options: question.options.map((label) => ({ id: crypto.randomUUID(), label: label! })),
     }));
-    const survey = this.surveyService.create(value.title!, value.description!, questions);
-    this.router.navigate(['/surveys', survey.slug]);
+    try {
+      const survey = await this.surveyService.create(value.title!, value.description!, questions);
+      await this.router.navigate(['/surveys', survey.slug]);
+    } catch (error: unknown) {
+      console.error('Survey konnte nicht gespeichert werden:', error);
+      const message = typeof error === 'object' && error !== null && 'message' in error
+        ? String(error.message)
+        : JSON.stringify(error);
+      alert(`Die Umfrage konnte nicht gespeichert werden: ${message}`);
+    }
   }
 }

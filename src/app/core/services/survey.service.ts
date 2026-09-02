@@ -2,106 +2,167 @@ import { Injectable, computed, signal } from '@angular/core';
 import { Question, Survey } from '../models/survey.model';
 import { supabase } from '../supabase-client';
 
-
-
-const initialSurveys: Survey[] = [
-  {
-    id: 'team-event',
-    slug: 'next-team-event',
-    title: "Let's Plan the Next Team Event Together!",
-    description:
-      'We want to plan something everyone enjoys. Vote below and see the results update live.',
-    status: 'published',
-    createdAt: '2026-08-29',
-    questions: [
-      {
-        id: 'q1',
-        text: 'Which date would work best for you?',
-        options: [
-          { id: 'q1a', label: '15.09.2026, Friday' },
-          { id: 'q1b', label: '22.09.2026, Friday' },
-          { id: 'q1c', label: '29.09.2026, Friday' },
-        ],
-      },
-      {
-        id: 'q2',
-        text: 'Choose the activity you prefer.',
-        options: [
-          { id: 'q2a', label: 'Outdoor adventure' },
-          { id: 'q2b', label: 'Cooking class' },
-          { id: 'q2c', label: 'Escape room' },
-        ],
-      },
-      {
-        id: 'q3',
-        text: 'What is most important to you in a team event?',
-        options: [
-          { id: 'q3a', label: 'Fun and excitement' },
-          { id: 'q3b', label: 'Relaxed atmosphere' },
-          { id: 'q3c', label: 'Trying something new' },
-        ],
-      },
-    ],
-    answers: {
-      q1: ['q1a', 'q1a', 'q1b', 'q1a', 'q1c'],
-      q2: ['q2b', 'q2b', 'q2a'],
-      q3: ['q3a', 'q3c', 'q3a', 'q3b'],
-    },
-  },
-];
-
-
-
+const TABLES = {
+  surveys: 'surveys',
+  questions: 'survey_questions',
+  options: 'options',
+  answers: 'survey_answers',
+} as const;
 
 @Injectable({ providedIn: 'root' })
-
 export class SurveyService {
-  private readonly state = signal<Survey[]>(initialSurveys);
+  private readonly state = signal<Survey[]>([]);
+  private isSubscribed = false;
   readonly surveys = computed(() => this.state());
   readonly published = computed(() =>
     this.state().filter((survey) => survey.status === 'published'),
   );
+
+  constructor() {
+    void this.loadSurveys();
+    void this.subscribeToChanges();
+  }
+
   bySlug(slug: string) {
     return this.state().find((survey) => survey.slug === slug);
   }
-  addAnswer(surveyId: string, questionId: string, optionId: string) {
-    this.state.update((surveys) =>
-      surveys.map((survey) =>
-        survey.id !== surveyId
-          ? survey
-          : {
-              ...survey,
-              answers: {
-                ...survey.answers,
-                [questionId]: [...(survey.answers[questionId] ?? []), optionId],
-              },
-            },
-      ),
+
+  async loadSurveys() {
+    const [surveysResult, questionsResult, optionsResult, answersResult] = await Promise.all([
+      supabase.from(TABLES.surveys).select('*').order('created_at', { ascending: false }),
+      supabase.from(TABLES.questions).select('*').order('position'),
+      supabase.from(TABLES.options).select('*').order('position'),
+      supabase.from(TABLES.answers).select('question_id, option_id'),
+    ]);
+    const error =
+      surveysResult.error || questionsResult.error || optionsResult.error || answersResult.error;
+    if (error) {
+      console.error('Supabase-Daten konnten nicht geladen werden:', error.message);
+      return;
+    }
+
+    const questions = questionsResult.data ?? [];
+    const options = optionsResult.data ?? [];
+    const answers = answersResult.data ?? [];
+    this.state.set(
+      (surveysResult.data ?? []).map((row): Survey => {
+        const surveyQuestions: Question[] = questions
+          .filter((question) => question.survey_id === row.id)
+          .map((question) => ({
+            id: question.id,
+            text: question.text,
+            options: options
+              .filter((option) => option.question_id === question.id)
+              .map((option) => ({ id: option.id, label: option.label })),
+          }));
+        const groupedAnswers: Record<string, string[]> = {};
+        answers.forEach((answer) => {
+          groupedAnswers[answer.question_id] ??= [];
+          groupedAnswers[answer.question_id].push(answer.option_id);
+        });
+        return {
+          id: row.id,
+          slug: row.slug,
+          title: row.title,
+          description: row.description,
+          status: row.status,
+          createdAt: row.created_at,
+          questions: surveyQuestions,
+          answers: groupedAnswers,
+        };
+      }),
     );
   }
 
-  async loadSurveys() {
-    const { data, error } = await supabase.from('surveys').select('*');
+  async addAnswer(surveyId: string, questionId: string, optionId: string) {
+    const { error } = await supabase
+      .from(TABLES.answers)
+      .insert({ survey_id: surveyId, question_id: questionId, option_id: optionId });
     if (error) throw error;
-    return data;
+    await this.loadSurveys();
   }
 
-  create(title: string, description: string, questions: Question[]) {
+  async create(title: string, description: string, questions: Question[]) {
     const slug = `${title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')}-${Date.now().toString().slice(-4)}`;
-    const survey: Survey = {
-      id: crypto.randomUUID(),
-      slug,
-      title,
-      description,
-      status: 'published',
-      createdAt: new Date().toISOString(),
-      questions,
-      answers: {},
-    };
-    this.state.update((surveys) => [survey, ...surveys]);
-    return survey;
+    const { data: survey, error: surveyError } = await supabase
+      .from(TABLES.surveys)
+      .insert({ slug, title, description, status: 'published' })
+      .select()
+      .single();
+    if (surveyError) throw surveyError;
+    for (let position = 0; position < questions.length; position++) {
+      const question = questions[position];
+      const { data: savedQuestion, error: questionError } = await supabase
+        .from(TABLES.questions)
+        .insert({ survey_id: survey.id, text: question.text, position })
+        .select()
+        .single();
+      if (questionError) throw questionError;
+      const { error: optionError } = await supabase
+        .from(TABLES.options)
+        .insert(
+          question.options.map((option, optionPosition) => ({
+            question_id: savedQuestion.id,
+            label: option.label,
+            position: optionPosition,
+          })),
+        );
+      if (optionError) throw optionError;
+    }
+    await this.loadSurveys();
+    return this.bySlug(slug)!;
+  }
+
+  private async subscribeToChanges() {
+    if (this.isSubscribed) return;
+    this.isSubscribed = true;
+
+    // Realtime-Abos für alle Tabellen einrichten
+    supabase
+      .channel('poll-app-changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: TABLES.surveys },
+        async () => {
+          console.log('Survey-Änderung erkannt, Daten werden aktualisiert...');
+          await this.loadSurveys();
+        },
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: TABLES.questions },
+        async () => {
+          console.log('Frage-Änderung erkannt, Daten werden aktualisiert...');
+          await this.loadSurveys();
+        },
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: TABLES.options },
+        async () => {
+          console.log('Option-Änderung erkannt, Daten werden aktualisiert...');
+          await this.loadSurveys();
+        },
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: TABLES.answers },
+        async () => {
+          console.log('Antwort-Änderung erkannt, Daten werden aktualisiert...');
+          await this.loadSurveys();
+        },
+      )
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') {
+          console.log(' Realtime-Abos erfolgreich aktiviert');
+        } else if (status === 'CHANNEL_ERROR') {
+          console.error(' Fehler beim Verbinden zu Realtime');
+        } else if (status === 'CLOSED') {
+          console.warn(' Realtime-Verbindung geschlossen');
+        }
+      });
   }
 }

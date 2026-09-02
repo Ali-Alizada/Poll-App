@@ -11,7 +11,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
       <div>
         <p class="eyebrow">Feedback made simple</p>
         <h1>Collect feedback,<br />unlock ideas</h1>
-        <p>Create and share surveys in minutes – from team events to workplace culture.</p>
+        <p>Create and share surveys in minutes from team events to workplace culture.</p>
         <a routerLink="/surveys/new" class="button">New survey</a>
       </div>
       <div class="hero-art">☷<span>?</span></div>
