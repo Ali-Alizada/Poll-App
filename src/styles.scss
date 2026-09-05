@@ -42,15 +42,15 @@ a {
   background: var(--plum);
 }
 
-.button {
-  display: inline-block;
-  padding: 12px 18px;
-  border: 0;
-  border-radius: 5px;
-  background: var(--peach);
-  color: var(--plum);
-  font-weight: 900;
-}
+// .button {
+//   // display: inline-block;
+//   // padding: 12px 18px;
+//   // border: 0;
+//   // border-radius: 5px;
+//   // background: var(--peach);
+//   // color: var(--plum);
+//   // font-weight: 900;
+// }
 
 .button:disabled {
   cursor: not-allowed;

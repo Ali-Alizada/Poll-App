@@ -54,6 +54,69 @@
   padding: 65px 8%;
 }
 
+.survey-button-group {
+  position: relative;
+  display: inline-block;
+  width: 172px;
+  height: 48px;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.first-button,
+.second-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 48px;
+}
+
+.first-button {
+  z-index: 2;
+  will-change: opacity, transform;
+  transition:
+    opacity 500ms ease-in-out 120ms,
+    transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.second-button {
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-34px);
+  will-change: opacity, transform;
+  transition:
+    opacity 560ms ease-in-out 140ms,
+    transform 950ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.first-button img,
+.second-button img {
+  display: block;
+  height: 48px;
+  max-width: none;
+}
+
+.survey-button-group:hover .first-button,
+.survey-button-group:focus-within .first-button {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.survey-button-group:hover .second-button,
+.survey-button-group:focus-within .second-button {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-button,
+  .second-button {
+    transition: none;
+  }
+}
 .section-heading {
   display: flex;
   align-items: end;

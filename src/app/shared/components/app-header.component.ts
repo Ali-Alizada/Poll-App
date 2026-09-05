@@ -5,8 +5,10 @@ import { RouterLink } from '@angular/router';
   selector: 'app-header',
   imports: [RouterLink],
   template: `<header>
-    <a routerLink="/" class="brand"><img src="./assets/imgs/poll-app-logo-yellow.svg" alt="" /></a>
 
+    @if (showCreateLinkLogo()) {
+    <a routerLink="/" class="brand"><img src="./assets/imgs/poll-app-logo-yellow.svg" alt="" /></a>
+    }
     @if (showCreateLink()) {
     <a routerLink="/surveys/new" class="create-link">Create survey</a>
     }
@@ -17,6 +19,7 @@ import { RouterLink } from '@angular/router';
 
 export class AppHeaderComponent {
   readonly showCreateLink = input(true);
+  readonly showCreateLinkLogo = input(true);
 
 
 }

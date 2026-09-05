@@ -1,14 +1,27 @@
 
 <main class="page-shell">
-    <app-header [showCreateLink]="false" />
+    <app-header
+    [showCreateLink]="false"
+    />
+
     <section class="hero">
       <div>
         <!-- <p class="eyebrow">Feedback made simple</p> -->
         <h1>Collect feedback,<br />unlock ideas</h1>
-        <p>Create and share surveys in minutes from team events to workplace culture.</p>
-        <a routerLink="/surveys/new" class="button">New survey</a>
+        <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your audience, and turn feedback into action.</p>
+        <div class="survey-button-group">
+          <a routerLink="/surveys/new" class="first-button" aria-label="Create a new survey">
+            <img src="../assets/imgs/primary-btn-s.svg" alt="" />
+          </a>
+          <a routerLink="/surveys/new" class="second-button" aria-label="Create a new survey">
+            <img src="../assets/imgs/primary-btn-l.svg" alt="" />
+          </a>
+        </div>
       </div>
-      <div class="hero-art">☷<span>?</span></div>
+      <div class="hero-art">
+        <img src="" alt="">
+      <span>?</span>
+      </div>
     </section>
     <section class="content">
       <div class="section-heading">
