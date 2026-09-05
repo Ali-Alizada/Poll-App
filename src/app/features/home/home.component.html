@@ -29,18 +29,20 @@
 
       <div class="section-heading">
       <p>Ending soon surveys</p>
-        <!-- <a routerLink="/surveys/new" class="text-link">+ Create a new survey</a> -->
+        <a routerLink="/surveys/new" class="text-link"></a>
       </div>
 
       <div class="survey-grid">
         @for (survey of surveys.published(); track survey.id) {
-          <a [routerLink]="['/surveys', survey.slug]" class="survey-card"
-            ><span class="badge">Published</span>
-            <h3>{{ survey.title }}</h3>
-            <p>{{ survey.description }}</p>
-            <span class="open">Open survey →</span>
+          <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
+            <!-- <span class="badge">Published</span> -->
+            <p>{{ survey.title }}</p>
+            <h3>{{ survey.description }}</h3>
+            <span class="open">End in 2 day</span>
           </a>
         }
       </div>
     </section>
+
+    
   </main>

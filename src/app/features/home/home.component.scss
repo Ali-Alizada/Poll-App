@@ -166,41 +166,58 @@
 .survey-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 24px;
+  padding: 10px 10px 20px 10px;
 }
 
 .survey-card {
   display: flex;
-  min-height: 225px;
+  max-width: 321px;
+  min-height: 290px;
   flex-direction: column;
-  padding: 24px;
-  border: 1px solid var(--line);
-  background: white;
-  transition: transform 0.18s;
+  padding: 30px 30px 60px 30px;
+  border-top-right-radius: 80px;
+  background: #f6f3f1;
+  transition: transform 0.18s, background-color 0.18s;
 }
 
 .survey-card:hover {
   transform: translateY(-4px);
+  background: var(--secondary-background);
 }
 
 .survey-card h3 {
   margin: 19px 0 9px;
-  font-size: 1.4rem;
-  line-height: 1.08;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 100%;
   letter-spacing: -0.04em;
 }
 
 .survey-card p {
   color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 100%;
+  // padding: 10px 0 0 0;
+  margin-bottom: 0;
 }
 
 .open {
   margin-top: auto;
-  color: #c96e25;
-  font-size: 0.85rem;
-  font-weight: 900;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 100%;
+  text-align: center;
+  padding: 6px 0;
+  width: 110px;
+  border-top-right-radius: 14px;
+  background-color: var(--secondary-orange);
+}
+
+.survey-card:hover .open {
+  background-color: var(--peach);
 }
 
 @media (max-width: 720px) {
