@@ -1,36 +1,37 @@
 
 <main class="page-shell">
-    <app-header
-    [showCreateLink]="false"
-    />
+    <app-header [showCreateLink]="false"/>
 
     <section class="hero">
       <div>
         <!-- <p class="eyebrow">Feedback made simple</p> -->
         <h1>Collect feedback,<br />unlock ideas</h1>
         <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your audience, and turn feedback into action.</p>
+
         <div class="survey-button-group">
           <a routerLink="/surveys/new" class="first-button" aria-label="Create a new survey">
-            <img src="../assets/imgs/primary-btn-s.svg" alt="" />
+            <img src="../assets/imgs/primary-btn-s.svg" alt="primary-btn-small-svg" />
           </a>
           <a routerLink="/surveys/new" class="second-button" aria-label="Create a new survey">
-            <img src="../assets/imgs/primary-btn-l.svg" alt="" />
+            <img src="../assets/imgs/primary-btn-l.svg" alt="primary-btn-large-svg" />
           </a>
         </div>
       </div>
+
       <div class="hero-art">
-        <img src="" alt="">
-      <span>?</span>
+        <img src="../assets/imgs/mobile-animi-first.svg" alt="mobile-first-svg">
+        <img src="../assets/imgs/mobile-animi-second.svg" alt="mobile-second-svg">
       </div>
+
     </section>
     <section class="content">
+      <h2>Your surveys</h2>
+
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Your surveys</p>
-          <h2>What do you want to know?</h2>
-        </div>
-        <a routerLink="/surveys/new" class="text-link">+ Create a new survey</a>
+      <p>Ending soon surveys</p>
+        <!-- <a routerLink="/surveys/new" class="text-link">+ Create a new survey</a> -->
       </div>
+
       <div class="survey-grid">
         @for (survey of surveys.published(); track survey.id) {
           <a [routerLink]="['/surveys', survey.slug]" class="survey-card"
