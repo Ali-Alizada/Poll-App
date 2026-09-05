@@ -8,6 +8,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
 @Component({
   imports: [ReactiveFormsModule, AppHeaderComponent],
   templateUrl: `./survey-editor.component.html`,
+  styleUrl: './survey-editor.component.scss',
 })
 
 export class SurveyEditorComponent {

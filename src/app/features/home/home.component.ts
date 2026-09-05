@@ -8,7 +8,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
 @Component({
   imports: [RouterLink, AppHeaderComponent],
   templateUrl: './home.component.html',
-  // styleUrl:
+  styleUrl: './home.component.scss',
 })
 
 export class HomeComponent {

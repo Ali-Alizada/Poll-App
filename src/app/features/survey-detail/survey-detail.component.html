@@ -1,50 +1,48 @@
 <main class="page-shell">
-    <app-header />
-    @if (survey(); as current) {
-      <a routerLink="/" class="back-link">← All surveys</a>
-      <section class="survey-page">
-        <div class="questions">
-          <span class="badge">Published</span>
-          <h1>{{ current.title }}</h1>
-          <p class="lead">{{ current.description }}</p>
-          @for (question of current.questions; track question.id; let index = $index) {
-            <article class="question">
-              <p class="question-number">{{ index + 1 }}. Question</p>
-              <h2>{{ question.text }}</h2>
-              <div class="options">
-                @for (option of question.options; track option.id) {
-                  <button (click)="vote(current.id, question.id, option.id)">
-                    <span>{{ option.label }}</span
-                    ><span>+</span>
-                  </button>
-                }
-              </div>
-            </article>
+  <app-header />
+  @if (survey(); as current) {
+  <a routerLink="/" class="back-link">All surveys</a>
+  <section class="survey-page">
+    <div class="questions">
+      <span class="badge">Published</span>
+      <h1>{{ current.title }}</h1>
+      <p class="lead">{{ current.description }}</p>
+      @for (question of current.questions; track question.id; let index = $index) {
+      <article class="question">
+        <p class="question-number">{{ index + 1 }}. Question</p>
+        <h2>{{ question.text }}</h2>
+        <div class="options">
+          @for (option of question.options; track option.id) {
+          <button (click)="vote(current.id, question.id, option.id)">
+            <span>{{ option.label }}</span><span>+</span>
+          </button>
           }
         </div>
-        <aside class="results">
-          <p class="eyebrow">Survey results · Live</p>
-          <h2>What the team thinks</h2>
-          @for (question of current.questions; track question.id) {
-            <div class="result-question">
-              <h3>{{ question.text }}</h3>
-              @for (option of question.options; track option.id) {
-                <div class="result-row">
-                  <div>
-                    <span>{{ option.label }}</span
-                    ><strong>{{ count(current.answers[question.id], option.id) }}</strong>
-                  </div>
-                  <div class="bar">
-                    <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
-                  </div>
-                </div>
-              }
-            </div>
-          }
-          <p class="result-note">Results update as votes arrive.</p>
-        </aside>
-      </section>
-    } @else {
-      <p>Diese Umfrage gibt es nicht.</p>
-    }
-  </main>
+      </article>
+      }
+    </div>
+    <aside class="results">
+      <p class="eyebrow">Survey results · Live</p>
+      <h2>What the team thinks</h2>
+      @for (question of current.questions; track question.id) {
+      <div class="result-question">
+        <h3>{{ question.text }}</h3>
+        @for (option of question.options; track option.id) {
+        <div class="result-row">
+          <div>
+            <span>{{ option.label }}</span><strong>{{ count(current.answers[question.id], option.id) }}</strong>
+          </div>
+          <div class="bar">
+            <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
+          </div>
+        </div>
+        }
+      </div>
+      }
+      <p class="result-note">Results update as votes arrive.</p>
+    </aside>
+  </section>
+  } @else {
+  <p>Diese Umfrage gibt es nicht.</p>
+  }
+</main>

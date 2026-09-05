@@ -1,0 +1,120 @@
+.editor {
+  max-width: 1000px;
+  margin: auto;
+  padding: 65px 8%;
+}
+
+.editor-heading {
+  padding: 40px;
+  background: var(--plum);
+  color: white;
+}
+
+.editor h1 {
+  margin: 0;
+  font-size: 2.8rem;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.editor form {
+  padding: 28px 40px 40px;
+  background: #493650;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.editor label {
+  display: grid;
+  gap: 7px;
+  color: #f8e8f2;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.editor input,
+.editor textarea {
+  padding: 11px;
+  border: 0;
+  border-radius: 4px;
+  background: white;
+  color: var(--ink);
+}
+
+.editor textarea {
+  min-height: 44px;
+  resize: vertical;
+}
+
+.editor-question {
+  margin-top: 20px;
+  padding: 20px;
+  background: #3d2d43;
+}
+
+.question-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.remove,
+.option-inputs button {
+  border: 0;
+  background: none;
+  color: var(--peach);
+  font-weight: 900;
+}
+
+.option-inputs {
+  margin-top: 14px;
+}
+
+.option-inputs > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.option-inputs input {
+  width: 100%;
+}
+
+.add-option,
+.add-question {
+  margin-top: 12px;
+}
+
+.add-question {
+  width: 100%;
+  padding: 11px;
+  border: 1px dashed #be9abe;
+  background: transparent;
+  color: white;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: end;
+  margin-top: 28px;
+}
+
+@media (max-width: 720px) {
+  .editor {
+    padding: 45px 7%;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editor form,
+  .editor-heading {
+    padding: 25px;
+  }
+}

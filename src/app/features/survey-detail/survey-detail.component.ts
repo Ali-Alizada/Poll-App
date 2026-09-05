@@ -5,6 +5,7 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
 @Component({
   imports: [RouterLink, AppHeaderComponent],
   templateUrl: './survey-detail.component.html',
+  styleUrl: './survey-detail.component.scss',
 })
 
 export class SurveyDetailComponent {
