@@ -88,11 +88,22 @@ export class SurveyService {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')}-${Date.now().toString().slice(-4)}`;
-    const { data: survey, error: surveyError } = await supabase
+    const surveyInsert = { slug, title, description, category, status: 'published' };
+    let { data: survey, error: surveyError } = await supabase
       .from(TABLES.surveys)
-      .insert({ slug, title, description, category, status: 'published' })
+      .insert(surveyInsert)
       .select()
       .single();
+
+    // Keep saving surveys while an older Supabase schema is still missing category.
+    if (surveyError?.message.includes("Could not find the 'category' column")) {
+      console.warn('Supabase-Spalte category fehlt; Umfrage wird ohne Kategorie gespeichert.');
+      ({ data: survey, error: surveyError } = await supabase
+        .from(TABLES.surveys)
+        .insert({ slug, title, description, status: 'published' })
+        .select()
+        .single());
+    }
     if (surveyError) throw surveyError;
     for (let position = 0; position < questions.length; position++) {
       const question = questions[position];
