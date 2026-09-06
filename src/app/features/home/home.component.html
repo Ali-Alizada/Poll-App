@@ -47,12 +47,18 @@
     <div class="links-group">
 
       <div class="links">
-        <div class="ativity-s">
-        <a href="">Active servey</a>
-        </div>
-        <div class="past-s">
-          <a href="">Past servey</a>
-        </div>
+        <button
+          type="button"
+          class="survey-filter active-filter"
+          [class.selected-filter]="surveyFilter() === 'active'"
+          (click)="selectSurveyFilter('active')"
+        >Active surveys</button>
+        <button
+          type="button"
+          class="survey-filter past-filter"
+          [class.selected-filter]="surveyFilter() === 'past'"
+          (click)="selectSurveyFilter('past')"
+        >Past surveys</button>
       </div>
 
 
@@ -62,7 +68,7 @@
     <button
       type="button"
       class="dropdown-btn"
-      aria-label="Menü öffnen"
+      aria-label="open-menu"
       [attr.aria-expanded]="isCategoryMenuOpen()"
       (click)="toggleCategoryMenu()"
     >

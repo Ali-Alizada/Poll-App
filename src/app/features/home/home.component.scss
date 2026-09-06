@@ -248,18 +248,30 @@
   gap: 24px;
 
 }
-.ativity-s{
+.survey-filter {
+  border: 0;
   padding: 4px 8px;
-  background-color: var(--peach);
   border-radius: 20px;
   color: black;
+  cursor: pointer;
 }
 
-.past-s{
+.active-filter {
+  background-color: var(--peach);
+}
+
+.past-filter {
   padding: 4px 8px;
   background-color: var(--cream);
-  border-radius: 20px;
-  color: black;
+}
+
+.survey-filter:not(.selected-filter) {
+  opacity: 0.6;
+}
+
+.survey-filter:hover,
+.survey-filter.selected-filter {
+  opacity: 1;
 }
 
 .dropdown{
@@ -309,11 +321,6 @@
   font-weight: 400;
 }
 
-/* Menü bei Hover oder Fokus anzeigen */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 .dropdown-content button {
   width: 100%;
   border: 0;
@@ -350,7 +357,6 @@
 .survey-card-row{
   display: flex;
   justify-content: space-between;
-  color: red;
   padding: 0px 20px;
 }
 
@@ -364,7 +370,7 @@
 }
 
 .survey-card-row p {
-  color: var(--muted);
+  color: white;
   font-size: 14px;
   font-weight: 600;
   line-height: 100%;

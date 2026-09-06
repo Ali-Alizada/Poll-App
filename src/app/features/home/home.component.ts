@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
@@ -14,12 +14,19 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
 
 export class HomeComponent {
   readonly surveys = inject(SurveyService);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   readonly categories = SURVEY_CATEGORIES;
   readonly selectedCategory = signal<string | null>(null);
-  readonly isCategoryMenuOpen = signal(true);
+  readonly isCategoryMenuOpen = signal(false);
+  readonly surveyFilter = signal<'active' | 'past'>('active');
   readonly filteredSurveys = computed(() => {
     const category = this.selectedCategory();
-    return this.surveys.published().filter((survey) => !category || survey.category === category);
+    const filter = this.surveyFilter();
+    return this.surveys.surveys().filter(
+      (survey) =>
+        (filter === 'active' ? survey.status === 'published' : survey.status === 'draft') &&
+        (!category || survey.category === category),
+    );
   });
 
   toggleCategoryMenu() {
@@ -28,5 +35,17 @@ export class HomeComponent {
 
   selectCategory(category: string | null) {
     this.selectedCategory.set(category);
+    this.isCategoryMenuOpen.set(false);
+  }
+
+  selectSurveyFilter(filter: 'active' | 'past') {
+    this.surveyFilter.set(filter);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeCategoryMenuOnOutsideClick(event: Event) {
+    if (!this.elementRef.nativeElement.querySelector('.dropdown')?.contains(event.target as Node)) {
+      this.isCategoryMenuOpen.set(false);
+    }
   }
 }
