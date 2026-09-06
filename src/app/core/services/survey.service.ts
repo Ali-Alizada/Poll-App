@@ -65,6 +65,7 @@ export class SurveyService {
           slug: row.slug,
           title: row.title,
           description: row.description,
+          category: row.category ?? undefined,
           status: row.status,
           createdAt: row.created_at,
           questions: surveyQuestions,
@@ -82,14 +83,14 @@ export class SurveyService {
     await this.loadSurveys();
   }
 
-  async create(title: string, description: string, questions: Question[]) {
+  async create(title: string, description: string, category: string, questions: Question[]) {
     const slug = `${title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')}-${Date.now().toString().slice(-4)}`;
     const { data: survey, error: surveyError } = await supabase
       .from(TABLES.surveys)
-      .insert({ slug, title, description, status: 'published' })
+      .insert({ slug, title, description, category, status: 'published' })
       .select()
       .single();
     if (surveyError) throw surveyError;

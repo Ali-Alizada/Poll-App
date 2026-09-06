@@ -64,9 +64,9 @@
 }
 
 .content {
-  max-width: 1050px;
+  max-width: 1150px;
   margin: auto;
-  padding: 65px 8%;
+  padding: 0px 8%;
 }
 
 .survey-button-group {
@@ -163,11 +163,15 @@
   font-weight: 800;
 }
 
-.survey-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 10px 10px 20px 10px;
+.survey-card-row{
+  display: flex;
+  max-width: 513px;
+  height: 130px;
+  // flex-direction: column;
+  padding: 30px 30px 60px 30px;
+  background-color: var(--dropdown-background);
+  border-top-right-radius: 80px;
+  transition: transform 0.18s, background-color 0.18s;
 }
 
 .survey-card {
@@ -218,7 +222,167 @@
 
 .survey-card:hover .open {
   background-color: var(--peach);
+  color: black;
 }
+
+.card-category{
+    // height: 400px;
+    max-width: 1150px;
+    margin: auto;
+    padding: 16px 8%;
+    color: white;
+}
+
+.links-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+}
+.links{
+  display: flex;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  gap: 24px;
+
+}
+.ativity-s{
+  padding: 4px 8px;
+  background-color: var(--peach);
+  border-radius: 20px;
+  color: black;
+}
+
+.past-s{
+  padding: 4px 8px;
+  background-color: var(--cream);
+  border-radius: 20px;
+  color: black;
+}
+
+.dropdown{
+  // font-family: 'Mulish';
+  position: relative;
+  display: inline-block;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+
+/* Styling für den Icon-Button */
+.dropdown-btn {
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+    color: white;
+    font: inherit;
+}
+
+.dropdown-btn:hover {
+  background: var(--dropdown-background);
+}
+
+/* Verstecken des Menüs standardmäßig */
+.dropdown-content {
+  display: block;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+  line-height: 100%;
+  letter-spacing: 2%;
+  // font-family: 'Mulish';
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Menü bei Hover oder Fokus anzeigen */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: black;
+  padding: 8px 37px 8px 8px;
+  text-align: left;
+  font: inherit;
+  display: block;
+  cursor: pointer;
+
+}
+
+.dropdown-content button:hover,
+.dropdown-content button.selected {
+  background-color: var(--secondary-background);
+  border-radius: 4px;
+}
+
+
+.survey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 10px 0px 20px 0px;
+}
+
+.servey-grid-row{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.survey-card-row{
+  display: flex;
+  justify-content: space-between;
+  color: red;
+  padding: 0px 20px;
+}
+
+.survey-card-row h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  color: white;
+}
+
+.survey-card-row p {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.open-row {
+  position: relative;
+  top: 94px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 100%;
+  padding: 6px;
+  width: 110px;
+  border-top-right-radius: 14px;
+  background-color: var(--secondary-orange);
+}
+
 
 @media (max-width: 720px) {
   .hero {

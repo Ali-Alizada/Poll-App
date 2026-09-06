@@ -1,48 +1,116 @@
-
 <main class="page-shell">
-    <app-header [showCreateLink]="false"/>
+  <app-header [showCreateLink]="false" />
 
-    <section class="hero">
-      <div>
-        <!-- <p class="eyebrow">Feedback made simple</p> -->
-        <h1>Collect feedback,<br />unlock ideas</h1>
-        <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your audience, and turn feedback into action.</p>
+  <section class="hero">
+    <div>
+      <!-- <p class="eyebrow">Feedback made simple</p> -->
+      <h1>Collect feedback,<br />unlock ideas</h1>
+      <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your
+        audience, and turn feedback into action.</p>
 
-        <div class="survey-button-group">
-          <a routerLink="/surveys/new" class="first-button" aria-label="Create a new survey">
-            <img src="../assets/imgs/primary-btn-s.svg" alt="primary-btn-small-svg" />
-          </a>
-          <a routerLink="/surveys/new" class="second-button" aria-label="Create a new survey">
-            <img src="../assets/imgs/primary-btn-l.svg" alt="primary-btn-large-svg" />
-          </a>
+      <div class="survey-button-group">
+        <a routerLink="/surveys/new" class="first-button" aria-label="Create a new survey">
+          <img src="../assets/imgs/primary-btn-s.svg" alt="primary-btn-small-svg" />
+        </a>
+        <a routerLink="/surveys/new" class="second-button" aria-label="Create a new survey">
+          <img src="../assets/imgs/primary-btn-l.svg" alt="primary-btn-large-svg" />
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img src="../assets/imgs/mobile-animi-first.svg" alt="mobile-first-svg">
+      <img src="../assets/imgs/mobile-animi-second.svg" alt="mobile-second-svg">
+    </div>
+
+  </section>
+  <section class="content">
+    <h2>Your surveys</h2>
+
+    <div class="section-heading">
+      <p>Ending soon surveys</p>
+      <!-- <a routerLink="/surveys/new" class="text-link"></a> -->
+    </div>
+
+    <div class="survey-grid">
+      @for (survey of surveys.published(); track survey.id) {
+      <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
+        <p>{{ survey.title }}</p>
+        <h3>{{ survey.description }}</h3>
+        <span class="open">End in 2 day</span>
+      </a>
+      }
+    </div>
+  </section>
+
+  <section class="card-category">
+    <div class="links-group">
+
+      <div class="links">
+        <div class="ativity-s">
+        <a href="">Active servey</a>
+        </div>
+        <div class="past-s">
+          <a href="">Past servey</a>
         </div>
       </div>
 
-      <div class="hero-art">
-        <img src="../assets/imgs/mobile-animi-first.svg" alt="mobile-first-svg">
-        <img src="../assets/imgs/mobile-animi-second.svg" alt="mobile-second-svg">
-      </div>
 
-    </section>
-    <section class="content">
-      <h2>Your surveys</h2>
 
-      <div class="section-heading">
-      <p>Ending soon surveys</p>
-        <a routerLink="/surveys/new" class="text-link"></a>
-      </div>
+  <div class="dropdown">
+    <!-- Der Button enthält nur das Icon anstelle von Text -->
+    <button
+      type="button"
+      class="dropdown-btn"
+      aria-label="Menü öffnen"
+      [attr.aria-expanded]="isCategoryMenuOpen()"
+      (click)="toggleCategoryMenu()"
+    >
+      Sort by Categories:
+      <img src="/assets/imgs/sort-icon-white.svg" alt="">
+    </button>
 
-      <div class="survey-grid">
-        @for (survey of surveys.published(); track survey.id) {
-          <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
-            <!-- <span class="badge">Published</span> -->
-            <p>{{ survey.title }}</p>
-            <h3>{{ survey.description }}</h3>
-            <span class="open">End in 2 day</span>
-          </a>
-        }
-      </div>
-    </section>
+    <!-- Das eigentliche Dropdown-Menü -->
+    @if (isCategoryMenuOpen()) {
+    <div class="dropdown-content">
+      <button type="button" [class.selected]="selectedCategory() === null" (click)="selectCategory(null)">All surveys</button>
+      @for (category of categories; track category) {
+        <button type="button" [class.selected]="selectedCategory() === category" (click)="selectCategory(category)">
+          {{ category }}
+        </button>
+      }
+    </div>
+    }
+  </div>
 
-    
-  </main>
+
+
+  </div>
+
+    <div class="servey-grid-row">
+      @for (survey of filteredSurveys(); track survey.id) {
+      <a [routerLink]="['/surveys', survey.slug]" class="survey-card-row">
+
+
+           <div>
+              <p>{{ survey.title }}</p>
+              <h3>{{ survey.description }}</h3>
+            </div>
+
+          <div>
+            <span class="open-row">End in 2 day</span>
+          </div>
+
+
+      </a>
+      }
+    </div>
+  </section>
+
+
+
+
+
+
+
+</main>

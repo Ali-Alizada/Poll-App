@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Question } from '../../core/models/survey.model';
+import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
 import { AppHeaderComponent } from '../../shared/components/app-header.component';
 
@@ -15,9 +15,11 @@ export class SurveyEditorComponent {
   private readonly fb = inject(FormBuilder);
   private readonly surveyService = inject(SurveyService);
   private readonly router = inject(Router);
+  readonly categories = SURVEY_CATEGORIES;
   readonly form = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
+    category: [SURVEY_CATEGORIES[0], Validators.required],
     questions: this.fb.array([this.newQuestion()]),
   });
   get questions() {
@@ -56,7 +58,12 @@ export class SurveyEditorComponent {
       options: question.options.map((label) => ({ id: crypto.randomUUID(), label: label! })),
     }));
     try {
-      const survey = await this.surveyService.create(value.title!, value.description!, questions);
+      const survey = await this.surveyService.create(
+        value.title!,
+        value.description!,
+        value.category!,
+        questions,
+      );
       await this.router.navigate(['/surveys', survey.slug]);
     } catch (error: unknown) {
       console.error('Survey konnte nicht gespeichert werden:', error);

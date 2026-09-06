@@ -20,6 +20,12 @@
               formControlName="description"
               placeholder="What should participants know?"
             ></textarea>
+          </label><label
+            >Category<select formControlName="category">
+              @for (category of categories; track category) {
+                <option [value]="category">{{ category }}</option>
+              }
+            </select>
           </label>
         </div>
         <div formArrayName="questions">
