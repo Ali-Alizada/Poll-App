@@ -3,7 +3,8 @@
   min-height: 365px;
   max-width: 1440px;
   margin: auto;
-  padding: 75px 8%;
+  // padding: 75px 8%;
+  padding: 75px;
   justify-content: space-between;
   overflow: hidden;
   background: var(--plum);
@@ -64,7 +65,7 @@
 }
 
 .content {
-  max-width: 1150px;
+  max-width: 1440px;
   margin: auto;
   padding: 0px 8%;
 }
@@ -165,7 +166,7 @@
 
 .survey-card-row{
   display: flex;
-  max-width: 513px;
+  // max-width: 513px;
   height: 130px;
   // flex-direction: column;
   padding: 30px 30px 60px 30px;
@@ -176,7 +177,7 @@
 
 .survey-card {
   display: flex;
-  max-width: 321px;
+  // max-width: 321px;
   min-height: 290px;
   flex-direction: column;
   padding: 30px 30px 60px 30px;
@@ -227,10 +228,12 @@
 
 .card-category{
     min-height: 400px;
-    max-width: 1150px;
+    max-width: 1440px;
     margin: auto;
     padding: 16px 8%;
+    padding-bottom: 60px;
     color: white;
+
 }
 
 .links-group{
