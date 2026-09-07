@@ -358,9 +358,19 @@
 }
 
 .survey-card-row{
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  display: block;
   padding: 0px 20px;
+}
+
+.survey-card-row > div:first-child {
+  width: 100%;
+}
+
+.survey-card-row > div:last-child {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
 }
 
 .survey-card-row h3 {
@@ -370,6 +380,7 @@
   line-height: 100%;
   letter-spacing: -0.04em;
   color: white;
+  overflow-wrap: anywhere;
 }
 
 .survey-card-row p {
@@ -380,14 +391,14 @@
 }
 
 .open-row {
-  position: relative;
-  top: 94px;
+  align-self: end;
   color: var(--muted);
   font-size: 14px;
   font-weight: 500;
   line-height: 100%;
   padding: 6px;
   width: 110px;
+  white-space: nowrap;
   border-top-right-radius: 14px;
   background-color: var(--secondary-orange);
 }
