@@ -66,6 +66,7 @@ export class SurveyService {
           title: row.title,
           description: row.description,
           category: row.category ?? undefined,
+          endDate: row.end_date ?? undefined,
           status: row.status,
           createdAt: row.created_at,
           questions: surveyQuestions,
@@ -83,12 +84,25 @@ export class SurveyService {
     await this.loadSurveys();
   }
 
-  async create(title: string, description: string, category: string, questions: Question[]) {
+  async create(
+    title: string,
+    endDate: string | undefined,
+    description: string,
+    category: string,
+    questions: Question[],
+  ) {
     const slug = `${title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '')}-${Date.now().toString().slice(-4)}`;
-    const surveyInsert = { slug, title, description, category, status: 'published' };
+    const surveyInsert = {
+      slug,
+      title,
+      description,
+      category,
+      end_date: endDate || null,
+      status: 'published',
+    };
     let { data: survey, error: surveyError } = await supabase
       .from(TABLES.surveys)
       .insert(surveyInsert)
@@ -96,7 +110,14 @@ export class SurveyService {
       .single();
 
     // Keep saving surveys while an older Supabase schema is still missing category.
-    if (surveyError?.message.includes("Could not find the 'category' column")) {
+    if (surveyError?.message.includes("Could not find the 'end_date' column")) {
+      console.warn('Supabase-Spalte end_date fehlt; Umfrage wird ohne Enddatum gespeichert.');
+      ({ data: survey, error: surveyError } = await supabase
+        .from(TABLES.surveys)
+        .insert({ slug, title, description, category, status: 'published' })
+        .select()
+        .single());
+    } else if (surveyError?.message.includes("Could not find the 'category' column")) {
       console.warn('Supabase-Spalte category fehlt; Umfrage wird ohne Kategorie gespeichert.');
       ({ data: survey, error: surveyError } = await supabase
         .from(TABLES.surveys)

@@ -31,6 +31,21 @@
   gap: 20px;
 }
 
+.survey-meta,
+.meta-row {
+  display: grid;
+  gap: 12px;
+}
+
+.meta-row {
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+}
+
+.editor label span {
+  font-weight: 400;
+}
+
 .editor label {
   display: grid;
   gap: 7px;
@@ -40,7 +55,8 @@
 }
 
 .editor input,
-.editor textarea {
+.editor textarea,
+.editor select {
   padding: 11px;
   border: 0;
   border-radius: 4px;
@@ -113,6 +129,10 @@
   }
 
   .field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-row {
     grid-template-columns: 1fr;
   }
 

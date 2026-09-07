@@ -19,6 +19,7 @@ export class HomeComponent {
   readonly selectedCategory = signal<string | null>(null);
   readonly isCategoryMenuOpen = signal(false);
   readonly surveyFilter = signal<'active' | 'past'>('active');
+  readonly newestSurvey = computed(() => this.surveys.published()[0]);
   readonly filteredSurveys = computed(() => {
     const category = this.selectedCategory();
     const filter = this.surveyFilter();
@@ -40,6 +41,17 @@ export class HomeComponent {
 
   selectSurveyFilter(filter: 'active' | 'past') {
     this.surveyFilter.set(filter);
+  }
+
+  endDateLabel(endDate?: string) {
+    if (!endDate) return 'No end date';
+    const end = new Date(`${endDate}T23:59:59`);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const days = Math.ceil((end.getTime() - today.getTime()) / 86_400_000);
+    if (days < 0) return 'Ended';
+    if (days === 0) return 'Ends today';
+    return `Ends in ${days} day${days === 1 ? '' : 's'}`;
   }
 
   @HostListener('document:click', ['$event'])

@@ -11,21 +11,28 @@
       </div>
       <form [formGroup]="form" (ngSubmit)="publish()">
         <div class="field-grid">
+          <div class="survey-meta">
+            <label
+              >Survey name<input
+                formControlName="title"
+                placeholder="e.g. Summer team event" /></label
+            ><div class="meta-row">
+              <label
+                >Set end date <span>(optional)</span><input type="date" formControlName="endDate" /></label
+              ><label
+                >Choose category<select formControlName="category">
+                  @for (category of categories; track category) {
+                    <option [value]="category">{{ category }}</option>
+                  }
+                </select>
+              </label>
+            </div>
+          </div>
           <label
-            >Survey name<input
-              formControlName="title"
-              placeholder="e.g. Summer team event" /></label
-          ><label
-            >Description<textarea
+            >Describing text <span>(optional)</span><textarea
               formControlName="description"
               placeholder="What should participants know?"
             ></textarea>
-          </label><label
-            >Category<select formControlName="category">
-              @for (category of categories; track category) {
-                <option [value]="category">{{ category }}</option>
-              }
-            </select>
           </label>
         </div>
         <div formArrayName="questions">
@@ -43,7 +50,12 @@
               <div formArrayName="options" class="option-inputs">
                 @for (option of options(i).controls; track $index; let j = $index) {
                   <div>
-                    <input [formControlName]="j" [placeholder]="'Answer ' + (j + 1)" />
+                    <input
+                      [formControlName]="j"
+                      [placeholder]="'Answer ' + (j + 1)"
+                      [attr.aria-label]="'Answer ' + (j + 1)"
+                      title="Answer option"
+                    />
                     @if (options(i).length > 2) {
                       <button type="button" (click)="removeOption(i, j)">×</button>
                     }

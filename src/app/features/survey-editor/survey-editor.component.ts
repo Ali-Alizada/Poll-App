@@ -18,7 +18,8 @@ export class SurveyEditorComponent {
   readonly categories = SURVEY_CATEGORIES;
   readonly form = this.fb.group({
     title: ['', Validators.required],
-    description: ['', Validators.required],
+    endDate: [''],
+    description: [''],
     category: [SURVEY_CATEGORIES[0], Validators.required],
     questions: this.fb.array([this.newQuestion()]),
   });
@@ -60,6 +61,7 @@ export class SurveyEditorComponent {
     try {
       const survey = await this.surveyService.create(
         value.title!,
+        value.endDate || undefined,
         value.description!,
         value.category!,
         questions,

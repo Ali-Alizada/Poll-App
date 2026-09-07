@@ -33,11 +33,11 @@
     </div>
 
     <div class="survey-grid">
-      @for (survey of surveys.published(); track survey.id) {
+      @if (newestSurvey(); as survey) {
       <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
         <p>{{ survey.title }}</p>
         <h3>{{ survey.description }}</h3>
-        <span class="open">End in 2 day</span>
+        <span class="open">{{ endDateLabel(survey.endDate) }}</span>
       </a>
       }
     </div>
@@ -104,7 +104,7 @@
             </div>
 
           <div>
-            <span class="open-row">End in 2 day</span>
+            <span class="open-row">{{ endDateLabel(survey.endDate) }}</span>
           </div>
 
 

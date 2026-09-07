@@ -24,6 +24,7 @@ export interface Survey {
   title: string;
   description: string;
   category?: string;
+  endDate?: string;
   status: 'published' | 'draft';
   createdAt: string;
   questions: Question[];
