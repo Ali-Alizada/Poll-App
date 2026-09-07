@@ -76,7 +76,7 @@
       <img src="/assets/imgs/sort-icon-white.svg" alt="">
     </button>
 
-    <!-- Das eigentliche Dropdown-Menü -->
+    <!--Dropdown-Menü -->
     @if (isCategoryMenuOpen()) {
     <div class="dropdown-content">
       <button type="button" [class.selected]="selectedCategory() === null" (click)="selectCategory(null)">All surveys</button>

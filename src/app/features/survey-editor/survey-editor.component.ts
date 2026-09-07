@@ -3,10 +3,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
-import { AppHeaderComponent } from '../../shared/components/app-header.component';
 
 @Component({
-  imports: [ReactiveFormsModule, AppHeaderComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: `./survey-editor.component.html`,
   styleUrl: './survey-editor.component.scss',
 })
