@@ -9,8 +9,9 @@
 
         <button type="button" class="close-button" aria-label="Close survey editor"
           (click)="closeEditor()">
-          
-          <span aria-hidden="true"> Cancel x</span>
+
+          <span aria-hidden="true"> Cancel</span>
+          <img src="../assets/imgs/close.svg" alt="Close">
         </button>
       </div>
 
@@ -32,12 +33,16 @@
           </div>
         </div>
 
-        <label>Describing text <span>(optional)</span><textarea formControlName="description"
-            placeholder="What should participants know?"></textarea>
+        <label>Describing text
+          <span>(optional)</span>
+        <textarea formControlName="description"
+            placeholder="What should participants know?">
+        </textarea>
         </label>
+
       </div>
 
-      <div formArrayName="questions">
+      <div formArrayName="questions" class="qustions-form">
         @for (question of questions.controls; track $index; let i = $index) {
         <section class="editor-question" [formGroupName]="i">
           <div class="question-top">
