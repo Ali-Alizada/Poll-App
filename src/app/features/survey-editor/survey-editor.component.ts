@@ -49,6 +49,9 @@ export class SurveyEditorComponent {
   removeOption(question: number, option: number) {
     this.options(question).removeAt(option);
   }
+  closeEditor() {
+    void this.router.navigate(['/']);
+  }
   async publish() {
     if (this.form.invalid) return;
     const value = this.form.getRawValue();
