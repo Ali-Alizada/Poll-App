@@ -4,12 +4,13 @@
     <div class="editor-container">
       <div class="editor-heading">
 
-        <p class="eyebrow">New survey</p>
+        <p class="eyebrow">Draft</p>
         <h1>Create new survey</h1>
 
         <button type="button" class="close-button" aria-label="Close survey editor"
           (click)="closeEditor()">
-          <span aria-hidden="true">×</span>
+          
+          <span aria-hidden="true"> Cancel x</span>
         </button>
       </div>
 
@@ -71,7 +72,7 @@
       <div class="form-actions">
         <button class="button" type="submit" [disabled]="form.invalid">Publish survey</button>
       </div>
-      
+
       </form>
     </div>
   </section>

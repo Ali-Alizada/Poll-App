@@ -22,32 +22,33 @@
 }
 
 .close-button {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  display: inline-grid;
-  width: 42px;
-  height: 32px;
-  place-items: center;
-  border: 0;
-  border-radius: 8px;
-  background: #765b66;
-  color: white;
-  cursor: pointer;
-  font-size: 1.7rem;
-  line-height: 1;
+    position: absolute;
+    top: 95px;
+    right: 40px;
+    display: inline-grid;
+    width: 92px;
+    height: 38px;
+    place-items: center;
+    border: 0;
+    border-radius: 8px;
+    background: var(--editor-buttons);
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
 }
 
 .close-button:hover {
-  background: var(--peach);
-  color: var(--ink);
+  background: var(--editor-hover-buttons);
 }
 
 .editor h1 {
   margin: 0;
-  font-size: 2.8rem;
-  line-height: 0.95;
+  font-size: 56px;
+  line-height: 100%;
+  font-weight: 400;
   letter-spacing: -0.06em;
+  color: #ff8000;
 }
 
 .editor form {

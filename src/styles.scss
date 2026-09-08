@@ -5,6 +5,8 @@
   --secondary-orange:#ffcfa1;
   --ink: #332c35;
   --muted: #756c76;
+  --editor-buttons:#71524b;
+  --editor-hover-buttons:#ae7e5a;
   --line: #eadfe7;
   --secondary-background:#f3eff5;
   --dropdown-background: #493c4d;
@@ -53,12 +55,20 @@ a {
 }
 
 .eyebrow {
-  margin: 0 0 12px;
-  color: var(--peach);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: 0.08em;
+    width: 59px;
+    height: 26px;
+    background-color: var(--secondary-orange);
+    border-top-right-radius: 14px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .badge {
