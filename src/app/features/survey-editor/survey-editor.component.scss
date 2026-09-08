@@ -59,7 +59,7 @@
 .editor form {
     padding: 28px 24px 40px;
     background:var(--dropdown-background);
-    margin: 0 50px 50px;
+  margin: 0 50px;
     border-radius: 5px;
     border-top-right-radius: 80px;
 }
@@ -168,7 +168,7 @@
 .form-actions {
   display: flex;
   justify-content: end;
-  margin-top: 28px;
+  margin: 28px 50px 32px;
 }
 
 @media (max-width: 720px) {

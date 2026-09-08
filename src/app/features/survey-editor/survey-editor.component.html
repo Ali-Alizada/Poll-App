@@ -15,7 +15,7 @@
         </button>
       </div>
 
-    <form [formGroup]="form" (ngSubmit)="publish()">
+    <form id="survey-form" [formGroup]="form" (ngSubmit)="publish()">
       <div class="field-grid">
         <div class="survey-meta">
 
@@ -74,11 +74,11 @@
         + Add new question
       </button>
 
-      <div class="form-actions">
-        <button class="button" type="submit" [disabled]="form.invalid">Publish survey</button>
-      </div>
-
       </form>
+
+      <div class="form-actions">
+        <button class="button" type="submit" f orm="survey-form" [disabled]="form.invalid">Publish survey</button>
+      </div>
     </div>
   </section>
 </main>
