@@ -16,7 +16,7 @@
 
 .editor-heading {
   position: relative;
-  padding: 40px;
+  padding: 50px;
   // background: var(--plum);
   color: white;
 }
@@ -24,12 +24,12 @@
 .close-button {
     position: absolute;
     top: 95px;
-    right: 40px;
+    right: 50px;
     display: inline-grid;
     width: 108px;
     height: 40px;
     place-items: center;
-    border: 0;
+    border: 0; 
     border-radius: 8px;
     background: var(--editor-buttons);
     color: white;
@@ -80,10 +80,6 @@
   grid-template-columns: 1fr 1fr;
   align-items: end;
 }
-
-// .meta-row label{
-//   display: f;
-// }
 
 .editor label span {
   font-weight: 400;
@@ -160,15 +156,40 @@
 .add-question {
   width: 100%;
   padding: 11px;
-  border: 1px dashed #be9abe;
-  background: transparent;
+  border: none;
+  background: var(--editor-buttons);
   color: white;
+  // font-family: Nokora;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  border-radius: 10px;
+}
+
+.add-question:hover{
+  background: var(--editor-hover-buttons);
 }
 
 .form-actions {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 28px 50px 32px;
+}
+
+.form-actions .button{
+  width: 99px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--secondary-orange);
+  // font-family: Nokora;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 @media (max-width: 720px) {
