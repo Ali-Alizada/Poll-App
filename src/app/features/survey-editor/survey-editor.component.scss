@@ -29,7 +29,7 @@
     width: 108px;
     height: 40px;
     place-items: center;
-    border: 0; 
+    border: 0;
     border-radius: 8px;
     background: var(--editor-buttons);
     color: white;
@@ -93,6 +93,33 @@
   font-weight: 800;
 }
 
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.clear-field {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.clear-field:hover {
+  color: var(--peach);
+}
+
 .editor input,
 .editor textarea,
 .editor select {
@@ -106,6 +133,17 @@
 .editor textarea {
   min-height: 44px;
   resize: vertical;
+}
+
+.input-row input,
+.input-row textarea {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-row textarea {
+  width: 100%;
+  min-height: 110px;
 }
 
 .editor-question {
@@ -126,26 +164,49 @@
   color: white;
 }
 
-.remove,
-.option-inputs button {
-  border: 0;
-  background: none;
-  color: var(--peach);
-  font-weight: 900;
+.multiple-choice {
+  margin-top: 18px;
+}
+
+.multiple-choice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  color: #f8e8f2;
+  font-weight: 400;
+}
+
+.multiple-choice-label input {
+  width: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .option-inputs {
   margin-top: 14px;
 }
 
-.option-inputs > div {
+.option-row {
   display: flex;
+  align-items: center;
   gap: 6px;
   margin-top: 8px;
 }
 
+.option-letter {
+  width: 17px;
+  color: white;
+  font-size: 1rem;
+}
+
 .option-inputs input {
   width: 100%;
+}
+
+.option-row .clear-field {
+  flex: 0 0 auto;
+  margin-left: 0;
 }
 
 .add-option,

@@ -31,6 +31,7 @@ export class SurveyEditorComponent {
   private newQuestion() {
     return this.fb.group({
       text: ['', Validators.required],
+      allowMultiple: [false],
       options: this.fb.array([
         this.fb.control('', Validators.required),
         this.fb.control('', Validators.required),
@@ -42,6 +43,24 @@ export class SurveyEditorComponent {
   }
   removeQuestion(index: number) {
     this.questions.removeAt(index);
+  }
+  clearField(controlName: 'title' | 'endDate' | 'description') {
+    this.form.controls[controlName].setValue('');
+  }
+  clearQuestion(index: number) {
+    this.questions.at(index).controls.text.setValue('');
+  }
+  clearOption(question: number, option: number) {
+    this.options(question).at(option).setValue('');
+  }
+  answerLetter(index: number) {
+    let letter = '';
+    let currentIndex = index;
+    do {
+      letter = String.fromCharCode(65 + (currentIndex % 26)) + letter;
+      currentIndex = Math.floor(currentIndex / 26) - 1;
+    } while (currentIndex >= 0);
+    return letter;
   }
   addOption(index: number) {
     this.options(index).push(this.fb.control('', Validators.required));
