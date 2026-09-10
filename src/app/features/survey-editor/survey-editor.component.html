@@ -15,12 +15,12 @@
         </button>
       </div>
 
-    <form id="survey-form" [formGroup]="form" (ngSubmit)="publish()">
+     <form id="survey-form" [formGroup]="form" (ngSubmit)="publish()">
       <div class="field-grid">
         <div class="survey-meta">
 
           <label>
-            <span>Survey name</span>
+            <span class="servey-labelname">Survey name</span>
             <span class="input-row">
               <input formControlName="title" placeholder="e.g. Summer team event" />
               <button type="button" class="clear-field" aria-label="Clear survey name" (click)="clearField('title')">Delete</button>
@@ -30,7 +30,7 @@
           <div class="meta-row">
 
             <label>
-              <span>Set end date <span>(optional)</span></span>
+              <span class="servey-labelname">Set end date <span>(optional)</span></span>
               <span class="input-row">
                 <input type="date" formControlName="endDate" />
                 <button type="button" class="clear-field" aria-label="Clear end date" (click)="clearField('endDate')">Delete</button>
@@ -71,7 +71,7 @@
         </div>
 
         <label>
-          <span>Describing text <span>(optional)</span></span>
+          <span class="servey-labelname">Describing text <span>(optional)</span></span>
           <span class="input-row">
             <textarea formControlName="description" placeholder="What should participants know?"></textarea>
             <button type="button" class="clear-field" aria-label="Clear describing text" (click)="clearField('description')">Delete</button>
@@ -88,7 +88,6 @@
           </div>
 
           <label>
-            <span>Question</span>
             <span class="input-row">
               <input formControlName="text" placeholder="What would you like to know?" />
               <button type="button" class="clear-field" aria-label="Clear question" (click)="clearQuestion(i)">Delete</button>
@@ -96,7 +95,11 @@
           </label>
 
           <label class="multiple-choice">
-            <span class="label-row">Answers <span class="multiple-choice-label"><input type="checkbox" formControlName="allowMultiple" /> Allow multiple answers.</span></span>
+            <span class="label-row">Answers
+              <span class="multiple-choice-label">
+            <input type="checkbox" formControlName="allowMultiple" />
+             Allow multiple answers</span>
+          </span>
           </label>
 
           <div formArrayName="options" class="option-inputs">

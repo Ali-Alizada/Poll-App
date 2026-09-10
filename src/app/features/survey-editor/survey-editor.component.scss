@@ -81,21 +81,21 @@
   align-items: end;
 }
 
-// .dropw-down{
-//   background: transparent;
-//   border: none;
+// .editor label span {
+//   font-weight: 400;
 // }
 
-.editor label span {
-  font-weight: 400;
+.field-grid .servey-labelname{
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .editor label {
-  display: grid;
-  gap: 7px;
-  color: #f8e8f2;
-  font-size: 0.78rem;
-  font-weight: 800;
+    display: grid;
+    gap: 7px;
+    color: #f8e8f2;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .dropw-down {
@@ -116,6 +116,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: 18px;
 }
 
 .clear-field {
@@ -159,14 +160,17 @@
   background: transparent;
   color: #f8e8f2;
   cursor: pointer;
-  font: inherit;
-  font-weight: 400;
-  text-align: left;
+  // font-family: Mulish;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .category-dropdown-btn:hover,
 .category-dropdown-btn:focus-visible {
-  background: var(--editor-buttons);
+  background: var(--plum);
   outline: none;
 }
 
@@ -178,10 +182,13 @@
 
 .category-selected {
   display: block;
-  color: #f8e8f2;
+  color:var(--peach);
+  // font-family: 'Mulish';
   font-weight: 400;
+  font-size: 14px;
   pointer-events: none;
   user-select: none;
+  padding-left: 8px;
 }
 
 .category-dropdown-content {
@@ -268,6 +275,7 @@
   margin-left: auto;
   color: #f8e8f2;
   font-weight: 400;
+  font-size: 14px;
 }
 
 .multiple-choice-label input {
@@ -288,9 +296,9 @@
 }
 
 .option-letter {
-  width: 17px;
+  font-weight: 700;
   color: white;
-  font-size: 1rem;
+  font-size: 18px;
 }
 
 .option-inputs input {
@@ -304,7 +312,15 @@
 
 .add-option,
 .add-question {
-  margin-top: 12px;
+    margin: 24px 0 0 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    cursor: pointer;
 }
 
 .add-question {
