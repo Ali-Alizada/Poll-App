@@ -5,7 +5,7 @@
 .editor {
   max-width: 1440px;
   margin: auto;
-  padding: 65px 8%;
+  padding: 100px 65px 0;
 }
 
 .editor-container{
@@ -81,11 +81,24 @@
   align-items: end;
 }
 
+// .dropw-down{
+//   background: transparent;
+//   border: none;
+// }
+
 .editor label span {
   font-weight: 400;
 }
 
 .editor label {
+  display: grid;
+  gap: 7px;
+  color: #f8e8f2;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.dropw-down {
   display: grid;
   gap: 7px;
   color: #f8e8f2;
@@ -121,13 +134,93 @@
 }
 
 .editor input,
-.editor textarea,
-.editor select {
+.editor textarea {
   padding: 11px;
   border: 0;
   border-radius: 4px;
   background: white;
   color: var(--ink);
+}
+
+.category-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.category-dropdown-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #f8e8f2;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 400;
+  text-align: left;
+}
+
+.category-dropdown-btn:hover,
+.category-dropdown-btn:focus-visible {
+  background: var(--editor-buttons);
+  outline: none;
+}
+
+.category-dropdown-btn img {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
+.category-selected {
+  display: block;
+  color: #f8e8f2;
+  font-weight: 400;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category-dropdown-content {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.category-dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.category-dropdown-content button:hover,
+.category-dropdown-content button.selected {
+  background: var(--secondary-background);
+}
+
+.category-dropdown span{
+  display:disabled;
 }
 
 .editor textarea {

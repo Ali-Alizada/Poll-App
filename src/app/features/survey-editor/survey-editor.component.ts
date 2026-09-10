@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
@@ -15,11 +15,12 @@ export class SurveyEditorComponent {
   private readonly surveyService = inject(SurveyService);
   private readonly router = inject(Router);
   readonly categories = SURVEY_CATEGORIES;
+  readonly isCategoryMenuOpen = signal(false);
   readonly form = this.fb.group({
     title: ['', Validators.required],
     endDate: [''],
     description: [''],
-    category: [SURVEY_CATEGORIES[0], Validators.required],
+    category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(SURVEY_CATEGORIES[0], Validators.required),
     questions: this.fb.array([this.newQuestion()]),
   });
   get questions() {
@@ -71,6 +72,16 @@ export class SurveyEditorComponent {
   closeEditor() {
     void this.router.navigate(['/']);
   }
+
+  toggleCategoryMenu() {
+    this.isCategoryMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  selectCategory(category: (typeof SURVEY_CATEGORIES)[number]) {
+    this.form.controls.category.setValue(category);
+    this.isCategoryMenuOpen.set(false);
+  }
+
   async publish() {
     if (this.form.invalid) return;
     const value = this.form.getRawValue();

@@ -28,6 +28,7 @@
           </label>
 
           <div class="meta-row">
+
             <label>
               <span>Set end date <span>(optional)</span></span>
               <span class="input-row">
@@ -35,11 +36,37 @@
                 <button type="button" class="clear-field" aria-label="Clear end date" (click)="clearField('endDate')">Delete</button>
               </span>
             </label>
-          <label>Choose category<select formControlName="category">
-                @for (category of categories; track category) {
-                <option [value]="category">{{ category }}</option>}
-              </select>
-          </label>
+
+            <div class="dropw-down">
+              <div class="category-dropdown">
+                <button
+                  type="button"
+                  class="category-dropdown-btn"
+                  aria-label="Choose category"
+                  [attr.aria-expanded]="isCategoryMenuOpen()"
+                  (click)="toggleCategoryMenu()"
+                >Choose category
+
+                  <img src="/assets/imgs/sort-icon-orange.svg" alt="">
+                </button>
+                <span class="category-selected" aria-hidden="true">{{ form.controls.category.value }}</span>
+
+                @if (isCategoryMenuOpen()) {
+                  <div class="category-dropdown-content">
+                    @for (category of categories; track category) {
+                      <button
+                        type="button"
+                        [class.selected]="form.controls.category.value === category"
+                        (click)="selectCategory(category)"
+                      >
+                        {{ category }}
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -59,6 +86,7 @@
           <div class="question-top">
             <strong>Question {{ i + 1 }}</strong>
           </div>
+
           <label>
             <span>Question</span>
             <span class="input-row">
@@ -66,9 +94,11 @@
               <button type="button" class="clear-field" aria-label="Clear question" (click)="clearQuestion(i)">Delete</button>
             </span>
           </label>
+
           <label class="multiple-choice">
             <span class="label-row">Answers <span class="multiple-choice-label"><input type="checkbox" formControlName="allowMultiple" /> Allow multiple answers.</span></span>
           </label>
+
           <div formArrayName="options" class="option-inputs">
             @for (option of options(i).controls; track $index; let j = $index) {
             <div class="option-row">
