@@ -296,10 +296,32 @@ h2 {
   margin-bottom: 4px;
   color: white;
   font: inherit;
+  gap: 10px;
 }
 
-.dropdown-btn:hover {
+.dropdown-btn:hover,
+.dropdown-btn:focus-visible {
   background: var(--dropdown-background);
+  outline: none;
+}
+
+.dropdown-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  color: white;
+  fill: currentColor;
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.dropdown-btn:hover .dropdown-icon,
+.dropdown-btn:focus-visible .dropdown-icon,
+.dropdown-btn.is-open .dropdown-icon {
+  color: var(--peach);
+}
+
+.dropdown-btn.is-open .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 .dropdown-content {
@@ -323,7 +345,7 @@ h2 {
   border: 0;
   background: transparent;
   color: black;
-  padding: 8px 37px 8px 8px;
+  padding: 8px 44px 8px 8px;
   text-align: left;
   font: inherit;
   display: block;
