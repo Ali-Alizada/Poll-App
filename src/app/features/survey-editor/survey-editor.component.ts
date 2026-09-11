@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
@@ -11,6 +11,7 @@ import { SurveyService } from '../../core/services/survey.service';
 })
 
 export class SurveyEditorComponent {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly fb = inject(FormBuilder);
   private readonly surveyService = inject(SurveyService);
   private readonly router = inject(Router);
@@ -75,6 +76,13 @@ export class SurveyEditorComponent {
 
   toggleCategoryMenu() {
     this.isCategoryMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closeCategoryMenuOnOutsideClick(event: Event) {
+    if (!this.elementRef.nativeElement.querySelector('.category-dropdown')?.contains(event.target as Node)) {
+      this.isCategoryMenuOpen.set(false);
+    }
   }
 
   selectCategory(category: (typeof SURVEY_CATEGORIES)[number]) {
