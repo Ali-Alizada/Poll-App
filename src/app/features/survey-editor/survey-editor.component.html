@@ -139,6 +139,19 @@
             <img src="../assets/imgs/check-icon.svg" alt="check-icon">
           </span>
         </button>
+        @if (isPublished()) {
+          <div class="publish-notification" role="status" aria-live="polite">
+            <strong>Your survey is now<br>published</strong>
+            <button
+              type="button"
+              class="publish-notification-close"
+              aria-label="Close publish notification"
+              (click)="closePublishNotification()"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        }
       </div>
     </div>
   </section>

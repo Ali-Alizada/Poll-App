@@ -17,6 +17,8 @@ export class SurveyEditorComponent {
   private readonly router = inject(Router);
   readonly categories = SURVEY_CATEGORIES;
   readonly isCategoryMenuOpen = signal(false);
+  readonly isPublished = signal(false);
+  private publishedSurveySlug: string | null = null;
   readonly form = this.fb.group({
     title: ['', Validators.required],
     endDate: [''],
@@ -74,6 +76,13 @@ export class SurveyEditorComponent {
     void this.router.navigate(['/']);
   }
 
+  closePublishNotification() {
+    this.isPublished.set(false);
+    if (this.publishedSurveySlug) {
+      void this.router.navigate(['/surveys', this.publishedSurveySlug]);
+    }
+  }
+
   toggleCategoryMenu() {
     this.isCategoryMenuOpen.update((isOpen) => !isOpen);
   }
@@ -106,7 +115,8 @@ export class SurveyEditorComponent {
         value.category!,
         questions,
       );
-      await this.router.navigate(['/surveys', survey.slug]);
+      this.publishedSurveySlug = survey.slug;
+      this.isPublished.set(true);
     } catch (error: unknown) {
       console.error('Survey konnte nicht gespeichert werden:', error);
       const message = typeof error === 'object' && error !== null && 'message' in error
