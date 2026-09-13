@@ -133,7 +133,12 @@
       </form>
 
       <div class="form-actions">
-        <button class="button" type="submit" form="survey-form" [disabled]="form.invalid">Publish</button>
+        <button class="button" type="submit" form="survey-form" [disabled]="form.invalid">
+          <span>Publish</span>
+          <span class="publish-checkmark" aria-hidden="true">
+            <img src="../assets/imgs/check-icon.svg" alt="check-icon">
+          </span>
+        </button>
       </div>
     </div>
   </section>
