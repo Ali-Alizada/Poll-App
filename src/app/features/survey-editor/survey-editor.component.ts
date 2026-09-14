@@ -48,6 +48,14 @@ export class SurveyEditorComponent {
   removeQuestion(index: number) {
     this.questions.removeAt(index);
   }
+  deleteQuestion(index: number) {
+    if (index === 0) {
+      this.clearQuestion(index);
+      return;
+    }
+
+    this.removeQuestion(index);
+  }
   clearField(controlName: 'title' | 'endDate' | 'description') {
     this.form.controls[controlName].setValue('');
   }
