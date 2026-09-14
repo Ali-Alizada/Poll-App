@@ -2,12 +2,11 @@ import { Component, computed, ElementRef, HostListener, inject, signal } from '@
 import { RouterLink } from '@angular/router';
 import { SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
-import { AppHeaderComponent } from '../../shared/components/app-header.component';
 
 
 
 @Component({
-  imports: [RouterLink, AppHeaderComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

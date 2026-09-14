@@ -3,7 +3,6 @@ header {
   height: 70px;
   max-width: 1440px;
   margin: auto;
-  // padding: 75px 8%;
   padding: 75px;
   align-items: center;
   justify-content: space-between;
@@ -21,8 +20,49 @@ header {
 }
 
 .create-link {
-  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+  width: 180px;
+  height: 44px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  background: var(--peach);
+  color: var(--plum);
+  // font-family: Nokora;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  transition: width 220ms ease;
 }
+
+.create-link:hover {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 200px;
+  background-color: var(--peach);
+}
+
+.publish-checkmark {
+  position: static;
+  flex: 0 0 auto;
+  opacity: 0;
+  transform: translateX(14px);
+  transition: opacity 300ms ease, transform 220ms ease;
+}
+
+.create-link:hover .publish-checkmark {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 
 @media (max-width: 720px) {
   header {

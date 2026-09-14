@@ -13,13 +13,12 @@
 }
 
 .survey-page {
-  display: grid;
-  max-width: 1180px;
-  margin: auto;
-  padding: 45px 8% 70px;
-  grid-template-columns: 1.35fr 0.8fr;
-  gap: 70px;
-  // background-color: white;
+    display: grid;
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 75px;
+    grid-template-columns: 1.35fr 0.8fr;
+    gap: 70px;
 }
 
 .questions h1 {

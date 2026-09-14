@@ -7,10 +7,16 @@ import { RouterLink } from '@angular/router';
   template: `<header>
 
     @if (showCreateLinkLogo()) {
-    <a routerLink="/" class="brand"><img src="./assets/imgs/poll-app-logo-yellow.svg" alt="" /></a>
+    <a routerLink="/" class="brand">
+      <img src="./assets/imgs/poll-app-logo.svg" alt="" /></a>
     }
     @if (showCreateLink()) {
-    <a routerLink="/surveys/new" class="create-link">Create survey</a>
+    <a routerLink="/surveys/new" class="create-link">
+      <span>Create survey</span>
+      <span class="publish-checkmark" aria-hidden="true">
+        <img src="../assets/imgs/plus-icon-plum.svg" alt="">
+      </span>
+    </a>
     }
 
   </header>`,
