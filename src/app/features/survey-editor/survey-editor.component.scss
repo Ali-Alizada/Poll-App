@@ -355,6 +355,10 @@
 
 .add-option,
 .add-question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
     margin: 24px 0;
     background: transparent;
     border: none;
@@ -364,6 +368,14 @@
     line-height: 100%;
     letter-spacing: 0%;
     cursor: pointer;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding:10px;
+}
+
+.add-option:hover{
+  background-color: var(--plum);
+  border-radius: 5px;
 }
 
 .add-question {
