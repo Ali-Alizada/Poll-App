@@ -5,6 +5,14 @@
   <section class="survey-page">
     <div class="questions">
       <span class="badge">Published</span>
+
+      <div class="category-info">
+        <span class="open-row"><span>Ends on </span>{{ current.endDate }}</span>
+        <span class="category-selected"><span>Category: </span>{{ current.category }}</span>
+      </div>
+
+
+
       <h1>{{ current.title }}</h1>
       <p class="lead">{{ current.description }}</p>
       @for (question of current.questions; track question.id; let index = $index) {
@@ -18,8 +26,8 @@
           </button>
           }
         </div>
-      </article>
-      }
+      </article>}
+
     </div>
     <aside class="results">
       <p class="eyebrow">Survey results · Live</p>

@@ -73,11 +73,14 @@ a {
 }
 
 .badge {
-  display: inline-block;
-  width: max-content;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: #fff0df;
-  color: #b86120;
-  font: 700 0.7rem monospace;
+    color: var(--plum);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    padding: 6px;
+    width: 94px;
+    height: 26px;
+    white-space: nowrap;
+    border-top-right-radius: 14px;
+    background-color: var(--peach);
 }

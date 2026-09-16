@@ -2,7 +2,6 @@
   background: white;
 }
 
-
 .back-link {
   display: block;
   max-width: 1180px;
@@ -23,18 +22,36 @@
 
 .questions h1 {
   margin: 18px 0;
-  font-size: clamp(2.4rem, 4vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.06em;
+  // font-family: Nerko One;
+  font-size: 56px;
+  // font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0%;
+  color: #ee9236;
 }
 
 .lead {
   max-width: 650px;
-  color: var(--muted);
-  line-height: 1.6;
+  color: var(--plum);
+  font-size: 16px;
+  font-weight: 500;
+  // font-family: 'mulish';
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.questions{
+  background-color: var(--secondary-background);
+  padding: 46px;
+  border-top-right-radius: 150px;
+  font-size: 14px;
+  font-weight: 500;
+  // font-family: 'mulish';
+  color: var(--plum);
 }
 
 .question {
+  grid-template-columns: repeat(1 fr);
   margin-top: 31px;
   padding-top: 25px;
   border-top: 1px solid var(--line);
@@ -46,6 +63,11 @@
   text-transform: uppercase;
 }
 
+.category-info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;;
+}
 .question h2 {
   margin: 8px 0 15px;
   font-size: 1.25rem;
@@ -75,8 +97,9 @@
 .results {
   align-self: start;
   padding: 28px;
-  background: var(--plum);
-  color: white;
+  background: transparent;
+  color: var(--plum);
+  max-width: 315px;
 }
 
 .results h2 {
