@@ -84,6 +84,23 @@ export class SurveyService {
     await this.loadSurveys();
   }
 
+  async removeAnswer(surveyId: string, questionId: string, optionId: string) {
+    const { data: answer, error: findError } = await supabase
+      .from(TABLES.answers)
+      .select('id')
+      .eq('survey_id', surveyId)
+      .eq('question_id', questionId)
+      .eq('option_id', optionId)
+      .limit(1)
+      .maybeSingle();
+    if (findError) throw findError;
+    if (answer) {
+      const { error } = await supabase.from(TABLES.answers).delete().eq('id', answer.id);
+      if (error) throw error;
+    }
+    await this.loadSurveys();
+  }
+
   async create(
     title: string,
     endDate: string | undefined,

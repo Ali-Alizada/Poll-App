@@ -7,7 +7,7 @@
       <span class="badge">Published</span>
 
       <div class="category-info">
-        <span class="open-row"><span>Ends on </span>{{ current.endDate }}</span>
+        <span class="open-row"><span>Ends on </span>{{ formatDate(current.endDate) }}</span>
         <span class="category-selected"><span>Category: </span>{{ current.category }}</span>
       </div>
 
@@ -17,32 +17,39 @@
       <p class="lead">{{ current.description }}</p>
       @for (question of current.questions; track question.id; let index = $index) {
       <article class="question">
-        <p class="question-number">{{ index + 1 }}. Question</p>
-        <h2>{{ question.text }}</h2>
+        <h2><span class="question-number">{{ index + 1 }}.</span> {{ question.text }}</h2>
         <div class="options">
-          @for (option of question.options; track option.id) {
-          <button (click)="vote(current.id, question.id, option.id)">
-            <span>{{ option.label }}</span><span>+</span>
+          @for (option of question.options; track option.id; let optionIndex = $index) {
+          <button class="option" [class.selected]="isSelected(question.id, option.id)"
+            [attr.aria-pressed]="isSelected(question.id, option.id)"
+            (click)="vote(current.id, question.id, option.id)">
+            <span class="checkbox" aria-hidden="true">{{ isSelected(question.id, option.id) ? '✓' : '' }}</span>
+            <span class="option-letter">{{ optionLetter(optionIndex) }}</span>
+            <span>{{ option.label }}</span>
           </button>
           }
         </div>
       </article>}
+      <button class="complete-button" [disabled]="!canComplete()" (click)="completeSurvey()">
+        Complete survey
+      </button>
 
     </div>
     <aside class="results">
-      <p class="eyebrow">Survey results · Live</p>
-      <h2>What the team thinks</h2>
-      @for (question of current.questions; track question.id) {
+      <h2 class="results-title">Survey results <span>LIVE</span></h2>
+      @for (question of current.questions; track question.id; let questionIndex = $index) {
       <div class="result-question">
-        <h3>{{ question.text }}</h3>
-        @for (option of question.options; track option.id) {
+        <h3><span class="result-question-number">{{ questionIndex + 1 }}.</span> {{ question.text }}</h3>
+        @for (option of question.options; track option.id; let optionIndex = $index) {
         <div class="result-row">
           <div>
+            <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
             <span>{{ option.label }}</span><strong>{{ count(current.answers[question.id], option.id) }}</strong>
           </div>
           <div class="bar">
             <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
           </div>
+          <strong class="percentage">{{ percent(current.answers[question.id], option.id) }}%</strong>
         </div>
         }
       </div>
