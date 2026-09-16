@@ -38,8 +38,8 @@
     <div class="survey-grid">
       @if (newestSurvey(); as survey) {
       <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
-        <p>{{ survey.title }}</p>
-        <h3>{{ survey.description }}</h3>
+        <p>{{ survey.category }}</p>
+        <h3>{{ survey.title }}</h3>
         <span class="open">{{ endDateLabel(survey.endDate) }}</span>
       </a>
       }
@@ -82,6 +82,10 @@
       </svg>
     </button>
 
+    @if (selectedCategory(); as category) {
+      <span class="category-selected">{{ category }}</span>
+    }
+
     <!--Dropdown-Menü -->
     @if (isCategoryMenuOpen()) {
     <div class="dropdown-content">
@@ -105,8 +109,8 @@
 
 
            <div>
-              <p>{{ survey.title }}</p>
-              <h3>{{ survey.description }}</h3>
+              <p>{{ survey.category }}</p>
+              <h3>{{ survey.title }}</h3>
             </div>
 
           <div>

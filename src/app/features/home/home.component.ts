@@ -18,16 +18,31 @@ export class HomeComponent {
   readonly selectedCategory = signal<string | null>(null);
   readonly isCategoryMenuOpen = signal(false);
   readonly surveyFilter = signal<'active' | 'past'>('active');
-  readonly newestSurvey = computed(() => this.surveys.published()[0]);
+  readonly newestSurvey = computed(() =>
+    this.surveys.published().find((survey) => this.isActiveSurvey(survey)),
+  );
   readonly filteredSurveys = computed(() => {
     const category = this.selectedCategory();
     const filter = this.surveyFilter();
     return this.surveys.surveys().filter(
       (survey) =>
-        (filter === 'active' ? survey.status === 'published' : survey.status === 'draft') &&
+        (filter === 'active' ? this.isActiveSurvey(survey) : this.isPastSurvey(survey)) &&
         (!category || survey.category === category),
     );
   });
+
+  private isActiveSurvey(survey: { status: string; endDate?: string }) {
+    if (survey.status !== 'published') return false;
+    if (!survey.endDate) return true;
+    const end = new Date(`${survey.endDate}T23:59:59`);
+    return end.getTime() >= Date.now();
+  }
+
+  private isPastSurvey(survey: { status: string; endDate?: string }) {
+    if (survey.status !== 'published' || !survey.endDate) return false;
+    const end = new Date(`${survey.endDate}T23:59:59`);
+    return end.getTime() < Date.now();
+  }
 
   toggleCategoryMenu() {
     this.isCategoryMenuOpen.update((isOpen) => !isOpen);
