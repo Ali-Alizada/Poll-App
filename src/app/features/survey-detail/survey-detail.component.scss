@@ -91,11 +91,15 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0;
+  padding: 1px 5px;
+  border-radius: 5px;
   border: 0;
-  background: transparent;
   color: var(--plum);
   text-align: left;
+}
+
+.options .option:hover{
+  background-color: var(--secondary-orange);
 }
 
 .option-letter{
@@ -125,11 +129,7 @@
 
 .option.selected .checkbox {
   border-color: var(--plum);
-  background: var(--plum);
-}
-
-.options .option:hover {
-  color: #b36c2d;
+  background: var(--peach);
 }
 
 .complete-button {
@@ -190,8 +190,6 @@
   letter-spacing: 0%;
 }
 
-
-// -------------
 .result-row {
   display: grid;
   grid-template-columns: 14px minmax(0, 1fr) 32px;
@@ -226,7 +224,6 @@
   font-size: 14px;
   font-weight: 800;
   // font-family: 'mulish';
-
 }
 
 .result-note {
