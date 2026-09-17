@@ -7,142 +7,163 @@
         <p class="eyebrow">Draft</p>
         <h1>Create new survey</h1>
 
-        <button type="button" class="close-button" aria-label="Close survey editor"
-          (click)="closeEditor()">
+        <button type="button" class="close-button" aria-label="Close survey editor" (click)="closeEditor()">
 
           <span aria-hidden="true"> Cancel</span>
           <img src="../assets/imgs/close.svg" alt="Close">
         </button>
       </div>
 
-     <form id="survey-form" [formGroup]="form" (ngSubmit)="publish()">
-      <div class="field-grid">
-        <div class="survey-meta">
-
-          <label>
-            <span class="servey-labelname">Survey name</span>
-            <span class="input-row">
-              <input formControlName="title" placeholder="e.g. Summer team event" />
-              <button type="button" class="clear-field delete-icon" aria-label="Clear survey name" (click)="clearField('title')">
-                <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
-              </button>
-            </span>
-          </label>
-
-          <div class="meta-row">
+      <form id="survey-form" [formGroup]="form" (ngSubmit)="publish()">
+        <div class="field-grid">
+          <div class="survey-meta">
 
             <label>
-              <span class="servey-labelname">Set end date <span>(optional)</span></span>
+              <span class="servey-labelname">Survey name</span>
               <span class="input-row">
-                <input type="date" formControlName="endDate" />
-                <button type="button" class="clear-field delete-icon" aria-label="Clear end date" (click)="clearField('endDate')">
-                  <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
+                <input formControlName="title" placeholder="e.g. Summer team event" />
+                <button type="button" class="clear-field delete-icon" aria-label="Clear survey name"
+                  (click)="clearField('title')">
+                  <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                      fill="currentColor" />
+                  </svg>
                 </button>
               </span>
             </label>
 
-            <div class="dropw-down">
-              <div class="category-dropdown">
-                <button
-                  type="button"
-                  class="category-dropdown-btn"
-                  aria-label="Choose category"
-                  [attr.aria-expanded]="isCategoryMenuOpen()"
-                  [class.is-open]="isCategoryMenuOpen()"
-                  (click)="toggleCategoryMenu()"
-                >Choose category
+            <div class="meta-row">
 
-                  <svg class="category-dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M11.584 15.617 5.262 9.447C5.174 9.362 5.109 9.27 5.065 9.17A.86.86 0 0 1 5 8.851C5 8.624 5.08 8.426 5.24 8.255 5.4 8.085 5.61 8 5.872 8h13.256c.262 0 .472.085.632.255.16.171.24.369.24.596 0 .057-.087.255-.262.596l-6.322 6.17c-.146.142-.291.241-.436.298a1.4 1.4 0 0 1-.48.085c-.175 0-.334-.028-.48-.085-.145-.057-.29-.156-.436-.298Z" />
-                  </svg>
-                </button>
-                <span class="category-selected">{{ form.controls.category.value }}</span>
+              <label>
+                <span class="servey-labelname">Set end date <span>(optional)</span></span>
+                <span class="input-row">
+                  <input type="date" formControlName="endDate" />
+                  <button type="button" class="clear-field delete-icon" aria-label="Clear end date"
+                    (click)="clearField('endDate')">
+                    <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                        fill="currentColor" />
+                    </svg>
+                  </button>
+                </span>
+              </label>
 
-                @if (isCategoryMenuOpen()) {
+              <div class="dropw-down">
+                <div class="category-dropdown">
+                  <button type="button" class="category-dropdown-btn" aria-label="Choose category"
+                    [attr.aria-expanded]="isCategoryMenuOpen()" [class.is-open]="isCategoryMenuOpen()"
+                    (click)="toggleCategoryMenu()">Choose category
+
+                    <svg class="category-dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M11.584 15.617 5.262 9.447C5.174 9.362 5.109 9.27 5.065 9.17A.86.86 0 0 1 5 8.851C5 8.624 5.08 8.426 5.24 8.255 5.4 8.085 5.61 8 5.872 8h13.256c.262 0 .472.085.632.255.16.171.24.369.24.596 0 .057-.087.255-.262.596l-6.322 6.17c-.146.142-.291.241-.436.298a1.4 1.4 0 0 1-.48.085c-.175 0-.334-.028-.48-.085-.145-.057-.29-.156-.436-.298Z" />
+                    </svg>
+                  </button>
+                  <span class="category-selected">{{ form.controls.category.value }}</span>
+
+                  @if (isCategoryMenuOpen()) {
                   <div class="category-dropdown-content">
                     @for (category of categories; track category) {
-                      <button
-                        type="button"
-                        [class.selected]="form.controls.category.value === category"
-                        (click)="selectCategory(category)"
-                      >
-                        {{ category }}
-                      </button>
+                    <button type="button" [class.selected]="form.controls.category.value === category"
+                      (click)="selectCategory(category)">
+                      {{ category }}
+                    </button>
                     }
                   </div>
-                }
+                  }
+                </div>
               </div>
             </div>
-
-          </div>
-        </div>
-
-        <label>
-          <span class="servey-labelname">Describing text <span>(optional)</span></span>
-          <span class="input-row">
-            <textarea formControlName="description" placeholder="What should participants know?"></textarea>
-            <button type="button" class="clear-field delete-icon" aria-label="Clear describing text" (click)="clearField('description')">
-              <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
-            </button>
-          </span>
-        </label>
-
-      </div>
-
-      <div formArrayName="questions" class="qustions-form">
-        @for (question of questions.controls; track $index; let i = $index) {
-        <section class="editor-question" [formGroupName]="i">
-          <div class="question-top">
-            <strong>Question {{ i + 1 }}</strong>
           </div>
 
           <label>
+            <span class="servey-labelname">Describing text <span>(optional)</span></span>
             <span class="input-row">
-              <input formControlName="text" placeholder="What would you like to know?" />
-              <button type="button" class="clear-field delete-icon" aria-label="Clear question" (click)="deleteQuestion(i)">
-                <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
+              <textarea formControlName="description" placeholder="What should participants know?"></textarea>
+              <button type="button" class="clear-field delete-icon" aria-label="Clear describing text"
+                (click)="clearField('description')">
+                <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                    fill="currentColor" />
+                </svg>
               </button>
             </span>
           </label>
+        </div>
 
-          <label class="multiple-choice">
-            <span class="label-row">Answers
-              <span class="multiple-choice-label">
-            <input type="checkbox" formControlName="allowMultiple" />
-             Allow multiple answers</span>
-          </span>
-          </label>
-
-          <div formArrayName="options" class="option-inputs">
-            @for (option of options(i).controls; track $index; let j = $index) {
-            <div class="option-row">
-              <span class="option-letter">{{ answerLetter(j) }}.</span>
-              <input [formControlName]="j" [placeholder]="'Answer ' + (j + 1)" [attr.aria-label]="'Answer ' + (j + 1)"
-                title="Answer option" />
-              @if (j < 2) {
-              <button type="button" class="clear-field delete-icon" [attr.aria-label]="'Clear answer ' + answerLetter(j)" [attr.title]="'Clear answer ' + answerLetter(j)" (click)="clearOption(i, j)">
-                <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
-                <span class="visually-hidden">Clear answer {{ answerLetter(j) }}</span>
-              </button>
-              } @else {
-              <button type="button" class="clear-field delete-icon" [attr.aria-label]="'Delete answer ' + answerLetter(j)" [attr.title]="'Delete answer ' + answerLetter(j)" (click)="removeOption(i, j)">
-                <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z" fill="currentColor"/></svg>
-                <span class="visually-hidden">Delete answer {{ answerLetter(j) }}</span>
-              </button>
-              }
+        <div formArrayName="questions" class="qustions-form">
+          @for (question of questions.controls; track $index; let i = $index) {
+          <section class="editor-question" [formGroupName]="i">
+            <div class="question-top">
+              <strong>Question {{ i + 1 }}</strong>
             </div>
-            }
-            <button type="button" class="add-option" (click)="addOption(i)">
-              Add answer <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
-            </button>
-          </div>
-        </section>
-        }
-      </div>
 
-      <button type="button" class="add-question" (click)="addQuestion()">
-        Add new question <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
-      </button>
+            <label>
+              <span class="input-row">
+                <input formControlName="text" placeholder="What would you like to know?" />
+                <button type="button" class="clear-field delete-icon" aria-label="Clear question"
+                  (click)="deleteQuestion(i)">
+                  <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                      fill="currentColor" />
+                  </svg>
+                </button>
+              </span>
+            </label>
+
+            <label class="multiple-choice">
+              <span class="label-row">Answers
+                <span class="multiple-choice-label">
+                  <input type="checkbox" formControlName="allowMultiple" />
+                  Allow multiple answers</span>
+              </span>
+            </label>
+
+            <div formArrayName="options" class="option-inputs">
+              @for (option of options(i).controls; track $index; let j = $index) {
+              <div class="option-row">
+                <span class="option-letter">{{ answerLetter(j) }}.</span>
+                <input [formControlName]="j" [placeholder]="'Answer ' + (j + 1)" [attr.aria-label]="'Answer ' + (j + 1)"
+                  title="Answer option" />
+                @if (j < 2) { <button type="button" class="clear-field delete-icon"
+                  [attr.aria-label]="'Clear answer ' + answerLetter(j)" [attr.title]="'Clear answer ' + answerLetter(j)"
+                  (click)="clearOption(i, j)">
+                  <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                      fill="currentColor" />
+                  </svg>
+                  <span class="visually-hidden">Clear answer {{ answerLetter(j) }}</span>
+                  </button>
+                  } @else {
+                  <button type="button" class="clear-field delete-icon"
+                    [attr.aria-label]="'Delete answer ' + answerLetter(j)"
+                    [attr.title]="'Delete answer ' + answerLetter(j)" (click)="removeOption(i, j)">
+                    <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"
+                        fill="currentColor" />
+                    </svg>
+                    <span class="visually-hidden">Delete answer {{ answerLetter(j) }}</span>
+                  </button>
+                  }
+              </div>
+              }
+              <button type="button" class="add-option" (click)="addOption(i)">
+                Add answer <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
+              </button>
+            </div>
+          </section>
+          }
+        </div>
+
+        <button type="button" class="add-question" (click)="addQuestion()">
+          Add new question <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
+        </button>
 
       </form>
 
@@ -154,17 +175,13 @@
           </span>
         </button>
         @if (isPublished()) {
-          <div class="publish-notification" role="status" aria-live="polite">
-            <strong>Your survey is now<br>published</strong>
-            <button
-              type="button"
-              class="publish-notification-close"
-              aria-label="Close publish notification"
-              (click)="closePublishNotification()"
-            >
-              <span aria-hidden="true">x</span>
-            </button>
-          </div>
+        <div class="publish-notification" role="status" aria-live="polite">
+          <strong>Your survey is now<br>published</strong>
+          <button type="button" class="publish-notification-close" aria-label="Close publish notification"
+            (click)="closePublishNotification()">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
         }
       </div>
     </div>

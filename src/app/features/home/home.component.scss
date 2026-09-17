@@ -55,8 +55,8 @@
   width: 426px;
   height: 420px;
   transition:
-  opacity 650ms ease-in-out,
-  transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 650ms ease-in-out,
+    transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-art img:first-child {
@@ -125,8 +125,8 @@
   transform: translateX(-34px);
   will-change: opacity, transform;
   transition:
-  opacity 560ms ease-in-out 140ms,
-  transform 950ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 560ms ease-in-out 140ms,
+    transform 950ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .first-button img,
@@ -380,7 +380,6 @@ h2 {
   font: inherit;
   display: block;
   cursor: pointer;
-
 }
 
 .dropdown-content button:hover,
@@ -388,7 +387,6 @@ h2 {
   background-color: var(--secondary-background);
   border-radius: 4px;
 }
-
 
 .survey-grid {
   display: grid;
@@ -472,16 +470,20 @@ h2 {
   .hero {
     padding: 55px 9%;
   }
+
   .hero-art {
     display: none;
   }
+
   .survey-grid {
     grid-template-columns: 1fr;
   }
+
   .content {
     padding: 45px 7%;
 
   }
+
   .section-heading {
     flex-direction: column;
     align-items: start;
@@ -489,6 +491,7 @@ h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .first-button,
   .second-button,
   .hero-art img {

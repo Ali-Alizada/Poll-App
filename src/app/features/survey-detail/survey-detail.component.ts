@@ -7,7 +7,6 @@ import { AppHeaderComponent } from '../../shared/components/app-header.component
   templateUrl: './survey-detail.component.html',
   styleUrl: './survey-detail.component.scss',
 })
-
 export class SurveyDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -47,8 +46,11 @@ export class SurveyDetailComponent {
   }
   canComplete() {
     const currentSurvey = this.survey();
-    return !!currentSurvey && currentSurvey.questions.every(
-      (question) => (this.selectedOptions()[question.id]?.length ?? 0) > 0,
+    return (
+      !!currentSurvey &&
+      currentSurvey.questions.every(
+        (question) => (this.selectedOptions()[question.id]?.length ?? 0) > 0,
+      )
     );
   }
   completeSurvey() {

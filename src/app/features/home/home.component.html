@@ -3,10 +3,8 @@
     <img class="home-logo" src="/assets/imgs/poll-app-logo-yellow.svg" alt="Poll App" />
   </header>
 
-
   <section class="hero">
     <div>
-      <!-- <p class="eyebrow">Feedback made simple</p> -->
       <h1>Collect feedback,<br />unlock ideas</h1>
       <p>Create and share surveys in minutes – from team events to workplace culture. Collect opinions, engage your
         audience, and turn feedback into action.</p>
@@ -32,7 +30,6 @@
 
     <div class="section-heading">
       <p>Ending soon surveys</p>
-      <!-- <a routerLink="/surveys/new" class="text-link"></a> -->
     </div>
 
     <div class="survey-grid">
@@ -50,74 +47,55 @@
     <div class="links-group">
 
       <div class="links">
-        <button
-          type="button"
-          class="survey-filter active-filter"
-          [class.selected-filter]="surveyFilter() === 'active'"
-          (click)="selectSurveyFilter('active')"
-        >Active surveys</button>
-        <button
-          type="button"
-          class="survey-filter past-filter"
-          [class.selected-filter]="surveyFilter() === 'past'"
-          (click)="selectSurveyFilter('past')"
-        >Past surveys</button>
+        <button type="button" class="survey-filter active-filter" [class.selected-filter]="surveyFilter() === 'active'"
+          (click)="selectSurveyFilter('active')">Active surveys</button>
+        <button type="button" class="survey-filter past-filter" [class.selected-filter]="surveyFilter() === 'past'"
+          (click)="selectSurveyFilter('past')">Past surveys</button>
       </div>
 
 
 
-  <div class="dropdown">
-    <!-- Der Button enthält nur das Icon anstelle von Text -->
-    <button
-      type="button"
-      class="dropdown-btn"
-      aria-label="open-menu"
-      [attr.aria-expanded]="isCategoryMenuOpen()"
-      [class.is-open]="isCategoryMenuOpen()"
-      (click)="toggleCategoryMenu()"
-    >
-      Sort by Categories
-      <svg class="dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M11.584 15.617 5.262 9.447C5.174 9.362 5.109 9.27 5.065 9.17A.86.86 0 0 1 5 8.851C5 8.624 5.08 8.426 5.24 8.255 5.4 8.085 5.61 8 5.872 8h13.256c.262 0 .472.085.632.255.16.171.24.369.24.596 0 .057-.087.255-.262.596l-6.322 6.17c-.146.142-.291.241-.436.298a1.4 1.4 0 0 1-.48.085c-.175 0-.334-.028-.48-.085-.145-.057-.29-.156-.436-.298Z" />
-      </svg>
-    </button>
-
-    @if (selectedCategory(); as category) {
-      <span class="category-selected">{{ category }}</span>
-    }
-
-    <!--Dropdown-Menü -->
-    @if (isCategoryMenuOpen()) {
-    <div class="dropdown-content">
-      <button type="button" [class.selected]="selectedCategory() === null" (click)="selectCategory(null)">All surveys</button>
-      @for (category of categories; track category) {
-        <button type="button" [class.selected]="selectedCategory() === category" (click)="selectCategory(category)">
-          {{ category }}
+      <div class="dropdown">
+        <!-- Der Button enthält nur das Icon anstelle von Text -->
+        <button type="button" class="dropdown-btn" aria-label="open-menu" [attr.aria-expanded]="isCategoryMenuOpen()"
+          [class.is-open]="isCategoryMenuOpen()" (click)="toggleCategoryMenu()">
+          Sort by Categories
+          <svg class="dropdown-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M11.584 15.617 5.262 9.447C5.174 9.362 5.109 9.27 5.065 9.17A.86.86 0 0 1 5 8.851C5 8.624 5.08 8.426 5.24 8.255 5.4 8.085 5.61 8 5.872 8h13.256c.262 0 .472.085.632.255.16.171.24.369.24.596 0 .057-.087.255-.262.596l-6.322 6.17c-.146.142-.291.241-.436.298a1.4 1.4 0 0 1-.48.085c-.175 0-.334-.028-.48-.085-.145-.057-.29-.156-.436-.298Z" />
+          </svg>
         </button>
-      }
+
+        @if (selectedCategory(); as category) {
+        <span class="category-selected">{{ category }}</span>
+        }
+
+        <!--Dropdown-Menü -->
+        @if (isCategoryMenuOpen()) {
+        <div class="dropdown-content">
+          <button type="button" [class.selected]="selectedCategory() === null" (click)="selectCategory(null)">All
+            surveys</button>
+          @for (category of categories; track category) {
+          <button type="button" [class.selected]="selectedCategory() === category" (click)="selectCategory(category)">
+            {{ category }}
+          </button>
+          }
+        </div>
+        }
+      </div>
     </div>
-    }
-  </div>
-
-
-
-  </div>
 
     <div class="servey-grid-row">
       @for (survey of filteredSurveys(); track survey.id) {
       <a [routerLink]="['/surveys', survey.slug]" class="survey-card-row">
+        <div>
+          <p>{{ survey.category }}</p>
+          <h3>{{ survey.title }}</h3>
+        </div>
 
-
-           <div>
-              <p>{{ survey.category }}</p>
-              <h3>{{ survey.title }}</h3>
-            </div>
-
-          <div>
-            <span class="open-row">{{ endDateLabel(survey.endDate) }}</span>
-          </div>
-
-
+        <div>
+          <span class="open-row">{{ endDateLabel(survey.endDate) }}</span>
+        </div>
       </a>
       }
     </div>

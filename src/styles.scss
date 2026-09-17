@@ -2,13 +2,13 @@
   --plum: #35263b;
   --cream: #fff8f4;
   --peach: #ffb569;
-  --secondary-orange:#ffcfa1;
+  --secondary-orange: #ffcfa1;
   --ink: #332c35;
   --muted: #756c76;
-  --editor-buttons:#71524b;
-  --editor-hover-buttons:#ae7e5a;
+  --editor-buttons: #71524b;
+  --editor-hover-buttons: #ae7e5a;
   --line: #eadfe7;
-  --secondary-background:#f3eff5;
+  --secondary-background: #f3eff5;
   --dropdown-background: #493c4d;
   font-family: Arial, sans-serif;
   color: var(--ink);
@@ -40,7 +40,6 @@ a {
   text-decoration: none;
 }
 
-/* Shared layout and UI elements used by more than one feature. */
 .page-shell {
   min-height: 100vh;
   max-width: 100%;
@@ -48,39 +47,36 @@ a {
   background: var(--plum);
 }
 
-
 .button:disabled {
-  // cursor: not-allowed;
-  // opacity: 0.5;
   cursor: auto;
 }
 
 .eyebrow {
-    margin: 0 0 12px;
-    color: var(--ink);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 100%;
-    letter-spacing: 0.08em;
-    width: 59px;
-    height: 26px;
-    background-color: var(--secondary-orange);
-    border-top-right-radius: 14px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: 0.08em;
+  width: 59px;
+  height: 26px;
+  background-color: var(--secondary-orange);
+  border-top-right-radius: 14px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .badge {
-    color: var(--plum);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 100%;
-    padding: 6px;
-    width: 94px;
-    height: 26px;
-    white-space: nowrap;
-    border-top-right-radius: 14px;
-    background-color: var(--peach);
+  color: var(--plum);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+  padding: 6px;
+  width: 94px;
+  height: 26px;
+  white-space: nowrap;
+  border-top-right-radius: 14px;
+  background-color: var(--peach);
 }

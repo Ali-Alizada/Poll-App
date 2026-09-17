@@ -23,7 +23,10 @@ export class SurveyEditorComponent {
     title: ['', Validators.required],
     endDate: [''],
     description: [''],
-    category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(SURVEY_CATEGORIES[0], Validators.required),
+    category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(
+      SURVEY_CATEGORIES[0],
+      Validators.required,
+    ),
     questions: this.fb.array([this.newQuestion()]),
   });
   get questions() {
@@ -97,7 +100,11 @@ export class SurveyEditorComponent {
 
   @HostListener('document:click', ['$event'])
   closeCategoryMenuOnOutsideClick(event: Event) {
-    if (!this.elementRef.nativeElement.querySelector('.category-dropdown')?.contains(event.target as Node)) {
+    if (
+      !this.elementRef.nativeElement
+        .querySelector('.category-dropdown')
+        ?.contains(event.target as Node)
+    ) {
       this.isCategoryMenuOpen.set(false);
     }
   }
@@ -127,9 +134,10 @@ export class SurveyEditorComponent {
       this.isPublished.set(true);
     } catch (error: unknown) {
       console.error('Survey konnte nicht gespeichert werden:', error);
-      const message = typeof error === 'object' && error !== null && 'message' in error
-        ? String(error.message)
-        : JSON.stringify(error);
+      const message =
+        typeof error === 'object' && error !== null && 'message' in error
+          ? String(error.message)
+          : JSON.stringify(error);
       alert(`Die Umfrage konnte nicht gespeichert werden: ${message}`);
     }
   }
