@@ -128,8 +128,9 @@
 }
 
 .option.selected .checkbox {
-  border-color: var(--plum);
+  border: 0;
   background: var(--peach);
+  color: var(--plum);
 }
 
 .complete-button {
