@@ -33,6 +33,7 @@
     background: var(--editor-buttons);
     color: white;
     cursor: pointer;
+    font-family: "Nokora";
     font-size: 16px;
     font-weight: 700;
     line-height: 100%;
@@ -47,6 +48,7 @@
 }
 
 .editor h1 {
+  font-family: "Nerko One";
   margin: 0;
   font-size: 56px;
   line-height: 100%;
@@ -82,9 +84,15 @@
 }
 
 .field-grid .servey-labelname{
+  font-family: "Mulish";
   font-size: 18px;
   font-weight: 700;
 }
+
+.field-grid .servey-labelname span{
+  font-weight: 400;
+}
+
 
 .editor label {
     display: grid;
@@ -112,7 +120,9 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-family: "Mulish";
   font-size: 18px;
+  font-weight: 700;
 }
 
 .clear-field {
@@ -164,6 +174,9 @@
     color: var(--ink);
     height: 37px;
     border-top-right-radius: 20px;
+    font-family: "Mulish";
+    font-size: 16px;
+    font-weight: 400;
 }
 
   .editor input:not([type='checkbox']):focus,
@@ -189,11 +202,10 @@
   background: transparent;
   color: #f8e8f2;
   cursor: pointer;
-  // font-family: Mulish;
+  font-family: "Mulish";
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  letter-spacing: 0%;
 }
 
 .category-dropdown-btn:hover,
@@ -224,7 +236,7 @@
 .category-selected {
   display: block;
   color:var(--peach);
-  // font-family: 'Mulish';
+  font-family: "Mulish";
   font-weight: 400;
   font-size: 14px;
   pointer-events: none;
@@ -258,7 +270,9 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-  font: inherit;
+  font-family: "Mulish";
+  font-size: 14px;
+  font-weight: 400;
   text-align: left;
   white-space: nowrap;
 }
@@ -305,6 +319,9 @@
   justify-content: space-between;
   margin-bottom: 16px;
   color: white;
+  font-family: "Mulsih";
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .multiple-choice {
@@ -317,6 +334,7 @@
   gap: 5px;
   margin-left: auto;
   color: #f8e8f2;
+  font-family: "Mulish";
   font-weight: 400;
   font-size: 14px;
 }
@@ -363,10 +381,10 @@
     background: transparent;
     border: none;
     color: white;
+    font-family: "Nokora";
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 100%;
-    letter-spacing: 0%;
     cursor: pointer;
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -384,7 +402,6 @@
   border: none;
   background: var(--editor-buttons);
   color: white;
-  // font-family: Nokora;
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -416,7 +433,7 @@
   border-radius: 8px;
   border: none;
   background-color: var(--secondary-orange);
-  // font-family: Nokora;
+  font-family: "Nokora";
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;

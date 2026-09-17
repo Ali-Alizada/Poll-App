@@ -17,7 +17,7 @@
         <h2>
           <span class="question-number">{{ index + 1 }}.</span> {{ question.text }}
         </h2>
-        <span>More than one answers are possible.</span>
+        <span class="multi-answers">More than one answers are possible.</span>
 
         <div class="options">
           @for (option of question.options; track option.id; let optionIndex = $index) {

@@ -19,7 +19,6 @@
   min-height: 365px;
   max-width: 1440px;
   margin: auto;
-  // padding: 75px 8%;
   padding: 75px;
   justify-content: space-between;
   overflow: hidden;
@@ -28,17 +27,21 @@
 }
 
 .hero h1 {
-  margin: 0;
-  font-size: 90px;
-  line-height: 0.95;
-  letter-spacing: -0.06em;
-  color: var(--peach);
+    font-family: "Nerko One";
+    margin: 0;
+    font-size: 100px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: var(--peach);
 }
 
 .hero p:not(.eyebrow) {
-  max-width: 420px;
   color: #e7dfe8;
-  line-height: 1.6;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Mulish';
 }
 
 .hero-art {
@@ -89,7 +92,6 @@
 .content {
   max-width: 1440px;
   margin: auto;
-  // padding: 0px 8%;
   padding: 0 75px;
 }
 
@@ -162,14 +164,16 @@ h2 {
   justify-content: center;
   margin: 0;
   color: var(--peach);
+  font-family: "Nerko One";
   font-size: 72px;
   font-weight: 400;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   line-height: 100%;
   padding-bottom: 30px;
 }
 
 .section-heading p {
+  font-family: "Mulish";
   color: var(--cream);
   font-size: 32px;
   font-weight: 500;
@@ -182,7 +186,6 @@ h2 {
 
 .survey-card-row {
   display: flex;
-  // max-width: 513px;
   height: 130px;
   padding: 30px 30px 60px 30px;
   background-color: var(--dropdown-background);
@@ -192,7 +195,6 @@ h2 {
 
 .survey-card {
   display: flex;
-  // max-width: 321px;
   min-height: 290px;
   flex-direction: column;
   padding: 30px 30px 60px 30px;
@@ -208,24 +210,25 @@ h2 {
 
 .survey-card h3 {
   margin: 19px 0 9px;
+  font-family: "Mulish";
   font-size: 26px;
   font-weight: 700;
   line-height: 100%;
-  letter-spacing: -0.04em;
 }
 
 .survey-card p {
   color: var(--muted);
+  font-family: "Mulish";
   font-size: 14px;
   font-weight: 600;
   line-height: 100%;
-  // padding: 10px 0 0 0;
   margin-bottom: 0;
 }
 
 .open {
   margin-top: auto;
   color: var(--muted);
+  font-family: "Mulish";
   font-size: 14px;
   font-weight: 500;
   line-height: 100%;
@@ -245,7 +248,6 @@ h2 {
   min-height: 400px;
   max-width: 1440px;
   margin: auto;
-  // padding: 16px 8%;
   padding: 0 75px;
   padding-bottom: 60px;
   color: white;
@@ -265,14 +267,16 @@ h2 {
   font-weight: 400;
   line-height: 100%;
   gap: 24px;
-
 }
 
 .survey-filter {
+  font-family: "Nokora";
+  font-size: 16px;
+  font-weight: 400;
   border: 0;
   padding: 4px 8px;
   border-radius: 20px;
-  color: black;
+  color: var(--plum);
   cursor: pointer;
 }
 
@@ -299,7 +303,6 @@ h2 {
 }
 
 .dropdown {
-  // font-family: 'Mulish';
   position: relative;
   display: inline-block;
   gap: 10px;
@@ -319,7 +322,9 @@ h2 {
   justify-content: center;
   margin-bottom: 4px;
   color: white;
-  font: inherit;
+  font-family: "Mulish";
+  font-size: 18px;
+  font-weight: 700;
   gap: 10px;
 }
 
@@ -367,7 +372,7 @@ h2 {
   border-radius: 4px;
   line-height: 100%;
   letter-spacing: 2%;
-  // font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 14px;
   font-weight: 400;
 }
@@ -439,10 +444,10 @@ h2 {
 
 .survey-card-row h3 {
   margin: 0;
-  font-size: 26px;
+  font-family: "Mulish";
+  font-size: 24px;
   font-weight: 700;
   line-height: 100%;
-  letter-spacing: -0.04em;
   color: white;
   overflow-wrap: anywhere;
 }
@@ -452,12 +457,13 @@ h2 {
   font-size: 16px;
   font-weight: 500;
   line-height: 100%;
-  // font-family: 'Mulish';
+  font-family: "Mulish";
 }
 
 .open-row {
   align-self: end;
   color: var(--muted);
+  font-family: "Mulish";
   font-size: 14px;
   font-weight: 500;
   line-height: 100%;

@@ -22,19 +22,20 @@
 
 .questions h1 {
   margin: 18px 0;
+  font-family: "Nerko One";
+  font-weight: 400;
   font-size: 56px;
   line-height: 50px;
-  letter-spacing: 0%;
   color: #ee9236;
 }
 
 .lead {
   max-width: 650px;
   color: var(--plum);
+  font-family: "Mulish";
   font-size: 16px;
   font-weight: 500;
   line-height: 100%;
-  letter-spacing: 0;
 }
 
 .questions {
@@ -60,20 +61,29 @@
 .question {
   margin-top: 31px;
   padding-top: 25px;
-  // border-top: 1px solid var(--line);
 }
 
 .category-info {
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+  font-family: "Mulish";
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .question h2 {
   margin: 8px 0 1px;
-  // font-family: 'mulish';
+  font-family: "Mulish";
   font-size: 18px;
   font-weight: 700;
+}
+
+.multi-answers{
+  font-family: "Mulish";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
 }
 
 .question-number,
@@ -97,6 +107,9 @@
   border: 0;
   color: var(--plum);
   text-align: left;
+  font-family: "Mulish";
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .options .option:hover {
@@ -112,6 +125,7 @@
   flex: 0 0 12px;
   font-size: 14px;
   font-weight: 700;
+  font-family: "Mulish";
 }
 
 .checkbox {
@@ -144,12 +158,12 @@
   border-radius: 7px;
   background: var(--secondary-orange);
   color: var(--plum);
-  font-size: 0.8rem;
+  font-family: "Nokora";
+  font-size: 16px;
   font-weight: 700;
 }
 
 .complete-button:disabled {
-  // cursor: not-allowed;
   opacity: 0.45;
   cursor: auto;
 }
@@ -171,9 +185,8 @@
   margin: 0 0 29px;
   font-size: 32px;
   font-weight: 400;
-  // font-family: 'Nerko One';
+  font-family: "Nerko One";
   line-height: 100%;
-  letter-spacing: 0;
 }
 
 .results-title span {
@@ -186,11 +199,10 @@
 
 .result-question h3 {
   margin: 0 0 10px;
-  // font-family: Mulish;
+  font-family: "Mulish";
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  letter-spacing: 0%;
 }
 
 .result-row {
@@ -226,17 +238,19 @@
   color: #d79451;
   font-size: 14px;
   font-weight: 800;
-  // font-family: 'mulish';
+  font-family: "Mulish";
 }
 
 .result-note {
   margin-top: 27px;
   color: #dacdda;
-  font-size: 0.75rem;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Mulish";
 }
 
 .empty-results {
-  // font-family: 'mulish';
+  font-family: "Mulish";
   display: grid;
   gap: 108px;
   color: var(--plum);

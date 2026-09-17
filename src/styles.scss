@@ -1,4 +1,77 @@
+/* nerko-one-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Nerko One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/nerko-one-v17-latin-regular.woff2') format('woff2');
+}
 
+/* mulish-300 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/assets/fonts/mulish-v18-latin-300.woff2') format('woff2'); 
+}
+/* mulish-regular - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/mulish-v18-latin-regular.woff2') format('woff2'); 
+}
+/* mulish-500 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/assets/fonts/mulish-v18-latin-500.woff2') format('woff2'); 
+}
+/* mulish-600 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/assets/fonts/mulish-v18-latin-600.woff2') format('woff2'); 
+}
+/* mulish-700 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/mulish-v18-latin-700.woff2') format('woff2'); 
+}
+/* mulish-800 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/assets/fonts/mulish-v18-latin-800.woff2') format('woff2'); 
+}
+/* mulish-900 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/assets/fonts/mulish-v18-latin-900.woff2') format('woff2'); 
+}
+
+/* nokora-regular - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Nokora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/nokora-v34-latin-regular.woff2') format('woff2'); 
+}
 
 
 :root {
@@ -56,10 +129,10 @@ a {
 .eyebrow {
   margin: 0 0 12px;
   color: var(--ink);
+  font-family: "Mulish";
   font-size: 16px;
   font-weight: 600;
   line-height: 100%;
-  letter-spacing: 0.08em;
   width: 59px;
   height: 26px;
   background-color: var(--secondary-orange);
@@ -72,6 +145,7 @@ a {
 
 .badge {
   color: var(--plum);
+  font-family: "Mulish";
   font-size: 16px;
   font-weight: 600;
   line-height: 100%;
