@@ -160,7 +160,7 @@
 
 .results {
   align-self: start;
-  padding: 28px 0 28px 28px;
+  padding: 90px 0 28px 28px;
   background: transparent;
   color: var(--plum);
   width: 100%;
@@ -233,6 +233,20 @@
   margin-top: 27px;
   color: #dacdda;
   font-size: 0.75rem;
+}
+
+.empty-results {
+  display: grid;
+  gap: 108px;
+  color: var(--plum);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.empty-results .empty-message {
+  margin: 0;
+  text-align: center;
 }
 
 @media (max-width: 720px) {

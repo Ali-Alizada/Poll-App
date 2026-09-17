@@ -32,7 +32,7 @@ export class SurveyService {
       supabase.from(TABLES.surveys).select('*').order('created_at', { ascending: false }),
       supabase.from(TABLES.questions).select('*').order('position'),
       supabase.from(TABLES.options).select('*').order('position'),
-      supabase.from(TABLES.answers).select('question_id, option_id'),
+      supabase.from(TABLES.answers).select('survey_id, question_id, option_id'),
     ]);
     const error =
       surveysResult.error || questionsResult.error || optionsResult.error || answersResult.error;
@@ -56,10 +56,12 @@ export class SurveyService {
               .map((option) => ({ id: option.id, label: option.label })),
           }));
         const groupedAnswers: Record<string, string[]> = {};
-        answers.forEach((answer) => {
+        answers
+          .filter((answer) => answer.survey_id === row.id)
+          .forEach((answer) => {
           groupedAnswers[answer.question_id] ??= [];
           groupedAnswers[answer.question_id].push(answer.option_id);
-        });
+          });
         return {
           id: row.id,
           slug: row.slug,

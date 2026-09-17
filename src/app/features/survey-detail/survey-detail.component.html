@@ -39,24 +39,33 @@
     </div>
     <aside class="results">
       <h2 class="results-title">Survey results <span>LIVE</span></h2>
-      @for (question of current.questions; track question.id; let questionIndex = $index) {
-      <div class="result-question">
-        <h3>
-          <span class="result-question-number">{{ questionIndex + 1 }}.</span>
-          {{ question.text }}
-        </h3>
-        @for (option of question.options; track option.id; let optionIndex = $index) {
-        <div class="result-row">
-          <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
-          <div class="bar">
-            <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
+      @if (hasAnswers(current.answers)) {
+        @for (question of current.questions; track question.id; let questionIndex = $index) {
+        @if (hasQuestionAnswers(current.answers, question.id)) {
+          <div class="result-question">
+          <h3>
+            <span class="result-question-number">{{ questionIndex + 1 }}.</span>
+            {{ question.text }}
+          </h3>
+          @for (option of question.options; track option.id; let optionIndex = $index) {
+          <div class="result-row">
+            <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
+            <div class="bar">
+              <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
+            </div>
+            <strong class="percentage">{{ percent(current.answers[question.id], option.id) }}%</strong>
           </div>
-          <strong class="percentage">{{ percent(current.answers[question.id], option.id) }}%</strong>
-        </div>
+          }
+          </div>
         }
-      </div>
+        }
+        <p class="result-note">Results update as votes arrive.</p>
+      } @else {
+        <div class="empty-results">
+          <p>Results will be shown here after participants complete the survey.</p>
+          <p class="empty-message">There are no answers yet.</p>
+        </div>
       }
-      <p class="result-note">Results update as votes arrive.</p>
     </aside>
   </section>
   } @else {

@@ -44,6 +44,12 @@ export class SurveyDetailComponent {
   optionLetter(index: number) {
     return String.fromCharCode(65 + index);
   }
+  hasAnswers(answers: Record<string, string[]>) {
+    return Object.values(answers).some((questionAnswers) => questionAnswers.length > 0);
+  }
+  hasQuestionAnswers(answers: Record<string, string[]>, questionId: string) {
+    return (answers[questionId]?.length ?? 0) > 0;
+  }
   canComplete() {
     const currentSurvey = this.survey();
     return (
