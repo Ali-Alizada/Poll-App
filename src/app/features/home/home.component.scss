@@ -401,7 +401,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  height: calc(3 * 130px + 2 * 24px);
+  max-height: calc(3 * 130px + 2 * 24px);
   overflow-y: auto;
   padding-right: 14px;
 }
