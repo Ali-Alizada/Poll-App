@@ -18,13 +18,15 @@
       @for (question of current.questions; track question.id; let index = $index) {
       <article class="question">
         <h2><span class="question-number">{{ index + 1 }}.</span> {{ question.text }}</h2>
+        <span>More than one answers are possible.</span>
+
         <div class="options">
           @for (option of question.options; track option.id; let optionIndex = $index) {
           <button class="option" [class.selected]="isSelected(question.id, option.id)"
             [attr.aria-pressed]="isSelected(question.id, option.id)"
             (click)="vote(current.id, question.id, option.id)">
             <span class="checkbox" aria-hidden="true">{{ isSelected(question.id, option.id) ? '✓' : '' }}</span>
-            <span class="option-letter">{{ optionLetter(optionIndex) }}</span>
+            <span class="option-letter">{{ optionLetter(optionIndex) }}.</span>
             <span>{{ option.label }}</span>
           </button>
           }
@@ -42,10 +44,7 @@
         <h3><span class="result-question-number">{{ questionIndex + 1 }}.</span> {{ question.text }}</h3>
         @for (option of question.options; track option.id; let optionIndex = $index) {
         <div class="result-row">
-          <div>
-            <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
-            <span>{{ option.label }}</span><strong>{{ count(current.answers[question.id], option.id) }}</strong>
-          </div>
+          <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
           <div class="bar">
             <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
           </div>

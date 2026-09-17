@@ -17,7 +17,7 @@
   margin: auto;
   padding: 0 75px;
   grid-template-columns: minmax(0, 1fr) 315px;
-  gap: 70px;
+  gap: 60px;
 }
 
 .questions h1 {
@@ -69,11 +69,10 @@
   margin-top: 24px;;
 }
 .question h2 {
-  margin: 8px 0 15px;
+  margin: 8px 0 1px;
   // font-family: 'mulish';
   font-size: 18px;
   font-weight: 700;
-
 }
 
 .question-number,
@@ -85,12 +84,13 @@
 .options {
   display: grid;
   gap: 8px;
+  margin-top: 16px;
 }
 
 .options .option {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 4px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -120,6 +120,7 @@
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
+  margin-right: 10px;
 }
 
 .option.selected .checkbox {
@@ -134,7 +135,7 @@
 .complete-button {
   grid-column: 1 / -1;
   justify-self: end;
-  margin-top: 28px;
+  margin-top: 40px;
   padding: 10px 16px;
   border: 0;
   border-radius: 7px;
@@ -150,9 +151,13 @@
   cursor: auto;
 }
 
+.complete-button:hover{
+  background-color: var(--peach);
+}
+
 .results {
   align-self: start;
-  padding: 28px;
+  padding: 28px 0 28px 28px;
   background: transparent;
   color: var(--plum);
   width: 100%;
@@ -161,11 +166,15 @@
 
 .results-title {
   margin: 0 0 29px;
-  font-size: 1.2rem;
+  font-size: 32px;
+  font-weight: 400;
+  // font-family: 'Nerko One';
+  line-height: 100%;
+  letter-spacing: 0;
 }
 
 .results-title span {
-  color: #ee9236;
+  color: var(--peach);
 }
 
 .result-question {
@@ -174,37 +183,34 @@
 
 .result-question h3 {
   margin: 0 0 10px;
-  font-size: 0.85rem;
-  line-height: 1.25;
+  // font-family: Mulish;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
+
+// -------------
 .result-row {
-  position: relative;
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) 32px;
+  align-items: center;
+  column-gap: 8px;
   margin: 10px 0;
-  padding-right: 32px;
   font-size: 0.72rem;
-}
-
-.result-row > div:first-child {
-  display: flex;
-  justify-content: flex-start;
-  gap: 8px;
-  color: var(--plum);
 }
 
 .result-option-letter {
   color: var(--plum);
-}
-
-.result-row > div:first-child strong {
-  display: none;
+  line-height: 1;
 }
 
 .bar {
-  height: 8px;
-  margin-top: 4px;
+  height: 14px;
   background: #e8e8e8;
-  border-radius: 6px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .bar i {
@@ -215,11 +221,12 @@
 }
 
 .percentage {
-  position: absolute;
-  top: 14px;
-  right: 0;
-  color: #d6812d;
-  font-size: 0.68rem;
+  justify-self: end;
+  color: #D79451;
+  font-size: 14px;
+  font-weight: 800;
+  // font-family: 'mulish';
+
 }
 
 .result-note {
