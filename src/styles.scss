@@ -1,6 +1,6 @@
 /* nerko-one-regular - latin */
 @font-face {
-  font-display: swap;
+  font-display: swap; 
   font-family: 'Nerko One';
   font-style: normal;
   font-weight: 400;
@@ -97,7 +97,12 @@
 
 body {
   margin: 0;
+  min-width: 320px;
   --plum: #35263b;
+}
+
+img {
+  max-width: 100%;
 }
 
 button,
