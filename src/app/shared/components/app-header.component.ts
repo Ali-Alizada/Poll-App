@@ -15,6 +15,11 @@ import { RouterLink } from '@angular/router';
           <img src="../assets/imgs/plus-icon-plum.svg" alt="add-icon" />
         </span>
       </a>
+      @if (mobileCloseLink()) {
+        <a routerLink="/" class="mobile-close-link" aria-label="Close survey">
+          <img src="./assets/imgs/close.svg" alt="" aria-hidden="true" />
+        </a>
+      }
     }
   </header>`,
   styleUrl: './app-header.component.scss',
@@ -23,4 +28,5 @@ import { RouterLink } from '@angular/router';
 export class AppHeaderComponent {
   readonly showCreateLink = input(true);
   readonly showCreateLinkLogo = input(true);
+  readonly mobileCloseLink = input(false);
 }

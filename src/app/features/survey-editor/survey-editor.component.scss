@@ -2,6 +2,10 @@
     background: white;
 }
 
+.editor-mobile-header {
+  display: none;
+}
+
 .editor {
   max-width: 1440px;
   margin: auto;
@@ -22,25 +26,27 @@
 
 .close-button {
     position: absolute;
-    top: 95px;
+    top: 50px;
     right: 50px;
     display: inline-grid;
-    width: 108px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     place-items: center;
     border: 0;
     border-radius: 8px;
     background: var(--editor-buttons);
     color: white;
     cursor: pointer;
-    font-family: "Nokora";
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+    padding: 0;
+}
+
+.close-button span {
+  display: none;
+}
+
+.close-button img {
+  width: 20px;
+  height: 20px;
 }
 
 .close-button:hover {
@@ -519,8 +525,12 @@
 }
 
 @media (max-width: 720px) {
+  .editor-mobile-header {
+    display: block;
+  }
+
   .editor {
-    padding: 45px 20px 32px;
+    padding: 0 0 32px;
   }
 
   .field-grid {
@@ -565,7 +575,7 @@
 
 @media (max-width: 460px) {
   .editor {
-    padding: 16px 0 24px;
+    padding: 0 0 24px;
   }
 
   .editor-container {
@@ -586,8 +596,8 @@
   }
 
   .close-button {
-    position: static;
-    align-self: flex-end;
+    top: 24px;
+    right: 16px;
   }
 
   .editor form {
