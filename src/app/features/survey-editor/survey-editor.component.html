@@ -22,7 +22,7 @@
             <label>
               <span class="servey-labelname">Survey name</span>
               <span class="input-row">
-                <input formControlName="title" placeholder="e.g. Summer team event" />
+                <input formControlName="title" />
                 <button type="button" class="clear-field delete-icon" aria-label="Clear survey name"
                   (click)="clearField('title')">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,7 @@
           <label>
             <span class="servey-labelname">Describing text <span>(optional)</span></span>
             <span class="input-row">
-              <textarea formControlName="description" placeholder="What should participants know?"></textarea>
+              <textarea formControlName="description"></textarea>
               <button type="button" class="clear-field delete-icon" aria-label="Clear describing text"
                 (click)="clearField('description')">
                 <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +104,7 @@
 
             <label>
               <span class="input-row">
-                <input formControlName="text" placeholder="What would you like to know?" />
+                <input formControlName="text"/>
                 <button type="button" class="clear-field delete-icon" aria-label="Clear question"
                   (click)="deleteQuestion(i)">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,8 +128,8 @@
               @for (option of options(i).controls; track $index; let j = $index) {
               <div class="option-row">
                 <span class="option-letter">{{ answerLetter(j) }}.</span>
-                <input [formControlName]="j" [placeholder]="'Answer ' + (j + 1)" [attr.aria-label]="'Answer ' + (j + 1)"
-                  title="Answer option" />
+                <input [formControlName]="j" title="Answer option" />
+
                 @if (j < 2) { <button type="button" class="clear-field delete-icon"
                   [attr.aria-label]="'Clear answer ' + answerLetter(j)" [attr.title]="'Clear answer ' + answerLetter(j)"
                   (click)="clearOption(i, j)">

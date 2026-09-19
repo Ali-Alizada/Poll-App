@@ -28,20 +28,21 @@
     position: absolute;
     top: 50px;
     right: 50px;
-    display: inline-grid;
-    width: 32px;
-    height: 32px;
-    place-items: center;
+    display: flex;
+    width: 108px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     border: 0;
     border-radius: 8px;
     background: var(--editor-buttons);
     color: white;
     cursor: pointer;
     padding: 0;
-}
-
-.close-button span {
-  display: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Nokora";
 }
 
 .close-button img {
@@ -528,7 +529,12 @@
   .field-grid{
     gap: 50px;
   }
+
+  .qustions-form{
+    column-gap: 50px;
+  }
 }
+
 @media (max-width: 1140px){
   .field-grid{
     grid-template-columns: unset;
@@ -542,6 +548,14 @@
   .editor-question{
     padding: 8px 0 24px 0;
   }
+
+  .close-button{
+    width: 32px;
+    height: 32px;
+  }
+  .close-button span {
+  display: none;
+}
 }
 
 @media (max-width: 720px) {
