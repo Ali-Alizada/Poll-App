@@ -69,15 +69,7 @@ header {
 
 @media (max-width: 720px) {
   header {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 380px) {
-  header {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 16px;
+    padding: 50px 16px
   }
 }
 
