@@ -17,10 +17,18 @@ export class SurveyDetailComponent {
   readonly survey = computed(() =>
     this.surveys.bySlug(this.route.snapshot.paramMap.get('slug') ?? ''),
   );
+
   readonly isPastSurvey = computed(() => {
     const endDate = this.survey()?.endDate;
     return !!endDate && new Date(`${endDate}T23:59:59`).getTime() < Date.now();
   });
+
+  /** Toggles an option and persists the resulting answer.
+   * @param surveyId Survey identifier.
+   * @param questionId Question identifier.
+   * @param optionId Option identifier.
+   * @returns Nothing.
+   */
   vote(surveyId: string, questionId: string, optionId: string) {
     if (this.isPastSurvey()) return;
     const wasSelected = this.isSelected(questionId, optionId);
@@ -35,9 +43,20 @@ export class SurveyDetailComponent {
       ? this.surveys.removeAnswer(surveyId, questionId, optionId)
       : this.surveys.addAnswer(surveyId, questionId, optionId));
   }
+
+  /** Returns whether an option is selected for a question.
+   * @param questionId Question identifier.
+   * @param optionId Option identifier.
+   * @returns True when the option is selected.
+   */
   isSelected(questionId: string, optionId: string) {
     return this.selectedOptions()[questionId]?.includes(optionId) ?? false;
   }
+
+  /** Formats an ISO date for display in the German locale.
+   * @param date Optional ISO date.
+   * @returns Formatted date or the original value.
+   */
   formatDate(date: string | undefined) {
     if (!date) return '';
     const parsedDate = new Date(date);
@@ -48,15 +67,35 @@ export class SurveyDetailComponent {
       year: 'numeric',
     }).format(parsedDate);
   }
+
+  /** Converts an option index to its alphabetic label.
+   * @param index Option index.
+   * @returns Alphabetic option label.
+   */
   optionLetter(index: number) {
     return String.fromCharCode(65 + index);
   }
+
+  /** Returns whether any answer exists in the survey.
+   * @param answers Answers grouped by question.
+   * @returns True when at least one answer exists.
+   */
   hasAnswers(answers: Record<string, string[]>) {
     return Object.values(answers).some((questionAnswers) => questionAnswers.length > 0);
   }
+
+  /** Returns whether a question has at least one answer.
+   * @param answers Answers grouped by question.
+   * @param questionId Question identifier.
+   * @returns True when the question has an answer.
+   */
   hasQuestionAnswers(answers: Record<string, string[]>, questionId: string) {
     return (answers[questionId]?.length ?? 0) > 0;
   }
+
+  /** Returns whether every question can be completed.
+   * @returns True when all questions have selections.
+   */
   canComplete() {
     const currentSurvey = this.survey();
     return (
@@ -67,14 +106,30 @@ export class SurveyDetailComponent {
       )
     );
   }
+
+  /** Navigates home after a complete survey.
+   * @returns Nothing.
+   */
   completeSurvey() {
     if (this.canComplete()) {
       void this.router.navigate(['/']);
     }
   }
+
+  /** Counts answers matching one option.
+   * @param values Answer option ids.
+   * @param optionId Option identifier.
+   * @returns Number of matching answers.
+   */
   count(values: string[] | undefined, optionId: string) {
     return values?.filter((value) => value === optionId).length ?? 0;
   }
+
+  /** Calculates the percentage for one option.
+   * @param values Answer option ids.
+   * @param optionId Option identifier.
+   * @returns Rounded percentage from zero to one hundred.
+   */
   percent(values: string[] | undefined, optionId: string) {
     const total = values?.length ?? 0;
     return total ? Math.round((this.count(values, optionId) / total) * 100) : 0;
