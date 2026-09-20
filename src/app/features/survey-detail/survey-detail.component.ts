@@ -2,11 +2,13 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyService } from '../../core/services/survey.service';
 import { AppHeaderComponent } from '../../shared/components/app-header.component';
+
 @Component({
   imports: [AppHeaderComponent],
   templateUrl: './survey-detail.component.html',
-  styleUrl: './survey-detail.component.scss',
+  styleUrls: ['./survey-detail.component.scss', './responsive/survey-detail-responsive.scss'],
 })
+
 export class SurveyDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);

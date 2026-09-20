@@ -1,5 +1,5 @@
-.page-shell{
-    background: white;
+.page-shell {
+  background: white;
 }
 
 .editor-mobile-header {
@@ -12,10 +12,10 @@
   padding: 100px 65px 0;
 }
 
-.editor-container{
-    overflow: hidden;
-    border-radius: 5px 95px 5px 5px;
-    background: #3d2d43;
+.editor-container {
+  overflow: hidden;
+  border-radius: 5px 95px 5px 5px;
+  background: #3d2d43;
 }
 
 .editor-heading {
@@ -25,24 +25,24 @@
 }
 
 .close-button {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    display: flex;
-    width: 108px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border: 0;
-    border-radius: 8px;
-    background: var(--editor-buttons);
-    color: white;
-    cursor: pointer;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: "Nokora";
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  display: flex;
+  width: 108px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--editor-buttons);
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Nokora";
 }
 
 .close-button img {
@@ -65,11 +65,11 @@
 }
 
 .editor form {
-    padding: 28px 24px 40px;
-    background: rgba(142, 112, 153, 0.16);
+  padding: 28px 24px 40px;
+  background: rgba(142, 112, 153, 0.16);
   margin: 0 50px;
-    border-radius: 5px;
-    border-top-right-radius: 80px;
+  border-radius: 5px;
+  border-top-right-radius: 80px;
 }
 
 .field-grid {
@@ -90,23 +90,23 @@
   align-items: end;
 }
 
-.field-grid .servey-labelname{
+.field-grid .servey-labelname {
   font-family: "Mulish";
   font-size: 18px;
   font-weight: 700;
 }
 
-.field-grid .servey-labelname span{
+.field-grid .servey-labelname span {
   font-weight: 400;
 }
 
 
 .editor label {
-    display: grid;
-    gap: 7px;
-    color: #f8e8f2;
-    font-size: 14px;
-    font-weight: 400;
+  display: grid;
+  gap: 7px;
+  color: #f8e8f2;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .dropw-down {
@@ -173,23 +173,23 @@
 
 .editor input,
 .editor textarea {
-    padding: 11px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    background: white;
-    color: var(--ink);
-    height: 37px;
-    border-top-right-radius: 20px;
-    font-family: "Mulish";
-    font-size: 16px;
-    font-weight: 400;
+  padding: 11px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: white;
+  color: var(--ink);
+  height: 37px;
+  border-top-right-radius: 20px;
+  font-family: "Mulish";
+  font-size: 16px;
+  font-weight: 400;
 }
 
-  .editor input:not([type='checkbox']):focus,
-  .editor textarea:focus {
-    background: rgba(254, 233, 212, 1);
-  }
+.editor input:not([type='checkbox']):focus,
+.editor textarea:focus {
+  background: rgba(254, 233, 212, 1);
+}
 
 .category-dropdown {
   position: relative;
@@ -242,7 +242,7 @@
 
 .category-selected {
   display: block;
-  color:var(--peach);
+  color: var(--peach);
   font-family: "Mulish";
   font-weight: 400;
   font-size: 14px;
@@ -289,8 +289,8 @@
   background: var(--secondary-background);
 }
 
-.category-dropdown span{
-  display:disabled;
+.category-dropdown span {
+  display: disabled;
 }
 
 .editor textarea {
@@ -310,11 +310,11 @@
 }
 
 .editor-question {
-    // margin-top: 36px;
-    padding: 20px 0;
+  // margin-top: 36px;
+  padding: 20px 0;
 }
 
-.qustions-form{
+.qustions-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 90px;
@@ -384,21 +384,21 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-    margin: 24px 0;
-    background: transparent;
-    border: none;
-    color: white;
-    font-family: "Nokora";
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 100%;
-    cursor: pointer;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    padding:10px;
+  margin: 24px 0;
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: "Nokora";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  cursor: pointer;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding: 10px;
 }
 
-.add-option:hover{
+.add-option:hover {
   background-color: var(--plum);
   border-radius: 5px;
 }
@@ -416,7 +416,7 @@
   border-radius: 10px;
 }
 
-.add-question:hover{
+.add-question:hover {
   background: var(--editor-hover-buttons);
 }
 
@@ -427,7 +427,7 @@
   margin: 28px 50px 32px;
 }
 
-.form-actions .button{
+.form-actions .button {
   position: relative;
   overflow: hidden;
   width: 100px;
@@ -454,7 +454,7 @@
   justify-content: flex-start;
   gap: 10px;
   width: 120px;
-  padding:20px;
+  padding: 20px;
   background-color: var(--peach);
 }
 
@@ -522,135 +522,5 @@
   to {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-
-@media (max-width: 1180px){
-  .field-grid{
-    gap: 50px;
-  }
-
-  .qustions-form{
-    column-gap: 50px;
-  }
-}
-
-@media (max-width: 1140px){
-  .field-grid{
-    grid-template-columns: unset;
-  }
-
-  .qustions-form {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-  }
-
-  .editor-question{
-    padding: 8px 0 24px 0;
-  }
-
-  .close-button{
-    width: 32px;
-    height: 32px;
-  }
-  .close-button span {
-  display: none;
-}
-}
-
-@media (max-width: 720px) {
-  .editor-mobile-header {
-    display: block;
-  }
-
-  .editor {
-    padding: 0 0 32px;
-  }
-
-  .field-grid{
-    gap: 14px;
-  }
-
-  .meta-row {
-    grid-template-columns: 1fr;
-  }
-
-  .editor form,
-  .editor-heading {
-    padding: 25px;
-  }
-
-  .editor form {
-    margin: 28px;
-  }
-
-  .form-actions {
-    margin: 28px 25px 32px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .close-button {
-    top: 38px;
-    right: 38px;
-  }
-
-  .publish-notification {
-    right: 0;
-    width: min(446px, calc(100vw - 40px));
-    padding: 18px 20px 18px 24px;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 460px) {
-  .editor {
-    padding: 0 0 24px;
-  }
-
-  .editor-container {
-    border-radius: 0 56px 0 0;
-  }
-
-  .editor-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 24px 16px;
-  }
-
-  .editor h1 {
-    font-size: clamp(40px, 14vw, 56px);
-    line-height: 0.95;
-  }
-
-  .close-button {
-    top: 26px;
-    right: 26px;
-  }
-
-  .editor form {
-    padding: 20px 16px 28px;
-    border-top-right-radius: 56px;
-  }
-
-  .editor form {
-    margin: 16px;
-  }
-
-  .label-row {
-    flex-wrap: wrap;
-  }
-
-  .form-actions {
-    margin: 24px 16px 28px;
-  }
-
-  .publish-notification {
-    width: 100%;
-    min-height: 0;
-    padding: 16px 18px;
-    font-size: 18px;
   }
 }

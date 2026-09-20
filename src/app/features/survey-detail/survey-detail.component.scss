@@ -79,7 +79,7 @@
   font-weight: 700;
 }
 
-.multi-answers{
+.multi-answers {
   font-family: "Mulish";
   font-weight: 400;
   font-size: 14px;
@@ -266,95 +266,4 @@
 .empty-results .empty-message {
   margin: 0;
   text-align: center;
-}
-
-
-@media (max-width: 1180px){
-  .survey-page{
-    gap: clamp(24px, 0vw, 60px);
-  }
-
-  .survey-page h1{
-    font-size: 46px;
-  }
-}
-
-@media (max-width:1060px){
-  .questions{
-      padding: 34px;
-      column-gap: 24px;
-  }
-}
-
-@media (max-width:1100px){
-  .questions{
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 800px) {
-  .survey-page {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 0 20px 28px;
-  }
-
-  .questions>.badge,
-  .questions>.category-info,
-  .questions>h1,
-  .questions>.lead {
-    grid-column: auto;
-  }
-
-  .results {
-    max-width: none;
-    padding: 0 8px 28px;
-  }
-}
-
-@media (max-width: 960px) and (min-width: 721px) {
-  .survey-page {
-    padding: 0 40px 28px;
-  }
-
-  .questions {
-    padding: 34px;
-    column-gap: 24px;
-  }
-
-  .results {
-    padding-left: 0;
-  }
-}
-
-@media (max-width: 840px) and (min-width: 721px) {
-  .questions {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .questions {
-    grid-template-columns: 1fr;
-    padding: 28px 20px;
-    border-top-right-radius: 80px;
-  }
-
-  .questions h1 {
-    font-size: clamp(40px, 12vw, 56px);
-    line-height: 0.95;
-  }
-
-  .category-info {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .complete-button {
-    justify-self: stretch;
-  }
-
-  .empty-results {
-    gap: 48px;
-  }
 }

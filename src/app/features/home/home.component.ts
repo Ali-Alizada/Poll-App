@@ -8,7 +8,7 @@ import { SurveyService } from '../../core/services/survey.service';
 @Component({
   imports: [RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss', './responsive/home-responsive.scss'],
 })
 
 export class HomeComponent {

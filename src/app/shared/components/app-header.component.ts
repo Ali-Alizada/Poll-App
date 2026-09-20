@@ -22,7 +22,7 @@ import { RouterLink } from '@angular/router';
       }
     }
   </header>`,
-  styleUrl: './app-header.component.scss',
+  styleUrls: ['./app-header.component.scss', './responsive/app-header-responsive.scss'],
 })
 
 export class AppHeaderComponent {
