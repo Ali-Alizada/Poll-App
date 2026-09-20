@@ -15,7 +15,12 @@ export class SurveyDetailComponent {
   readonly survey = computed(() =>
     this.surveys.bySlug(this.route.snapshot.paramMap.get('slug') ?? ''),
   );
+  readonly isPastSurvey = computed(() => {
+    const endDate = this.survey()?.endDate;
+    return !!endDate && new Date(`${endDate}T23:59:59`).getTime() < Date.now();
+  });
   vote(surveyId: string, questionId: string, optionId: string) {
+    if (this.isPastSurvey()) return;
     const wasSelected = this.isSelected(questionId, optionId);
     this.selectedOptions.update((selected) => {
       const questionOptions = selected[questionId] ?? [];
@@ -54,6 +59,7 @@ export class SurveyDetailComponent {
     const currentSurvey = this.survey();
     return (
       !!currentSurvey &&
+      !this.isPastSurvey() &&
       currentSurvey.questions.every(
         (question) => (this.selectedOptions()[question.id]?.length ?? 0) > 0,
       )

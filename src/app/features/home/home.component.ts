@@ -19,17 +19,26 @@ export class HomeComponent {
   readonly isCategoryMenuOpen = signal(false);
   readonly surveyFilter = signal<'active' | 'past'>('active');
   readonly newestSurvey = computed(() =>
-    this.surveys.published().find((survey) => this.isActiveSurvey(survey)),
+    this.surveys.published()
+      .filter((survey) => this.isActiveSurvey(survey))
+      .sort((first, second) => this.endDateTimestamp(first.endDate) - this.endDateTimestamp(second.endDate))[0],
   );
   readonly filteredSurveys = computed(() => {
     const category = this.selectedCategory();
     const filter = this.surveyFilter();
-    return this.surveys.surveys().filter(
-      (survey) =>
-        (filter === 'active' ? this.isActiveSurvey(survey) : this.isPastSurvey(survey)) &&
-        (!category || survey.category === category),
-    );
+    return this.surveys
+      .surveys()
+      .filter(
+        (survey) =>
+          (filter === 'active' ? this.isActiveSurvey(survey) : this.isPastSurvey(survey)) &&
+          (!category || survey.category === category),
+      )
+      .sort((first, second) => this.endDateTimestamp(first.endDate) - this.endDateTimestamp(second.endDate));
   });
+
+  private endDateTimestamp(endDate?: string) {
+    return endDate ? new Date(`${endDate}T23:59:59`).getTime() : Number.POSITIVE_INFINITY;
+  }
 
   private isActiveSurvey(survey: { status: string; endDate?: string }) {
     if (survey.status !== 'published') return false;

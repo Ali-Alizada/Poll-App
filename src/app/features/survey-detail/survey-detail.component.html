@@ -10,6 +10,10 @@
         <span class="category-selected"><span>Category: </span>{{ current.category }}</span>
       </div>
 
+      @if (isPastSurvey()) {
+      <p class="lead">This survey has ended. You can view the results, but you can no longer submit an answer.</p>
+      }
+
       <h1>{{ current.title }}</h1>
       <p class="lead">{{ current.description }}</p>
       @for (question of current.questions; track question.id; let index = $index) {
@@ -22,6 +26,7 @@
         <div class="options">
           @for (option of question.options; track option.id; let optionIndex = $index) {
           <button class="option" [class.selected]="isSelected(question.id, option.id)"
+            [disabled]="isPastSurvey()"
             [attr.aria-pressed]="isSelected(question.id, option.id)" (click)="vote(current.id, question.id, option.id)">
             <span class="checkbox" aria-hidden="true">{{
                     isSelected(question.id, option.id) ? '✓' : ''

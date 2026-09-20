@@ -116,6 +116,10 @@
   background-color: var(--secondary-orange);
 }
 
+.options .option:disabled {
+  cursor: default;
+}
+
 .option-letter {
   font-size: 16px;
   font-weight: 700;
