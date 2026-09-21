@@ -11,7 +11,7 @@
         <button type="button" class="close-button" aria-label="Close survey editor" (click)="closeEditor()">
 
           <span aria-hidden="true"> Cancel</span>
-          <img src="../assets/imgs/close.svg" alt="Close">
+          <img src="assets/imgs/close.svg" alt="Close">
         </button>
       </div>
 
@@ -155,7 +155,7 @@
               </div>
               }
               <button type="button" class="add-option" (click)="addOption(i)">
-                Add answer <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
+                Add answer <img src="assets/imgs/plus-icon.svg" alt="plus-icon">
               </button>
             </div>
           </section>
@@ -163,7 +163,7 @@
         </div>
 
         <button type="button" class="add-question" (click)="addQuestion()">
-          Add new question <img src="../assets/imgs/plus-icon.svg" alt="plus-icon">
+          Add new question <img src="assets/imgs/plus-icon.svg" alt="plus-icon">
         </button>
 
       </form>
@@ -172,7 +172,7 @@
         <button class="button" type="submit" form="survey-form" [disabled]="form.invalid">
           <span>Publish</span>
           <span class="publish-checkmark" aria-hidden="true">
-            <img src="../assets/imgs/check-icon.svg" alt="check-icon">
+            <img src="assets/imgs/check-icon.svg" alt="check-icon">
           </span>
         </button>
         @if (isPublished()) {
