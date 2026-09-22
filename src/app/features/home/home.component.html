@@ -10,12 +10,12 @@
         audience, and turn feedback into action.</p>
 
       <div class="survey-button-group">
-        <a routerLink="/surveys/new" class="first-button" aria-label="Create a new survey">
+        <button type="button" class="first-button" aria-label="Create a new survey" (click)="openEditor()">
           <img src="assets/imgs/primary-btn-s.svg" alt="primary-btn-small-svg" />
-        </a>
-        <a routerLink="/surveys/new" class="second-button" aria-label="Create a new survey">
+        </button>
+        <button type="button" class="second-button" aria-label="Create a new survey" (click)="openEditor()">
           <img src="assets/imgs/primary-btn-l.svg" alt="primary-btn-large-svg" />
-        </a>
+        </button>
       </div>
     </div>
 
@@ -101,3 +101,12 @@
     </div>
   </section>
 </main>
+
+@if (isEditorOpen()) {
+<div class="editor-modal-backdrop" role="presentation" (click)="closeEditor()">
+  <div class="editor-modal" role="dialog" aria-modal="true" aria-labelledby="survey-editor-title"
+    (click)="$event.stopPropagation()">
+    <app-survey-editor [modal]="true" (closed)="closeEditor()" />
+  </div>
+</div>
+}

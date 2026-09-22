@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, inject, Input, Output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
@@ -6,12 +6,16 @@ import { SurveyService } from '../../core/services/survey.service';
 import { AppHeaderComponent } from '../../shared/components/app-header.component';
 
 @Component({
+  selector: 'app-survey-editor',
+  host: { '[class.modal-editor]': 'modal' },
   imports: [ReactiveFormsModule, AppHeaderComponent],
   templateUrl: `./survey-editor.component.html`,
   styleUrls: ['./survey-editor.component.scss', './responsive/survey-editor-responsive.scss'],
 })
 
 export class SurveyEditorComponent {
+  @Input() modal = false;
+  @Output() readonly closed = new EventEmitter<void>();
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly fb = inject(FormBuilder);
   private readonly surveyService = inject(SurveyService);
@@ -148,7 +152,7 @@ export class SurveyEditorComponent {
    * @returns Nothing.
    */
   closeEditor() {
-    void this.router.navigate(['/']);
+    this.closed.emit();
   }
 
   /** Closes the success notice and opens the new survey.
