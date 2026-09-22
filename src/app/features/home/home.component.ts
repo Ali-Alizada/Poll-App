@@ -16,10 +16,12 @@ export class HomeComponent {
   readonly selectedCategory = signal<string | null>(null);
   readonly isCategoryMenuOpen = signal(false);
   readonly surveyFilter = signal<'active' | 'past'>('active');
-  readonly newestSurvey = computed(() =>
-    this.surveys.published()
+  readonly newestSurveys = computed(() =>
+    this.surveys
+      .published()
       .filter((survey) => this.isActiveSurvey(survey))
-      .sort((first, second) => this.endDateTimestamp(first.endDate) - this.endDateTimestamp(second.endDate))[0],
+      .sort((first, second) => this.endDateTimestamp(first.endDate) - this.endDateTimestamp(second.endDate))
+      .slice(0, 3),
   );
   readonly filteredSurveys = computed(() => {
     const category = this.selectedCategory();

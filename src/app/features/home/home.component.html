@@ -33,7 +33,7 @@
     </div>
 
     <div class="survey-grid">
-      @if (newestSurvey(); as survey) {
+      @for (survey of newestSurveys(); track survey.id) {
       <a [routerLink]="['/surveys', survey.slug]" class="survey-card">
         <p>{{ survey.category }}</p>
         <h3>{{ survey.title }}</h3>

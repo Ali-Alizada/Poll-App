@@ -38,7 +38,11 @@
   }
 
   .survey-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 80%);
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .content {
@@ -69,7 +73,7 @@
   }
 
   .survey-grid {
-    grid-template-columns: 1fr;
+    grid-auto-columns: minmax(240px, 86%);
   }
 
   .section-heading p {
