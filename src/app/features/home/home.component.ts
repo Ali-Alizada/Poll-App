@@ -2,21 +2,21 @@ import { Component, computed, ElementRef, HostListener, inject, signal } from '@
 import { RouterLink } from '@angular/router';
 import { SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
-import { SurveyEditorComponent } from '../survey-editor/survey-editor.component';
+import { SurveyEditorModalService } from '../../shared/services/survey-editor-modal.service';
 
 @Component({
-  imports: [RouterLink, SurveyEditorComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss', './responsive/home-responsive.scss'],
 })
 
 export class HomeComponent {
   readonly surveys = inject(SurveyService);
+  private readonly editorModal = inject(SurveyEditorModalService);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   readonly categories = SURVEY_CATEGORIES;
   readonly selectedCategory = signal<string | null>(null);
   readonly isCategoryMenuOpen = signal(false);
-  readonly isEditorOpen = signal(false);
   readonly surveyFilter = signal<'active' | 'past'>('active');
   readonly newestSurveys = computed(() =>
     this.surveys
@@ -92,11 +92,7 @@ export class HomeComponent {
   }
 
   openEditor() {
-    this.isEditorOpen.set(true);
-  }
-
-  closeEditor() {
-    this.isEditorOpen.set(false);
+    this.editorModal.open();
   }
 
   /** Creates the human-readable end-date label for a survey.
@@ -125,8 +121,4 @@ export class HomeComponent {
     }
   }
 
-  @HostListener('document:keydown.escape')
-  closeEditorOnEscape() {
-    if (this.isEditorOpen()) this.closeEditor();
-  }
 }

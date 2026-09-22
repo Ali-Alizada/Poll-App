@@ -1,1 +1,10 @@
 <router-outlet />
+
+@if (editorModal.isOpen()) {
+	<div class="editor-modal-backdrop" role="presentation" (click)="editorModal.close()">
+		<div class="editor-modal" role="dialog" aria-modal="true" aria-label="Create new survey"
+			(click)="$event.stopPropagation()">
+			<app-survey-editor [modal]="true" (closed)="editorModal.close()" />
+		</div>
+	</div>
+}

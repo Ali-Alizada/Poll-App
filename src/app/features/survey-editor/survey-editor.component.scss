@@ -2,8 +2,16 @@
   background: white;
 }
 
+:host.modal-editor .page-shell {
+  background: transparent;
+}
+
+:host.modal-editor .editor-mobile-header {
+  display: none;
+}
+
 :host.modal-editor .editor {
-  padding-top: 0;
+  // padding-top: 0;
 }
 
 .editor-mobile-header {

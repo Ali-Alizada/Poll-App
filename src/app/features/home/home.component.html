@@ -102,11 +102,3 @@
   </section>
 </main>
 
-@if (isEditorOpen()) {
-<div class="editor-modal-backdrop" role="presentation" (click)="closeEditor()">
-  <div class="editor-modal" role="dialog" aria-modal="true" aria-labelledby="survey-editor-title"
-    (click)="$event.stopPropagation()">
-    <app-survey-editor [modal]="true" (closed)="closeEditor()" />
-  </div>
-</div>
-}

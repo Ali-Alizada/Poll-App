@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SurveyEditorModalService } from '../services/survey-editor-modal.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,12 @@ import { RouterLink } from '@angular/router';
       <a routerLink="/" class="brand"> <img src="assets/imgs/poll-app-logo.svg" alt="poll-app-logo" /></a>
     }
     @if (showCreateLink()) {
-      <a routerLink="/surveys/new" class="create-link">
+      <button type="button" class="create-link" (click)="openEditor()">
         <span>Create survey</span>
         <span class="publish-checkmark" aria-hidden="true">
           <img src="assets/imgs/plus-icon-plum.svg" alt="add-icon" />
         </span>
-      </a>
+      </button>
       @if (mobileCloseLink()) {
         <a routerLink="/" class="mobile-close-link" aria-label="Close survey">
           <img src="assets/imgs/close.svg" alt="" aria-hidden="true" />
@@ -26,7 +27,12 @@ import { RouterLink } from '@angular/router';
 })
 
 export class AppHeaderComponent {
+  private readonly editorModal = inject(SurveyEditorModalService);
   readonly showCreateLink = input(true);
   readonly showCreateLinkLogo = input(true);
   readonly mobileCloseLink = input(false);
+
+  openEditor() {
+    this.editorModal.open();
+  }
 }
