@@ -112,6 +112,11 @@
   font-weight: 400;
 }
 
+.required-marker {
+  color: var(--secondary-orange);
+  font-weight: 700;
+}
+
 
 .editor label {
   display: grid;
@@ -194,13 +199,18 @@
   height: 37px;
   border-top-right-radius: 20px;
   font-family: "Mulish";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .editor input:not([type='checkbox']):focus,
 .editor textarea:focus {
   background: rgba(254, 233, 212, 1);
+}
+
+.editor input.ng-invalid.ng-touched,
+.editor textarea.ng-invalid.ng-touched {
+  border: 2px solid #e5484d;
 }
 
 .category-dropdown {
@@ -412,6 +422,19 @@
 .add-option:hover {
   background-color: var(--plum);
   border-radius: 5px;
+}
+
+.required-hint {
+  display: block;
+  color: #f8e8f2;
+  font-family: "Nokora";
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 50px 0 -28px;;
+}
+
+.required-hint span{
+  color: var(--secondary-orange);
 }
 
 .add-question {

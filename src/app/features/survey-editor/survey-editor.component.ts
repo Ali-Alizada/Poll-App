@@ -26,7 +26,7 @@ export class SurveyEditorComponent {
   private publishedSurveySlug: string | null = null;
 
   readonly form = this.fb.group({
-    title: ['', Validators.required],
+    title: ['', [Validators.required, Validators.minLength(10)]],
     endDate: [''],
     description: [''],
     category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(
@@ -56,11 +56,11 @@ export class SurveyEditorComponent {
    */
   private newQuestion() {
     return this.fb.group({
-      text: ['', Validators.required],
+      text: ['', [Validators.required, Validators.minLength(10)]],
       allowMultiple: [false],
       options: this.fb.array([
-        this.fb.control('', Validators.required),
-        this.fb.control('', Validators.required),
+        this.fb.control('', [Validators.required, Validators.minLength(2)]),
+        this.fb.control('', [Validators.required, Validators.minLength(2)]),
       ]),
     });
   }
@@ -136,7 +136,7 @@ export class SurveyEditorComponent {
    * @returns Nothing.
    */
   addOption(index: number) {
-    this.options(index).push(this.fb.control('', Validators.required));
+    this.options(index).push(this.fb.control('', [Validators.required, Validators.minLength(2)]));
   }
 
   /** Removes an option from a question.
@@ -200,7 +200,10 @@ export class SurveyEditorComponent {
    * @returns A promise resolved after publishing or showing an error.
    */
   async publish() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     const value = this.form.getRawValue();
     const questions = this.createQuestions(value.questions);
     try {

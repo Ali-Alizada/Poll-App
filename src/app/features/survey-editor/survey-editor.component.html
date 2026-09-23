@@ -20,9 +20,9 @@
           <div class="survey-meta">
 
             <label>
-              <span class="servey-labelname">Survey name</span>
+              <span class="servey-labelname">Survey name <span class="required-marker" aria-hidden="true">*</span></span>
               <span class="input-row">
-                <input formControlName="title" />
+                <input formControlName="title" minlength="10" placeholder="please enter your survey name (min. 10 chars)" />
                 <button type="button" class="clear-field delete-icon" aria-label="Clear survey name"
                   (click)="clearField('title')">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,12 +99,12 @@
           @for (question of questions.controls; track $index; let i = $index) {
           <section class="editor-question" [formGroupName]="i">
             <div class="question-top">
-              <strong>Question {{ i + 1 }}</strong>
+              <strong>Question {{ i + 1 }} <span class="required-marker" aria-hidden="true">*</span></strong>
             </div>
 
             <label>
               <span class="input-row">
-                <input formControlName="text"/>
+                <input formControlName="text" minlength="10" placeholder="please enter your question (min. 10 chars)"/>
                 <button type="button" class="clear-field delete-icon" aria-label="Clear question"
                   (click)="deleteQuestion(i)">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +117,7 @@
             </label>
 
             <label class="multiple-choice">
-              <span class="label-row">Answers
+              <span class="label-row">Answers <span class="required-marker" aria-hidden="true">*</span>
                 <span class="multiple-choice-label">
                   <input type="checkbox" formControlName="allowMultiple" />
                   Allow multiple answers</span>
@@ -128,7 +128,7 @@
               @for (option of options(i).controls; track $index; let j = $index) {
               <div class="option-row">
                 <span class="option-letter">{{ answerLetter(j) }}.</span>
-                <input [formControlName]="j" title="Answer option" />
+                <input [formControlName]="j" minlength="2" placeholder="please enter your option(min. 2 chars)" title="Answer option" />
 
                 @if (j < 2) { <button type="button" class="clear-field delete-icon"
                   [attr.aria-label]="'Clear answer ' + answerLetter(j)" [attr.title]="'Clear answer ' + answerLetter(j)"
@@ -157,6 +157,7 @@
               <button type="button" class="add-option" (click)="addOption(i)">
                 Add answer <img src="assets/imgs/plus-icon.svg" alt="plus-icon">
               </button>
+              <small class="required-hint"><span>*</span> Mandatory fields</small>
             </div>
           </section>
           }
@@ -169,7 +170,7 @@
       </form>
 
       <div class="form-actions">
-        <button class="button" type="submit" form="survey-form" [disabled]="form.invalid">
+        <button class="button" type="submit" form="survey-form">
           <span>Publish</span>
           <span class="publish-checkmark" aria-hidden="true">
             <img src="assets/imgs/check-icon.svg" alt="check-icon">
