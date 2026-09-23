@@ -58,7 +58,7 @@
           <div class="result-row">
             <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
             <div class="bar">
-              <i [style.width.%]="percent(current.answers[question.id], option.id)"></i>
+              <i class="result-bar-fill" [style.--result-bar-width]="percent(current.answers[question.id], option.id) + '%'"></i>
             </div>
             <strong class="percentage">{{ percent(current.answers[question.id], option.id) }}%</strong>
           </div>
