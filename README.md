@@ -1,29 +1,28 @@
 # PollApp
 
-## Projektbeschreibung
+## Project Description
 
-PollApp ist eine interaktive Webanwendung zum Erstellen, Verwalten und Beantworten von Umfragen. Nutzerinnen und Nutzer können neue Umfragen mit mehreren Antwortmöglichkeiten anlegen, bestehende Umfragen ansehen und an Abstimmungen teilnehmen. Die Ergebnisse werden über Supabase gespeichert und dank Realtime-Unterstützung direkt aktualisiert.
+PollApp is an interactive web application for creating, managing, and answering polls. Users can create new polls with multiple answer options, view existing polls, and participate in votes. The results are stored with Supabase and updated instantly through realtime functionality.
 
-Das Projekt dient als moderne Poll-App mit klarer Angular-Struktur. Die Anwendung trennt wiederverwendbare Komponenten, fachliche Services und einzelne Funktionsbereiche wie Startseite, Umfrage-Detailansicht und Umfrage-Editor.
+The project is a modern polling application with a clear Angular structure. The application separates reusable components, domain services, and individual feature areas such as the home page, poll details, and the poll editor.
 
-## Verwendete Technologien
+## Technologies Used
 
-### Programmiersprachen
+### Programming Languages
 
-| Technologie | Beschreibung |
+| Technology | Description |
 | --- | --- |
-| [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) | Typsichere Programmiersprache für die Anwendungslogik |
-| [![HTML5](https://img.shields.io/badge/HTML5-Standard-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/de/docs/Web/HTML) | Struktur und Inhalte der Benutzeroberfläche |
-| [![SCSS](https://img.shields.io/badge/SCSS-Styles-CF649A?logo=sass&logoColor=white)](https://sass-lang.com/) | Modular aufgebaute und responsive Gestaltung |
+| [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) | Type-safe programming language for the application logic |
+| [![HTML5](https://img.shields.io/badge/HTML5-Standard-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) | Structure and content of the user interface |
+| [![SCSS](https://img.shields.io/badge/SCSS-Styles-CF649A?logo=sass&logoColor=white)](https://sass-lang.com/) | Modular and responsive styling |
 
-### Frameworks und Bibliotheken
+### Frameworks and Libraries
 
-| Technologie | Beschreibung |
+| Technology | Description |
 | --- | --- |
-| [![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white)](https://angular.dev/) | Framework für die komponentenbasierte Webanwendung |
-| [![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/) | Datenbank, API und Echtzeit-Updates für Umfragen |
-| [![RxJS](https://img.shields.io/badge/RxJS-7.8-B7178C?logo=reactivex&logoColor=white)](https://rxjs.dev/) | Reaktive Datenströme und asynchrone Verarbeitung |
-| [![Vitest](https://img.shields.io/badge/Vitest-Tests-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/) | Test-Runner für Unit-Tests |
+| [![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white)](https://angular.dev/) | Framework for the component-based web application |
+| [![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/) | Database, API, and realtime updates for polls |
+| [![Vitest](https://img.shields.io/badge/Vitest-Tests-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/) | Test runner for unit tests |
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
 
