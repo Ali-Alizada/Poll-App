@@ -29,19 +29,28 @@ export class SurveyDetailComponent {
    * @param optionId Option identifier.
    * @returns Nothing.
    */
-  vote(surveyId: string, questionId: string, optionId: string) {
+  async vote(surveyId: string, questionId: string, optionId: string) {
     if (this.isPastSurvey()) return;
+    const question = this.survey()?.questions.find((item) => item.id === questionId);
+    if (!question) return;
     const wasSelected = this.isSelected(questionId, optionId);
+    if (!question.allowMultiple && wasSelected) return;
+    const previousOptions = this.selectedOptions()[questionId] ?? [];
     this.selectedOptions.update((selected) => {
       const questionOptions = selected[questionId] ?? [];
       const updatedOptions = wasSelected
         ? questionOptions.filter((selectedOption) => selectedOption !== optionId)
-        : [...questionOptions, optionId];
+        : question.allowMultiple ? [...questionOptions, optionId] : [optionId];
       return { ...selected, [questionId]: updatedOptions };
     });
-    void (wasSelected
-      ? this.surveys.removeAnswer(surveyId, questionId, optionId)
-      : this.surveys.addAnswer(surveyId, questionId, optionId));
+    if (wasSelected) {
+      await this.surveys.removeAnswer(surveyId, questionId, optionId);
+      return;
+    }
+    for (const previousOptionId of question.allowMultiple ? [] : previousOptions) {
+      await this.surveys.removeAnswer(surveyId, questionId, previousOptionId);
+    }
+    await this.surveys.addAnswer(surveyId, questionId, optionId);
   }
 
   /** Returns whether an option is selected for a question.

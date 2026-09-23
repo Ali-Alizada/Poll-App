@@ -15,6 +15,7 @@ export const SURVEY_CATEGORIES = [
 export interface Question {
   id: string;
   text: string;
+  allowMultiple: boolean;
   options: Option[];
 }
 

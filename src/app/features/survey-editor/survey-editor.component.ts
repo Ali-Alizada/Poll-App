@@ -160,6 +160,7 @@ export class SurveyEditorComponent {
    */
   closePublishNotification() {
     this.isPublished.set(false);
+    this.closed.emit();
     if (this.publishedSurveySlug) {
       void this.router.navigate(['/surveys', this.publishedSurveySlug]);
     }
@@ -221,10 +222,15 @@ export class SurveyEditorComponent {
    * @param formQuestions Question values from the form.
    * @returns Domain questions with generated identifiers.
    */
-  private createQuestions(formQuestions: Array<{ text: string | null; options: (string | null)[] }>) {
+  private createQuestions(formQuestions: Array<{
+    text: string | null;
+    allowMultiple: boolean | null;
+    options: (string | null)[];
+  }>) {
     return formQuestions.map((question): Question => ({
       id: crypto.randomUUID(),
       text: question.text!,
+      allowMultiple: question.allowMultiple ?? false,
       options: question.options.map((label) => ({ id: crypto.randomUUID(), label: label! })),
     }));
   }

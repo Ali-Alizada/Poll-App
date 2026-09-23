@@ -20,7 +20,7 @@ type SurveyRow = {
   created_at: string;
 };
 
-type QuestionRow = { id: string; survey_id: string; text: string };
+type QuestionRow = { id: string; survey_id: string; text: string; allow_multiple?: boolean | null };
 type OptionRow = { id: string; question_id: string; label: string };
 type AnswerRow = { survey_id: string; question_id: string; option_id: string };
 
@@ -119,6 +119,7 @@ export class SurveyService {
     return questions.filter((question) => question.survey_id === surveyId).map((question) => ({
       id: question.id,
       text: question.text,
+      allowMultiple: question.allow_multiple ?? false,
       options: options
         .filter((option) => option.question_id === question.id)
         .map((option) => ({ id: option.id, label: option.label })),
@@ -266,7 +267,12 @@ export class SurveyService {
    */
   private async saveQuestion(surveyId: string, question: Question, position: number) {
     const result = await supabase.from(TABLES.questions)
-      .insert({ survey_id: surveyId, text: question.text, position }).select().single();
+      .insert({
+        survey_id: surveyId,
+        text: question.text,
+        allow_multiple: question.allowMultiple,
+        position,
+      }).select().single();
     if (result.error) throw result.error;
     await this.saveOptions(result.data.id, question.options);
   }

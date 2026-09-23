@@ -21,7 +21,9 @@
         <h2>
           <span class="question-number">{{ index + 1 }}.</span> {{ question.text }}
         </h2>
+        @if (question.allowMultiple) {
         <span class="multi-answers">More than one answers are possible.</span>
+        }
 
         <div class="options">
           @for (option of question.options; track option.id; let optionIndex = $index) {
@@ -74,6 +76,6 @@
     </aside>
   </section>
   } @else {
-  <p>Diese Umfrage gibt es nicht.</p>
+  <p>The Survey ist not availabe!.</p>
   }
 </main>
