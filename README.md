@@ -1,4 +1,4 @@
-# PollApp
+# Poll App
 
 ## Project Description
 
