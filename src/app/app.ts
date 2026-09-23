@@ -13,6 +13,9 @@ export class App {
   readonly editorModal = inject(SurveyEditorModalService);
 
   @HostListener('document:keydown.escape')
+  /** Closes the survey editor when Escape is pressed.
+   * @returns Nothing.
+   */
   closeEditorOnEscape() {
     this.editorModal.close();
   }

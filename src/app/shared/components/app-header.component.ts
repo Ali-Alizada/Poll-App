@@ -32,6 +32,9 @@ export class AppHeaderComponent {
   readonly showCreateLinkLogo = input(true);
   readonly mobileCloseLink = input(false);
 
+  /** Opens the survey editor modal.
+   * @returns Nothing.
+   */
   openEditor() {
     this.editorModal.open();
   }

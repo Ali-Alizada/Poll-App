@@ -13,10 +13,16 @@ export class SurveyEditorModalService {
     });
   }
 
+  /** Opens the survey editor modal.
+   * @returns Nothing.
+   */
   open() {
     this.isOpen.set(true);
   }
 
+  /** Closes the survey editor modal.
+   * @returns Nothing.
+   */
   close() {
     this.isOpen.set(false);
   }

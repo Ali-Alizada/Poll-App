@@ -96,6 +96,18 @@ export class SurveyService {
     answers: AnswerRow[],
   ): Survey {
     return {
+      ...this.mapSurveyFields(row),
+      questions: this.mapQuestions(row.id, questions, options),
+      answers: this.groupAnswers(row.id, answers),
+    };
+  }
+
+  /** Maps the scalar fields of one database survey row.
+   * @param row Database survey row.
+   * @returns The mapped survey fields.
+   */
+  private mapSurveyFields(row: SurveyRow) {
+    return {
       id: row.id,
       slug: row.slug,
       title: row.title,
@@ -104,8 +116,6 @@ export class SurveyService {
       endDate: row.end_date ?? undefined,
       status: row.status,
       createdAt: row.created_at,
-      questions: this.mapQuestions(row.id, questions, options),
-      answers: this.groupAnswers(row.id, answers),
     };
   }
 
@@ -160,20 +170,35 @@ export class SurveyService {
    * @returns A promise resolved after the state refresh.
    */
   async removeAnswer(surveyId: string, questionId: string, optionId: string) {
-    const { data: answer, error: findError } = await supabase
-      .from(TABLES.answers)
-      .select('id')
-      .eq('survey_id', surveyId)
-      .eq('question_id', questionId)
-      .eq('option_id', optionId)
-      .limit(1)
-      .maybeSingle();
+    const { data: answer, error: findError } = await this.findAnswer(
+      surveyId, questionId, optionId,
+    );
     if (findError) throw findError;
     if (answer) {
-      const { error } = await supabase.from(TABLES.answers).delete().eq('id', answer.id);
-      if (error) throw error;
+      await this.deleteAnswer(answer.id);
     }
     await this.loadSurveys();
+  }
+
+  /** Finds one persisted answer by its three related identifiers.
+   * @param surveyId Survey identifier.
+   * @param questionId Question identifier.
+   * @param optionId Option identifier.
+   * @returns The matching answer query result.
+   */
+  private findAnswer(surveyId: string, questionId: string, optionId: string) {
+    return supabase.from(TABLES.answers).select('id')
+      .eq('survey_id', surveyId).eq('question_id', questionId).eq('option_id', optionId)
+      .limit(1).maybeSingle();
+  }
+
+  /** Deletes one persisted answer by its database identifier.
+   * @param answerId Answer database identifier.
+   * @returns A promise resolved after deletion.
+   */
+  private async deleteAnswer(answerId: string) {
+    const { error } = await supabase.from(TABLES.answers).delete().eq('id', answerId);
+    if (error) throw error;
   }
 
   /** Creates a published survey with all questions and options.
@@ -246,17 +271,44 @@ export class SurveyService {
     description: string,
     category: string,
   ) {
-    if (!error.message.includes("Could not find the 'end_date' column") &&
-        !error.message.includes("Could not find the 'category' column")) {
-      throw error;
-    }
+    if (!this.isLegacySchemaError(error)) throw error;
     const result = error.message.includes("Could not find the 'end_date' column")
-      ? await supabase.from(TABLES.surveys)
-        .insert({ slug, title, description, category, status: 'published' }).select().single()
-      : await supabase.from(TABLES.surveys)
-        .insert({ slug, title, description, status: 'published' }).select().single();
+      ? await this.insertWithCategory(slug, title, description, category)
+      : await this.insertWithoutCategory(slug, title, description);
     if (result.error) throw result.error;
     return result.data;
+  }
+
+  /** Checks whether an error indicates a supported older schema.
+   * @param error Database error from the initial insert.
+   * @returns True when a legacy retry is supported.
+   */
+  private isLegacySchemaError(error: { message: string }) {
+    return error.message.includes("Could not find the 'end_date' column") ||
+      error.message.includes("Could not find the 'category' column");
+  }
+
+  /** Inserts a survey without the unavailable end-date column.
+   * @param slug Survey URL slug.
+   * @param title Survey title.
+   * @param description Survey description.
+   * @param category Survey category.
+   * @returns The database insert result.
+   */
+  private insertWithCategory(slug: string, title: string, description: string, category: string) {
+    return supabase.from(TABLES.surveys)
+      .insert({ slug, title, description, category, status: 'published' }).select().single();
+  }
+
+  /** Inserts a survey without the unavailable category column.
+   * @param slug Survey URL slug.
+   * @param title Survey title.
+   * @param description Survey description.
+   * @returns The database insert result.
+   */
+  private insertWithoutCategory(slug: string, title: string, description: string) {
+    return supabase.from(TABLES.surveys)
+      .insert({ slug, title, description, status: 'published' }).select().single();
   }
 
   /** Persists one question together with its options.

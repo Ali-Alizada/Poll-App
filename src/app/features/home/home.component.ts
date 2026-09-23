@@ -37,10 +37,10 @@ export class HomeComponent {
       )
       .sort((first, second) => this.endDateTimestamp(first.endDate) - this.endDateTimestamp(second.endDate));
   });
-    /** Converts an optional end date into a sortable timestamp.
-     * @param endDate Optional survey end date.
-     * @returns Sortable timestamp or positive infinity.
-     */
+  /** Converts an optional end date into a sortable timestamp.
+   * @param endDate Optional survey end date.
+   * @returns Sortable timestamp or positive infinity.
+   */
 
   private endDateTimestamp(endDate?: string) {
     return endDate ? new Date(`${endDate}T23:59:59`).getTime() : Number.POSITIVE_INFINITY;
@@ -91,6 +91,9 @@ export class HomeComponent {
     this.surveyFilter.set(filter);
   }
 
+  /** Opens the survey editor modal.
+   * @returns Nothing.
+   */
   openEditor() {
     this.editorModal.open();
   }

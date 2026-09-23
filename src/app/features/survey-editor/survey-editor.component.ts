@@ -205,17 +205,24 @@ export class SurveyEditorComponent {
       this.form.markAllAsTouched();
       return;
     }
-    const value = this.form.getRawValue();
-    const questions = this.createQuestions(value.questions);
     try {
-      const survey = await this.surveyService.create(
-        value.title!, value.endDate || undefined, value.description!, value.category!, questions,
-      );
-      this.publishedSurveySlug = survey.slug;
-      this.isPublished.set(true);
+      await this.createSurveyFromForm();
     } catch (error: unknown) {
       this.showPublishError(error);
     }
+  }
+
+  /** Creates and stores a survey from the current form values.
+   * @returns A promise resolved after the success notice is shown.
+   */
+  private async createSurveyFromForm() {
+    const value = this.form.getRawValue();
+    const questions = this.createQuestions(value.questions);
+    const survey = await this.surveyService.create(
+      value.title!, value.endDate || undefined, value.description!, value.category!, questions,
+    );
+    this.publishedSurveySlug = survey.slug;
+    this.isPublished.set(true);
   }
 
   /** Creates domain questions from the form value.
