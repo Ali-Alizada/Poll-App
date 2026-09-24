@@ -101,6 +101,10 @@ body {
   --plum: #35263b;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
 }
