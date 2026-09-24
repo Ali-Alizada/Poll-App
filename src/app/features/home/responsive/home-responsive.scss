@@ -43,7 +43,30 @@
     grid-auto-columns: minmax(260px, 80%);
     overflow-x: auto;
     overflow-y: hidden;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+    scrollbar-color: var(--peach) transparent;
+    scrollbar-width: thin;
   }
+
+  .survey-grid::-webkit-scrollbar {
+    height: 8px;
+    background: transparent;
+    border: 0;
+  }
+
+  .survey-grid::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0;
+  }
+
+  .survey-grid::-webkit-scrollbar-thumb {
+    background: var(--peach);
+    border: 0;
+    border-radius: 10px;
+    max-height: 64px;
+  }
+
 
   .content {
     padding: 45px 7%;
@@ -62,6 +85,11 @@
     max-height: none;
     overflow-y: visible;
     padding-right: 0;
+  }
+
+
+  .card-category{
+    padding: 0px 7%;
   }
 }
 
