@@ -149,16 +149,24 @@ export class SurveyService {
     return grouped;
   }
 
-  /** Persists one selected answer and refreshes the local state.
+  /** Persists the final, confirmed answers for one survey in one batch.
    * @param surveyId Survey identifier.
-   * @param questionId Question identifier.
-   * @param optionId Option identifier.
-   * @returns A promise resolved after the state refresh.
+   * @param answers Selected answers grouped by question.
+   * @returns A promise resolved after the insert completes.
    */
-  async addAnswer(surveyId: string, questionId: string, optionId: string) {
-    const { error } = await supabase
-      .from(TABLES.answers)
-      .insert({ survey_id: surveyId, question_id: questionId, option_id: optionId });
+  async submitAnswers(surveyId: string, answers: Record<string, string[]>) {
+    const rows = Object.entries(answers)
+      .flatMap(([questionId, optionIds]) =>
+        optionIds.map((optionId) => ({
+          survey_id: surveyId,
+          question_id: questionId,
+          option_id: optionId,
+        })),
+      );
+
+    if (rows.length === 0) return;
+
+    const { error } = await supabase.from(TABLES.answers).insert(rows);
     if (error) throw error;
     await this.loadSurveys();
   }

@@ -35,9 +35,7 @@ export class SurveyDetailComponent {
     if (!question) return;
     const wasSelected = this.isSelected(questionId, optionId);
     if (!question.allowMultiple && wasSelected) return;
-    const previousOptions = this.selectedOptions()[questionId] ?? [];
     this.updateSelectedOptions(questionId, optionId, question.allowMultiple, wasSelected);
-    await this.persistVote(surveyId, questionId, optionId, question.allowMultiple, wasSelected, previousOptions);
   }
 
   /** Updates the local selection state for one question.
@@ -60,33 +58,6 @@ export class SurveyDetailComponent {
         : allowMultiple ? [...questionOptions, optionId] : [optionId];
       return { ...selected, [questionId]: updatedOptions };
     });
-  }
-
-  /** Persists a vote and removes a previous single-choice answer when needed.
-   * @param surveyId Survey identifier.
-   * @param questionId Question identifier.
-   * @param optionId Option identifier.
-   * @param allowMultiple Whether multiple options may be selected.
-   * @param wasSelected Whether the option was selected before the vote.
-   * @param previousOptions Previously selected option identifiers.
-   * @returns A promise resolved after persistence.
-   */
-  private async persistVote(
-    surveyId: string,
-    questionId: string,
-    optionId: string,
-    allowMultiple: boolean,
-    wasSelected: boolean,
-    previousOptions: string[],
-  ) {
-    if (wasSelected) {
-      await this.surveys.removeAnswer(surveyId, questionId, optionId);
-      return;
-    }
-    for (const previousOptionId of allowMultiple ? [] : previousOptions) {
-      await this.surveys.removeAnswer(surveyId, questionId, previousOptionId);
-    }
-    await this.surveys.addAnswer(surveyId, questionId, optionId);
   }
 
   /** Returns whether an option is selected for a question.
@@ -152,13 +123,14 @@ export class SurveyDetailComponent {
     );
   }
 
-  /** Navigates home after a complete survey.
+  /** Submits the local draft answers to Supabase only after final confirmation.
    * @returns Nothing.
    */
-  completeSurvey() {
-    if (this.canComplete()) {
-      void this.router.navigate(['/']);
-    }
+  async completeSurvey() {
+    const currentSurvey = this.survey();
+    if (!currentSurvey || !this.canComplete()) return;
+    await this.surveys.submitAnswers(currentSurvey.id, this.selectedOptions());
+    await this.router.navigate(['/']);
   }
 
   /** Counts answers matching one option.
