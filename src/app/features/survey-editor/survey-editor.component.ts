@@ -130,7 +130,7 @@ export class SurveyEditorComponent {
     this.questions.removeAt(index);
   }
 
-  /** Clears the first question or removes later questions.
+  /** Clears the default question or removes later questions.
    * @param index Question index.
    * @returns Nothing.
    */

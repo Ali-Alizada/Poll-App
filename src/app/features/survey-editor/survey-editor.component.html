@@ -96,7 +96,7 @@
         </div>
 
         <div formArrayName="questions" class="qustions-form">
-          @for (question of questions.controls; track $index; let i = $index) {
+          @for (question of questions.controls; track question; let i = $index) {
           <section class="editor-question" [formGroupName]="i">
             <div class="question-top">
               <strong>Question {{ i + 1 }} <span class="required-marker" aria-hidden="true">*</span></strong>
@@ -105,7 +105,8 @@
             <label>
               <span class="input-row">
                 <input formControlName="text" minlength="10" placeholder="please enter your question (min. 10 chars)"/>
-                <button type="button" class="clear-field delete-icon" aria-label="Clear question"
+                <button type="button" class="clear-field delete-icon"
+                  [attr.aria-label]="i === 0 ? 'Clear question' : 'Delete question'"
                   (click)="deleteQuestion(i)">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
