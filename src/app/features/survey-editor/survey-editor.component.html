@@ -39,7 +39,7 @@
               <label>
                 <span class="servey-labelname">Set end date <span>(optional)</span></span>
                 <span class="input-row">
-                  <input type="date" formControlName="endDate" />
+                  <input type="date" formControlName="endDate" [min]="minEndDate" />
                   <button type="button" class="clear-field delete-icon" aria-label="Clear end date"
                     (click)="clearField('endDate')">
                     <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">

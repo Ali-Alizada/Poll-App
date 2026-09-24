@@ -42,8 +42,19 @@ const optionalDateValidator: ValidatorFn = (control: AbstractControl): Validatio
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     return { date: true };
   }
-  return isCalendarDate(value) ? null : { date: true };
+  return isCalendarDate(value) && value >= getTodayDate() ? null : { date: true };
 };
+
+/** Returns today's date in the format expected by a date input.
+ * @returns Today's local date in YYYY-MM-DD format.
+ */
+function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
 /** Checks whether a date string contains a real calendar date.
  * @param value Date string in YYYY-MM-DD format.
@@ -71,6 +82,7 @@ export class SurveyEditorComponent {
   private readonly surveyService = inject(SurveyService);
   private readonly router = inject(Router);
   readonly categories = SURVEY_CATEGORIES;
+  readonly minEndDate = getTodayDate();
   readonly isCategoryMenuOpen = signal(false);
   readonly isPublished = signal(false);
   private publishedSurveySlug: string | null = null;
