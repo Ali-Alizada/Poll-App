@@ -123,5 +123,4 @@ export class HomeComponent {
       this.isCategoryMenuOpen.set(false);
     }
   }
-
 }

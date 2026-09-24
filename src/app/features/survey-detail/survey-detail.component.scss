@@ -15,7 +15,7 @@
   display: grid;
   max-width: 1440px;
   margin: auto;
-  padding: 0 75px;
+  padding: 0 75px 120px;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 315px);
   gap: clamp(24px, 4.2vw, 60px);
 }
@@ -261,7 +261,7 @@
 .percentage {
   justify-self: end;
   color: #d79451;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   font-family: "Mulish";
 }

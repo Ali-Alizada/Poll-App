@@ -1,9 +1,59 @@
 import { Component, ElementRef, EventEmitter, HostListener, inject, Input, Output, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question, SURVEY_CATEGORIES } from '../../core/models/survey.model';
 import { SurveyService } from '../../core/services/survey.service';
 import { AppHeaderComponent } from '../../shared/components/app-header.component';
+
+/** Validates that a required text value contains non-whitespace characters.
+ * @param control Form control to validate.
+ * @returns A validation error or null when the value is valid.
+ */
+const nonBlankValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
+  typeof control.value === 'string' && control.value.trim().length > 0
+    ? null
+    : { blank: true };
+
+/** Validates optional text when a value has been entered.
+ * @param control Form control to validate.
+ * @returns A validation error or null when the value is valid.
+ */
+const optionalTextValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  if (control.value === null || control.value === '') return null;
+  return typeof control.value === 'string' && control.value.trim().length > 0
+    ? null
+    : { blank: true };
+};
+
+/** Validates an optional calendar date in YYYY-MM-DD format.
+ * @param control Form control to validate.
+ * @returns A validation error or null when the value is valid.
+ */
+const optionalDateValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const value = control.value;
+  if (value === null || value === '') return null;
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return { date: true };
+  }
+  return isCalendarDate(value) ? null : { date: true };
+};
+
+/** Checks whether a date string contains a real calendar date.
+ * @param value Date string in YYYY-MM-DD format.
+ * @returns True when the date exists in the calendar.
+ */
+function isCalendarDate(value: string) {
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
 
 @Component({
   selector: 'app-survey-editor',
@@ -26,9 +76,9 @@ export class SurveyEditorComponent {
   private publishedSurveySlug: string | null = null;
 
   readonly form = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(10)]],
-    endDate: [''],
-    description: [''],
+    title: ['', [Validators.required, nonBlankValidator, Validators.minLength(10)]],
+    endDate: ['', optionalDateValidator],
+    description: ['', optionalTextValidator],
     category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(
       SURVEY_CATEGORIES[0],
       Validators.required,
@@ -56,11 +106,11 @@ export class SurveyEditorComponent {
    */
   private newQuestion() {
     return this.fb.group({
-      text: ['', [Validators.required, Validators.minLength(10)]],
+      text: ['', [Validators.required, nonBlankValidator, Validators.minLength(10)]],
       allowMultiple: [false],
       options: this.fb.array([
-        this.fb.control('', [Validators.required, Validators.minLength(2)]),
-        this.fb.control('', [Validators.required, Validators.minLength(2)]),
+        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(2)]),
+        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(2)]),
       ]),
     });
   }
@@ -136,7 +186,9 @@ export class SurveyEditorComponent {
    * @returns Nothing.
    */
   addOption(index: number) {
-    this.options(index).push(this.fb.control('', [Validators.required, Validators.minLength(2)]));
+    this.options(index).push(
+      this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(2)]),
+    );
   }
 
   /** Removes an option from a question.
@@ -201,6 +253,7 @@ export class SurveyEditorComponent {
    * @returns A promise resolved after publishing or showing an error.
    */
   async publish() {
+    this.trimFormValues();
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -223,6 +276,23 @@ export class SurveyEditorComponent {
     );
     this.publishedSurveySlug = survey.slug;
     this.isPublished.set(true);
+  }
+
+  /** Removes leading and trailing whitespace from every text form value.
+   * @returns Nothing.
+   */
+  private trimFormValues() {
+    this.form.patchValue({
+      title: this.form.controls.title.value?.trim() ?? '',
+      endDate: this.form.controls.endDate.value?.trim() ?? '',
+      description: this.form.controls.description.value?.trim() ?? '',
+    });
+    this.questions.controls.forEach((question) => {
+      question.controls.text.setValue(question.controls.text.value?.trim() ?? '');
+      question.controls.options.controls.forEach((option) => {
+        option.setValue(option.value?.trim() ?? '');
+      });
+    });
   }
 
   /** Creates domain questions from the form value.
