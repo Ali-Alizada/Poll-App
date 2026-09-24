@@ -1,13 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { vi } from 'vitest';
 import { SurveyDetailComponent } from './survey-detail.component';
 import { SurveyService } from '../../core/services/survey.service';
 
 describe('SurveyDetailComponent', () => {
   let fixture: ComponentFixture<SurveyDetailComponent>;
   let component: SurveyDetailComponent;
-  let surveyService: jasmine.SpyObj<SurveyService>;
-  let router: jasmine.SpyObj<Router>;
+  let surveyService: {
+    bySlug: ReturnType<typeof vi.fn>;
+    submitAnswers: ReturnType<typeof vi.fn>;
+  };
+  let router: { navigate: ReturnType<typeof vi.fn> };
 
   const survey = {
     id: 'survey-1',
@@ -33,11 +37,11 @@ describe('SurveyDetailComponent', () => {
   };
 
   beforeEach(async () => {
-    surveyService = jasmine.createSpyObj<SurveyService>('SurveyService', ['bySlug', 'submitAnswers']);
-    surveyService.bySlug.and.returnValue(survey);
-    surveyService.submitAnswers.and.resolveTo();
-    router = jasmine.createSpyObj<Router>('Router', ['navigate']);
-    router.navigate.and.resolveTo(true);
+    surveyService = {
+      bySlug: vi.fn(() => survey),
+      submitAnswers: vi.fn().mockResolvedValue(undefined),
+    };
+    router = { navigate: vi.fn().mockResolvedValue(true) };
 
     await TestBed.configureTestingModule({
       imports: [SurveyDetailComponent],
@@ -55,8 +59,12 @@ describe('SurveyDetailComponent', () => {
 
   it('keeps local answers pending until the survey is completed', async () => {
     await component.vote('survey-1', 'question-1', 'option-1');
+    fixture.detectChanges();
 
-    expect(component.isSelected('question-1', 'option-1')).toBeTrue();
+    expect(component.isSelected('question-1', 'option-1')).toBe(true);
+    expect(component.resultAnswers()['question-1']).toEqual(['option-1']);
+    expect(component.percent(component.resultAnswers()['question-1'], 'option-1')).toBe(100);
+    expect(fixture.nativeElement.querySelector('.result-bar-fill').style.getPropertyValue('--result-bar-width')).toBe('100%');
     expect(surveyService.submitAnswers).not.toHaveBeenCalled();
 
     await component.completeSurvey();
@@ -65,5 +73,23 @@ describe('SurveyDetailComponent', () => {
       'question-1': ['option-1'],
     });
     expect(router.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('keeps multiple local answers selected until completion', async () => {
+    survey.questions[0].allowMultiple = true;
+
+    await component.vote('survey-1', 'question-1', 'option-1');
+    await component.vote('survey-1', 'question-1', 'option-2');
+
+    expect(component.isSelected('question-1', 'option-1')).toBe(true);
+    expect(component.isSelected('question-1', 'option-2')).toBe(true);
+    expect(component.canComplete()).toBe(true);
+    expect(surveyService.submitAnswers).not.toHaveBeenCalled();
+
+    await component.completeSurvey();
+
+    expect(surveyService.submitAnswers).toHaveBeenCalledWith('survey-1', {
+      'question-1': ['option-1', 'option-2'],
+    });
   });
 });

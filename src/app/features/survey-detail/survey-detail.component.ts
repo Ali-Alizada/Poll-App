@@ -18,6 +18,23 @@ export class SurveyDetailComponent {
     this.surveys.bySlug(this.route.snapshot.paramMap.get('slug') ?? ''),
   );
 
+  /** Combines persisted answers with the local selection for the live preview. */
+  readonly resultAnswers = computed<Record<string, string[]>>(() => {
+    const currentSurvey = this.survey();
+    if (!currentSurvey) return {};
+
+    const selected = this.selectedOptions();
+    return Object.fromEntries(
+      currentSurvey.questions.map((question) => [
+        question.id,
+        [
+          ...(currentSurvey.answers[question.id] ?? []),
+          ...(selected[question.id] ?? []),
+        ],
+      ]),
+    );
+  });
+
   readonly isPastSurvey = computed(() => {
     const endDate = this.survey()?.endDate;
     return !!endDate && new Date(`${endDate}T23:59:59`).getTime() < Date.now();

@@ -45,10 +45,11 @@
       </button>
     </div>
     <aside class="results">
+      @let displayedAnswers = resultAnswers();
       <h2 class="results-title">Survey results <span>LIVE</span></h2>
-      @if (hasAnswers(current.answers)) {
+      @if (hasAnswers(displayedAnswers)) {
         @for (question of current.questions; track question.id; let questionIndex = $index) {
-        @if (hasQuestionAnswers(current.answers, question.id)) {
+        @if (hasQuestionAnswers(displayedAnswers, question.id)) {
           <div class="result-question">
           <h3>
             <span class="result-question-number">{{ questionIndex + 1 }}.</span>
@@ -58,9 +59,9 @@
           <div class="result-row">
             <span class="result-option-letter">{{ optionLetter(optionIndex) }}</span>
             <div class="bar">
-              <i class="result-bar-fill" [style.--result-bar-width]="percent(current.answers[question.id], option.id) + '%'"></i>
+              <i class="result-bar-fill" [style.--result-bar-width]="percent(displayedAnswers[question.id], option.id) + '%'"></i>
             </div>
-            <strong class="percentage">{{ percent(current.answers[question.id], option.id) }}%</strong>
+            <strong class="percentage">{{ percent(displayedAnswers[question.id], option.id) }}%</strong>
           </div>
           }
           </div>
