@@ -139,6 +139,29 @@
   }
 }
 
+@media (max-width: 335px) {
+  .hero,
+  .content,
+  .card-category {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-content,
+  .hero-art,
+  .section-heading,
+  .links-group,
+  .survey-grid,
+  .servey-grid-row {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero p:not(.eyebrow) {
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .first-button,
   .second-button,

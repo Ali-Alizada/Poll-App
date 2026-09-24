@@ -87,3 +87,32 @@
     gap: 48px;
   }
 }
+
+@media (max-width: 335px) {
+  .survey-page,
+  .questions,
+  .results {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .questions > *,
+  .category-info > *,
+  .question,
+  .question h2,
+  .options,
+  .options .option,
+  .results > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .questions h1,
+  .question h2,
+  .options .option span:last-child,
+  .results-title,
+  .result-question h3,
+  .empty-results p {
+    overflow-wrap: anywhere;
+  }
+}
