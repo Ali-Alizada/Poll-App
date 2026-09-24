@@ -18,6 +18,7 @@
   padding: 0 75px 120px;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 315px);
   gap: clamp(24px, 4.2vw, 60px);
+  min-height: 88vh;
 }
 
 .questions h1 {
