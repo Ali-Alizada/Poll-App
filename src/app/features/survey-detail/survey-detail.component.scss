@@ -18,7 +18,7 @@
   padding: 0 75px 120px;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 315px);
   gap: clamp(24px, 4.2vw, 60px);
-  min-height: 88vh;
+  min-height: 900px;
 }
 
 .questions h1 {
@@ -40,10 +40,12 @@
 }
 
 .questions {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 34px;
   align-content: start;
+  min-height: 900px;
   background-color: var(--secondary-background);
   padding: 46px;
   border-top-right-radius: 150px;
@@ -155,9 +157,10 @@
 }
 
 .complete-button {
+  position: absolute;
+  right: 46px;
+  bottom: 46px;
   grid-column: 1 / -1;
-  justify-self: end;
-  margin-top: 40px;
   padding: 10px 16px;
   border: 0;
   border-radius: 7px;
@@ -259,9 +262,9 @@
 }
 
 .empty-results {
+  position: relative;
   font-family: "Mulish";
-  display: grid;
-  gap: 108px;
+  min-height: 720px;
   color: var(--plum);
   font-size: 18px;
   font-weight: 700;
@@ -269,6 +272,11 @@
 }
 
 .empty-results .empty-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
   margin: 0;
   text-align: center;
+  transform: translate(-50%, -50%);
 }
