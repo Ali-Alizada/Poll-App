@@ -18,6 +18,7 @@
 
   .hero h1 {
     order: 1;
+    margin: auto;
   }
 
   .hero-art {
@@ -32,9 +33,18 @@
     margin: 0;
   }
 
-  .survey-button-group {
+  .first-button {
     order: 4;
+    justify-self: start;
+    width: 172px;
+    transition: background-color 0.5s ease;
     margin: auto;
+  }
+
+  .first-button .add-icon {
+    width: 24px;
+    opacity: 1;
+    transition: none;
   }
 
   .survey-grid {
@@ -86,12 +96,13 @@
     padding-right: 0;
   }
 
-  .card-category{
+  .card-category {
     padding: 0px 7% 100px;
   }
 }
 
 @media (max-width: 640px) {
+
   .content,
   .card-category {
     padding-right: 20px;
@@ -166,6 +177,7 @@
 }
 
 @media (max-width: 335px) {
+
   .hero,
   .content,
   .card-category {
@@ -189,6 +201,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .first-button,
   .second-button,
   .hero-art img {
