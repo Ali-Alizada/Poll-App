@@ -1,13 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { SurveyService } from '../../core/services/survey.service';
 import { SurveyEditorComponent } from './survey-editor.component';
 
 describe('SurveyEditorComponent', () => {
   let fixture: ComponentFixture<SurveyEditorComponent>;
   let component: SurveyEditorComponent;
+  let createSurveyCallCount: number;
 
   beforeEach(async () => {
+    createSurveyCallCount = 0;
     await TestBed.configureTestingModule({
       imports: [SurveyEditorComponent],
+      providers: [
+        provideRouter([]),
+        {
+          provide: SurveyService,
+          useValue: {
+            create: async () => {
+              createSurveyCallCount += 1;
+              return { slug: 'published-survey' };
+            },
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SurveyEditorComponent);
@@ -44,6 +60,26 @@ describe('SurveyEditorComponent', () => {
     expect(answerOptions.length).toBe(1);
     expect(answerOptions.at(0).value).toBe('Second answer');
     expect(answerOptions.controls).not.toContain(selectedAnswer);
+  });
+
+  it('should reset the editor and block another publish after success', async () => {
+    component.form.controls.title.setValue('A valid survey title');
+    component.questions.at(0).controls.text.setValue('A valid question text');
+    component.options(0).at(0).setValue('First answer');
+    component.options(0).at(1).setValue('Second answer');
+
+    await component.publish();
+    await component.publish();
+
+    expect(createSurveyCallCount).toBe(1);
+    expect(component.form.controls.title.value).toBe('');
+    expect(component.questions.length).toBe(1);
+    expect(component.options(0).length).toBe(2);
+    expect(component.isPublished()).toBe(true);
+
+    fixture.detectChanges();
+    const publishButton = fixture.nativeElement.querySelector('.form-actions button') as HTMLButtonElement;
+    expect(publishButton.disabled).toBe(true);
   });
 
   it('should reject whitespace-only required fields', () => {

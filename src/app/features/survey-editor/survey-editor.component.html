@@ -67,7 +67,7 @@
                   @if (isCategoryMenuOpen()) {
                   <div class="category-dropdown-content">
                     @for (category of categories; track category) {
-                    <button type="button" [class.selected]="form.controls.category.value === category"
+                    <button type="submit" [class.selected]="form.controls.category.value === category"
                       (click)="selectCategory(category)">
                       {{ category }}
                     </button>
@@ -171,7 +171,8 @@
       </form>
 
       <div class="form-actions">
-        <button class="button" type="submit" form="survey-form">
+        <button class="button" type="submit" form="survey-form"
+          [disabled]="form.invalid || isPublishing() || isPublished()">
           <span>Publish</span>
           <span class="publish-checkmark" aria-hidden="true">
             <img src="assets/imgs/check-icon.svg" alt="check-icon">

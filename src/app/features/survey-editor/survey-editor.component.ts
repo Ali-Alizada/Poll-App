@@ -87,6 +87,7 @@ export class SurveyEditorComponent {
   readonly minEndDate = getTodayDate();
   readonly isCategoryMenuOpen = signal(false);
   readonly isPublished = signal(false);
+  readonly isPublishing = signal(false);
   private publishedSurveySlug: string | null = null;
 
   readonly form = this.fb.group({
@@ -286,16 +287,40 @@ export class SurveyEditorComponent {
    * @returns A promise resolved after publishing or showing an error.
    */
   async publish() {
+    if (this.isPublishing() || this.isPublished()) return;
+
     this.trimFormValues();
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
+
+    this.isPublishing.set(true);
     try {
       await this.createSurveyFromForm();
+      this.resetForm();
     } catch (error: unknown) {
       this.showPublishError(error);
+    } finally {
+      this.isPublishing.set(false);
     }
+  }
+
+  /** Restores the editor to one empty question after a successful publish.
+   * @returns Nothing.
+   */
+  private resetForm() {
+    this.questions.clear();
+    this.questions.push(this.newQuestion());
+    this.pendingOptionDeletes.clear();
+    this.form.reset({
+      title: '',
+      endDate: '',
+      description: '',
+      category: SURVEY_CATEGORIES[0],
+      questions: [{ text: '', allowMultiple: false, options: ['', ''] }],
+    });
+    this.isCategoryMenuOpen.set(false);
   }
 
   /** Creates and stores a survey from the current form values.
