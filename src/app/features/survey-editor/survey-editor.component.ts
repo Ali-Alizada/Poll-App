@@ -75,6 +75,8 @@ function isCalendarDate(value: string) {
 })
 
 export class SurveyEditorComponent {
+  private readonly pendingOptionDeletes = new Set<AbstractControl>();
+
   @Input() modal = false;
   @Output() readonly closed = new EventEmitter<void>();
   private readonly elementRef = inject(ElementRef<HTMLElement>);
@@ -176,7 +178,26 @@ export class SurveyEditorComponent {
    * @returns Nothing.
    */
   clearOption(question: number, option: number) {
-    this.options(question).at(option).setValue('');
+    const control = this.options(question).at(option);
+    control.setValue('');
+    this.pendingOptionDeletes.delete(control);
+  }
+
+  /** Clears an option on the first click and removes it on the next click.
+   * @param question Question index.
+   * @param option Option index.
+   * @returns Nothing.
+   */
+  deleteOption(question: number, option: number) {
+    const optionControl = this.options(question).at(option);
+    if (this.pendingOptionDeletes.has(optionControl)) {
+      this.options(question).removeAt(option);
+      this.pendingOptionDeletes.delete(optionControl);
+      return;
+    }
+
+    optionControl.setValue('');
+    this.pendingOptionDeletes.add(optionControl);
   }
 
   /** Converts an option index to its alphabetic label.

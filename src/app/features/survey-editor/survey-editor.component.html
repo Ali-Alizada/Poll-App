@@ -126,12 +126,12 @@
             </label>
 
             <div formArrayName="options" class="option-inputs">
-              @for (option of options(i).controls; track $index; let j = $index) {
+              @for (option of options(i).controls; track option; let j = $index) {
               <div class="option-row">
                 <span class="option-letter">{{ answerLetter(j) }}.</span>
                 <input [formControlName]="j" minlength="2" placeholder="please enter your option(min. 2 chars)" title="Answer option" />
 
-                @if (j < 2) { <button type="button" class="clear-field delete-icon"
+                @if (i === 0 && j < 2) { <button type="button" class="clear-field delete-icon"
                   [attr.aria-label]="'Clear answer ' + answerLetter(j)" [attr.title]="'Clear answer ' + answerLetter(j)"
                   (click)="clearOption(i, j)">
                   <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +144,7 @@
                   } @else {
                   <button type="button" class="clear-field delete-icon"
                     [attr.aria-label]="'Delete answer ' + answerLetter(j)"
-                    [attr.title]="'Delete answer ' + answerLetter(j)" (click)="removeOption(i, j)">
+                    [attr.title]="'Delete answer ' + answerLetter(j)" (click)="deleteOption(i, j)">
                     <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M7.25 22.75a2.086 2.086 0 0 1-1.53-.637 2.086 2.086 0 0 1-.637-1.53V6.5c-.307 0-.564-.104-.772-.311A1.048 1.048 0 0 1 4 5.417c0-.307.104-.565.311-.772.208-.208.465-.312.772-.312h4.334c0-.307.103-.564.311-.772.208-.207.465-.311.772-.311h4.333c.307 0 .565.104.772.311.208.208.312.465.312.772h4.333c.307 0 .564.104.772.312.208.207.311.465.311.772s-.103.564-.311.772a1.048 1.048 0 0 1-.772.311v14.083c0 .596-.212 1.106-.637 1.53a2.086 2.086 0 0 1-1.53.637H7.25ZM18.083 6.5H7.25v14.083h10.833V6.5ZM10.5 18.417c.307 0 .564-.104.772-.312a1.05 1.05 0 0 0 .311-.772V9.75c0-.307-.104-.564-.311-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.772.311a1.048 1.048 0 0 0-.311.772v7.583c0 .307.103.565.311.772.208.208.465.312.772.312Zm4.333 0c.307 0 .565-.104.772-.312.208-.207.312-.465.312-.772V9.75c0-.307-.104-.564-.312-.772a1.048 1.048 0 0 0-.772-.311c-.307 0-.564.103-.771.311a1.048 1.048 0 0 0-.312.772v7.583c0 .307.104.565.312.772.207.208.464.312.771.312Z"

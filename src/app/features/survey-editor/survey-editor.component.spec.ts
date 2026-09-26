@@ -29,6 +29,23 @@ describe('SurveyEditorComponent', () => {
     expect(component.questions.at(1).controls.text.value).toBe('Third question');
   });
 
+  it('should clear then remove the selected answer from the second question', () => {
+    component.addQuestion();
+    const answerOptions = component.options(1);
+    answerOptions.at(0).setValue('First answer');
+    answerOptions.at(1).setValue('Second answer');
+    const selectedAnswer = answerOptions.at(0);
+
+    component.deleteOption(1, 0);
+    expect(answerOptions.at(0).value).toBe('');
+    expect(answerOptions.length).toBe(2);
+
+    component.deleteOption(1, 0);
+    expect(answerOptions.length).toBe(1);
+    expect(answerOptions.at(0).value).toBe('Second answer');
+    expect(answerOptions.controls).not.toContain(selectedAnswer);
+  });
+
   it('should reject whitespace-only required fields', () => {
     component.form.controls.title.setValue('          ');
     component.questions.at(0).controls.text.setValue('          ');
