@@ -93,6 +93,20 @@ describe('SurveyEditorComponent', () => {
     expect(component.options(0).at(0).hasError('blank')).toBe(true);
   });
 
+  it('should trim whitespace and show invalid styling after a field loses focus', () => {
+    const titleInput = fixture.nativeElement.querySelector(
+      'input[formControlName="title"]',
+    ) as HTMLInputElement;
+    titleInput.value = '  short  ';
+    titleInput.dispatchEvent(new Event('input', { bubbles: true }));
+    titleInput.dispatchEvent(new Event('blur'));
+    fixture.detectChanges();
+
+    expect(titleInput.value).toBe('short');
+    expect(component.form.controls.title.touched).toBe(true);
+    expect(titleInput.classList.contains('ng-invalid')).toBe(true);
+  });
+
   it('should validate optional description and end date values', () => {
     component.form.controls.description.setValue('   ');
     component.form.controls.endDate.setValue('2026-02-30');

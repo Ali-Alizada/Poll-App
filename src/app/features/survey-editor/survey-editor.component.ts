@@ -165,6 +165,17 @@ export class SurveyEditorComponent {
     this.form.controls[controlName].setValue('');
   }
 
+  /** Trims surrounding whitespace when a text field loses focus.
+   * @param control Form control to normalize.
+   * @returns Nothing.
+   */
+  trimOnBlur(control: AbstractControl) {
+    if (typeof control.value === 'string') {
+      control.setValue(control.value.trim());
+    }
+    control.markAsTouched();
+  }
+
   /** Clears the text of one question.
    * @param index Question index.
    * @returns Nothing.
