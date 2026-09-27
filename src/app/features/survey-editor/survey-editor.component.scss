@@ -478,6 +478,10 @@
   transition: width 220ms ease;
 }
 
+.form-actions .button:disabled {
+  cursor: default;
+}
+
 .form-actions .button:not(:disabled):hover {
   display: inline-flex;
   align-items: center;
