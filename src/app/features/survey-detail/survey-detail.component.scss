@@ -119,8 +119,9 @@
   background-color: var(--secondary-orange);
 }
 
-.options .option:disabled {
+.options .option:disabled:hover {
   cursor: default;
+  background-color: transparent;
 }
 
 .option-letter {
