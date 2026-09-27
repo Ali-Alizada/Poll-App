@@ -132,7 +132,7 @@
               @for (option of options(i).controls; track option; let j = $index) {
               <div class="option-row">
                 <span class="option-letter">{{ answerLetter(j) }}.</span>
-                <input [formControlName]="j" minlength="1" placeholder="please enter your option(min. 1 chars)"
+                <input [formControlName]="j" minlength="1" placeholder="please enter your option(min. 1 char)"
                   title="Answer option" (blur)="trimOnBlur(option)" />
 
                 @if (i === 0 && j < 2) { <button type="button" class="clear-field delete-icon"
