@@ -22,7 +22,7 @@
   padding: 75px;
   gap: clamp(24px, 5vw, 72px);
   justify-content: space-between;
-  overflow: hidden;
+  overflow: unset;
   background: var(--plum);
   color: white;
 }
@@ -126,7 +126,7 @@
 .add-icon {
   width: 0;
   opacity: 0;
-  overflow: hidden;
+  overflow: unset;
   transition: width 0.4s ease, opacity 0.4s ease;
 }
 

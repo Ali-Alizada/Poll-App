@@ -97,12 +97,12 @@
 
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: unset;
   --plum: #35263b;
 }
 
 body.modal-open {
-  overflow: hidden;
+  overflow: unset;
 }
 
 img {
