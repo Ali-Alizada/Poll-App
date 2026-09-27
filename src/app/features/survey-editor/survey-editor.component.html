@@ -22,7 +22,7 @@
             <label>
               <span class="servey-labelname">Survey name <span class="required-marker" aria-hidden="true">*</span></span>
               <span class="input-row">
-                <input formControlName="title" minlength="10" placeholder="please enter your survey name (min. 10 chars)"
+                <input formControlName="title" minlength="5" placeholder="please enter your survey name (min. 5 chars)"
                   (blur)="trimOnBlur(form.controls.title)" />
                 <button type="button" class="clear-field delete-icon" aria-label="Clear survey name"
                   (click)="clearField('title')">
@@ -106,7 +106,7 @@
 
             <label>
               <span class="input-row">
-                <input formControlName="text" minlength="10" placeholder="please enter your question (min. 10 chars)"
+                <input formControlName="text" minlength="5" placeholder="please enter your question (min. 5 chars)"
                   (blur)="trimOnBlur(question.controls.text)" />
                 <button type="button" class="clear-field delete-icon"
                   [attr.aria-label]="i === 0 ? 'Clear question' : 'Delete question'"
@@ -132,7 +132,7 @@
               @for (option of options(i).controls; track option; let j = $index) {
               <div class="option-row">
                 <span class="option-letter">{{ answerLetter(j) }}.</span>
-                <input [formControlName]="j" minlength="2" placeholder="please enter your option(min. 2 chars)"
+                <input [formControlName]="j" minlength="1" placeholder="please enter your option(min. 1 chars)"
                   title="Answer option" (blur)="trimOnBlur(option)" />
 
                 @if (i === 0 && j < 2) { <button type="button" class="clear-field delete-icon"

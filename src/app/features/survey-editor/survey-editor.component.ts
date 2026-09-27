@@ -91,7 +91,7 @@ export class SurveyEditorComponent {
   private publishedSurveySlug: string | null = null;
 
   readonly form = this.fb.group({
-    title: ['', [Validators.required, nonBlankValidator, Validators.minLength(10)]],
+    title: ['', [Validators.required, nonBlankValidator, Validators.minLength(5)]],
     endDate: ['', optionalDateValidator],
     description: ['', optionalTextValidator],
     category: this.fb.control<(typeof SURVEY_CATEGORIES)[number]>(
@@ -121,11 +121,11 @@ export class SurveyEditorComponent {
    */
   private newQuestion() {
     return this.fb.group({
-      text: ['', [Validators.required, nonBlankValidator, Validators.minLength(10)]],
+      text: ['', [Validators.required, nonBlankValidator, Validators.minLength(5)]],
       allowMultiple: [false],
       options: this.fb.array([
-        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(2)]),
-        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(2)]),
+        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(1)]),
+        this.fb.control('', [Validators.required, nonBlankValidator, Validators.minLength(1)]),
       ]),
     });
   }
