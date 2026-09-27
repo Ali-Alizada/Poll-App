@@ -36,7 +36,8 @@
   .first-button {
     order: 4;
     justify-self: start;
-    width: 172px;
+    width: min(172px, 100%);
+    min-width: 0;
     transition: background-color 0.5s ease;
     margin: auto;
   }

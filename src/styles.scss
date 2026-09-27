@@ -131,9 +131,11 @@ a {
   background: var(--plum);
 }
 
-.button:disabled {
-  cursor: auto;
-}
+// .button:disabled:hover {
+//   // cursor: auto;
+//   opacity: 0.6;
+//   cursor: not-allowed;
+// }
 
 .eyebrow {
   margin: 0 0 12px;

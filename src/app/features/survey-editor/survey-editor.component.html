@@ -176,7 +176,7 @@
 
       <div class="form-actions">
         <button class="button" type="submit" form="survey-form"
-          [disabled]="form.invalid || isPublishing() || isPublished()">
+          [disabled]="!form.valid || isPublishing() || isPublished()">
           <span>Publish</span>
           <span class="publish-checkmark" aria-hidden="true">
             <img src="assets/imgs/check-icon.svg" alt="check-icon">

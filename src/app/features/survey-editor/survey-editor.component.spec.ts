@@ -62,6 +62,27 @@ describe('SurveyEditorComponent', () => {
     expect(answerOptions.controls).not.toContain(selectedAnswer);
   });
 
+  it('should enable publishing only while the form is valid', () => {
+    const publishButton = fixture.nativeElement.querySelector(
+      '.form-actions button[form="survey-form"]',
+    ) as HTMLButtonElement;
+
+    expect(publishButton.disabled).toBe(true);
+
+    component.form.controls.title.setValue('A valid survey title');
+    component.questions.at(0).controls.text.setValue('A valid question text');
+    component.options(0).at(0).setValue('First answer');
+    component.options(0).at(1).setValue('Second answer');
+    fixture.detectChanges();
+
+    expect(publishButton.disabled).toBe(false);
+
+    component.form.controls.title.setValue('Too short');
+    fixture.detectChanges();
+
+    expect(publishButton.disabled).toBe(true);
+  });
+
   it('should reset the editor and block another publish after success', async () => {
     component.form.controls.title.setValue('A valid survey title');
     component.questions.at(0).controls.text.setValue('A valid question text');

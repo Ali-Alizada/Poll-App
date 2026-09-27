@@ -301,7 +301,7 @@ export class SurveyEditorComponent {
     if (this.isPublishing() || this.isPublished()) return;
 
     this.trimFormValues();
-    if (this.form.invalid) {
+    if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }

@@ -478,7 +478,7 @@
   transition: width 220ms ease;
 }
 
-.form-actions .button:hover {
+.form-actions .button:not(:disabled):hover {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -496,7 +496,7 @@
   transition: opacity 300ms ease, transform 220ms ease;
 }
 
-.form-actions .button:hover .publish-checkmark {
+.form-actions .button:not(:disabled):hover .publish-checkmark {
   opacity: 1;
   transform: translateX(0);
 }
